@@ -9,30 +9,29 @@ class panel{
 };
 class gameInfo{
     public:
-        int taps;
         bool gameWinner; // true if master, false if slave
-        char teamColour; // can be red, blue, green, orange or purple
         char gameMode;
-        gameInfo(char colour){
-            teamColour = colour;
+        gameInfo(){
         }
 };
-class canvas{
+class playfield{
     public:
         double maxX = 1600000;
         double maxY = 900000;
 };
 //interaction
-int tap(double x, double y){
-    //place xy
-    //send xy to other panel
+void arrowControls(){
+}
+void joystickControls(){
+}
+void controls(){
 }
 //comuniction
 int initialize(){
     //send innit message
     //recive confirmation message
 }
-int newGame(char panelClour, char gameMode){
+int newGame(char gameMode){
     //send star message
     //send panelColour and team mode mesage
 }
