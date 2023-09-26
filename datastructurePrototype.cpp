@@ -11,8 +11,6 @@ class gameInfo{
     public:
         bool gameWinner; // true if master, false if slave
         char gameMode;
-        gameInfo(){
-        }
 };
 class playfield{
     public:
