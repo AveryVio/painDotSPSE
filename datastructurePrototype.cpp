@@ -7,17 +7,13 @@ class panel{
         bool hierarchy;
         bool gameState;
 };
-class gameInfo{
-    public:
-        bool gameWinner; // true if master, false if slave
-        char gameMode;
-};
 class playfield{
     public:
         char maxX = 64;
         char maxY = 32;
 };
 class player{
+    public:
     char headposX;
     char headposY;
     char tailX[128];
@@ -30,15 +26,21 @@ class player{
         direction = pdirection;
         length = plenght;
     };
-    void move(char headX, char headY, char X[128], char Y[128], char direction, char plength){
-        for(int i = plength; i >= 0; i--){
-            X[i] = X[i-1];
-            Y[i] = Y[i-1];
+    void spawn(){
+        headposX = headposX;
+        headposY = headposY;
+        direction = 0;
+        length = 3;
+    }
+    void move(){
+        for(int i = length; i >= 0; i--){
+            tailX[i] = tailX[i-1];
+            tailY[i] = tailY[i-1];
         }
-        if (direction == 0) headY = headY + 1;
-        else if (direction == 1) headX = headX + 1;
-        else if (direction == 2) headY = headY - 1;
-        else if (direction == 3) headX = headX - 1;
+        if (direction == 0) headposY = headposY + 1;
+        else if (direction == 1) headposX = headposX + 1;
+        else if (direction == 2) headposY = headposY - 1;
+        else if (direction == 3) headposX = headposX - 1;
     }
 };
 //interaction
