@@ -9,8 +9,22 @@ class panel{
 };
 class playfield{
     public:
+        char minX = 0;
+        char minY = 0;
         char maxX = 64;
         char maxY = 32;
+};
+class wall {
+    char startX;
+    char endX;
+    char startY;
+    char endY;
+    wall(char sX, char eX, char sY, char eY){
+        startX = sX;
+        endX = eX;
+        startY = sY;
+        endY = eY;
+    }
 };
 class player{
     public:
@@ -33,6 +47,8 @@ class player{
             direction = 0;
             length = 3;
         }
+        bool wallcheck(char direction){
+        }
         void move(){
             if (lengthStored[0] !=0) {
                 tailX[length + 1] = tailX[length];
@@ -49,6 +65,12 @@ class player{
             else if (direction == 1) headposX = headposX + 1;
             else if (direction == 2) headposY = headposY - 1;
             else if (direction == 3) headposX = headposX - 1;
+        }
+        bool movecheck(){
+            if((direction == 0) && (headposY + 1 != wallcheck(0)));
+            else if((direction == 1) && (headposX + 1 != wallcheck(1)));
+            else if((direction == 2) && (headposY - 1 != wallcheck(2)));
+            else if((direction == 3) && (headposX - 1 != wallcheck(3)));
         }
 };
 class food{
