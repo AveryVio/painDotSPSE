@@ -20,6 +20,7 @@ class player{
         char tailY[128];
         char direction;
         char length;
+        char lengthStored[10];
         player(char pheadposX, char pheadposY, char pdirection, char plenght){
             headposX = pheadposX;
             headposY = pheadposY;
@@ -33,6 +34,13 @@ class player{
             length = 3;
         }
         void move(){
+            if (lengthStored[0] !=0) {
+                tailX[length + 1] = tailX[length];
+                tailY[length + 1] = tailY[length];
+                length++;
+                for (int i = 9; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
+                lengthStored[10] = 0;
+            }
             for(int i = length; i >= 0; i--){
                 tailX[i] = tailX[i-1];
                 tailY[i] = tailY[i-1];
