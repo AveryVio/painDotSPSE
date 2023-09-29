@@ -14,8 +14,32 @@ class gameInfo{
 };
 class playfield{
     public:
-        double maxX = 1600000;
-        double maxY = 900000;
+        char maxX = 64;
+        char maxY = 32;
+};
+class player{
+    char headposX;
+    char headposY;
+    char tailX[128];
+    char tailY[128];
+    char direction;
+    char length;
+    player(char pheadposX, char pheadposY, char pdirection, char plenght){
+        headposX = pheadposX;
+        headposY = pheadposY;
+        direction = pdirection;
+        length = plenght;
+    };
+    void move(char headX, char headY, char X[128], char Y[128], char direction, char plength){
+        for(int i = plength; i >= 0; i--){
+            X[i] = X[i-1];
+            Y[i] = Y[i-1];
+        }
+        if (direction == 0) headY = headY + 1;
+        else if (direction == 1) headX = headX + 1;
+        else if (direction == 2) headY = headY - 1;
+        else if (direction == 3) headX = headX - 1;
+    }
 };
 //interaction
 void arrowControls(){
@@ -23,15 +47,6 @@ void arrowControls(){
 void joystickControls(){
 }
 void controls(){
-}
-//comuniction
-int initialize(){
-    //send innit message
-    //recive confirmation message
-}
-int newGame(char gameMode){
-    //send star message
-    //send panelColour and team mode mesage
 }
 //main
 int main(){
