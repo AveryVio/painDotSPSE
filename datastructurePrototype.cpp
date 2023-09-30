@@ -47,7 +47,7 @@ class player{
             direction = 0;
             length = 3;
         }
-        bool wallcheck(char direction){
+        bool wallcheck(){
         }
         void move(){
             if (lengthStored[0] !=0) {
@@ -56,10 +56,16 @@ class player{
                 length++;
                 for (int i = 9; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
                 lengthStored[10] = 0;
+                for(int i = length-1; i >= 0; i--){
+                    tailX[i] = tailX[i-1];
+                    tailY[i] = tailY[i-1];
+                }
             }
-            for(int i = length; i >= 0; i--){
-                tailX[i] = tailX[i-1];
-                tailY[i] = tailY[i-1];
+            else {
+                for(int i = length; i >= 0; i--){
+                    tailX[i] = tailX[i-1];
+                    tailY[i] = tailY[i-1];
+                }
             }
             if (direction == 0) headposY = headposY + 1;
             else if (direction == 1) headposX = headposX + 1;
@@ -67,10 +73,10 @@ class player{
             else if (direction == 3) headposX = headposX - 1;
         }
         bool movecheck(){
-            if((direction == 0) && (headposY + 1 != wallcheck(0)));
-            else if((direction == 1) && (headposX + 1 != wallcheck(1)));
-            else if((direction == 2) && (headposY - 1 != wallcheck(2)));
-            else if((direction == 3) && (headposX - 1 != wallcheck(3)));
+            if((direction == 0) && (wallcheck() == 0));
+            else if((direction == 1) && (wallcheck() == 1));
+            else if((direction == 2) && (wallcheck() == 2));
+            else if((direction == 3) && (wallcheck() == 3));
         }
 };
 class food{
