@@ -28,9 +28,6 @@ class food{
             nutrition = val;
         }
 };
-void spawnFood(){
-    food foodblock(0,0,0);
-}
 class player{
     public:
         char headposX;
@@ -99,6 +96,7 @@ class player{
 char startgame(){
     player Player1(0);
     player Player2(1);
+    food foodblock(0, 0, 0);
 }
 //interaction
 void arrowControls(){
