@@ -17,6 +17,20 @@ class playfield{
         char maxX = playfieldX;
         char maxY = playfieldY;
 };
+class food{
+    public:
+        char x;
+        char y;
+        char nutrition;
+        food(char x, char y, char val){
+            x = x;
+            y = y;
+            nutrition = val;
+        }
+};
+void spawnFood(){
+    food foodblock(0,0,0);
+}
 class player{
     public:
         char headposX;
@@ -26,18 +40,24 @@ class player{
         char direction;
         char length;
         char lengthStored[10];
-        player(char pheadposX, char pheadposY, char pdirection, char plenght){
-            headposX = pheadposX;
-            headposY = pheadposY;
-            direction = pdirection;
-            length = plenght;
-        };
-        void spawn(){
-            headposX = headposX;
-            headposY = headposY;
+        player(char playernumber){
+            headposX = 0;
+            headposY = 0;
             direction = 0;
             length = 3;
-        }
+            if (playernumber == 0){
+                for (int i = 0; i < length; i++) {
+                    tailX[i] = headposX;
+                    tailY[i] = headposY - i;
+                }
+            }
+            else {
+                for (int i = length; i > 0; i--) {
+                    tailX[i] = headposX;
+                    tailY[i] = headposY + i;
+                }
+            }
+        };
         char wallcheck(char pdir){
             if((pdir == 0) && (headposY + 1 == playfieldY))return 0;
             else if((pdir == 1) && (headposX + 1 == playfieldX))return 0;
@@ -76,19 +96,9 @@ class player{
             else if (direction == 3) headposX = headposX - 1;
         }
 };
-class food{
-    public:
-        char x;
-        char y;
-        char nutrition;
-        food(char x, char y, char val){
-            x = x;
-            y = y;
-            nutrition = val;
-        }
-};
-void spawnFood(){
-    food food(0,0,0);
+char startgame(){
+    player Player1(0);
+    player Player2(1);
 }
 //interaction
 void arrowControls(){
