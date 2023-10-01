@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 
+#define playfieldX 64
+#define playfieldY 32
+
 //game
 class panel{
     public:
@@ -11,20 +14,8 @@ class playfield{
     public:
         char minX = 0;
         char minY = 0;
-        char maxX = 64;
-        char maxY = 32;
-};
-class wall {
-    char startX;
-    char endX;
-    char startY;
-    char endY;
-    wall(char sX, char eX, char sY, char eY){
-        startX = sX;
-        endX = eX;
-        startY = sY;
-        endY = eY;
-    }
+        char maxX = playfieldX;
+        char maxY = playfieldY;
 };
 class player{
     public:
@@ -47,7 +38,19 @@ class player{
             direction = 0;
             length = 3;
         }
-        bool wallcheck(){
+        char wallcheck(char pdir){
+            if((pdir == 0) && (headposY + 1 == playfieldY))return 0;
+            else if((pdir == 1) && (headposX + 1 == playfieldX))return 0;
+            else if((pdir == 2) && (headposY - 1 == 0))return 0;
+            else if((pdir == 3) && (headposX - 1 == 0))return 0;
+            else return 1;
+        }
+        char movecheck(){
+            if(wallcheck(0) != 1) return 0;
+            else if(wallcheck(1) != 1) return 0;
+            else if(wallcheck(2) != 1) return 0;
+            else if(wallcheck(3) != 1) return 0;
+            else return 1;
         }
         void move(){
             if (lengthStored[0] !=0) {
@@ -71,12 +74,6 @@ class player{
             else if (direction == 1) headposX = headposX + 1;
             else if (direction == 2) headposY = headposY - 1;
             else if (direction == 3) headposX = headposX - 1;
-        }
-        bool movecheck(){
-            if((direction == 0) && (wallcheck() == 0));
-            else if((direction == 1) && (wallcheck() == 1));
-            else if((direction == 2) && (wallcheck() == 2));
-            else if((direction == 3) && (wallcheck() == 3));
         }
 };
 class food{
