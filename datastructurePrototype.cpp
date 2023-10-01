@@ -7,7 +7,6 @@ using namespace std;
 //game
 class panel{
     public:
-        bool hierarchy;
         bool gameState;
 };
 class playfield{
@@ -108,5 +107,6 @@ void controls(){
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
+    startgame();
     return 0;
 }
