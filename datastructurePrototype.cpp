@@ -10,13 +10,6 @@ class panel{
     public:
         bool gameState;
 };
-class playfield{
-    public:
-        char minX = 0;
-        char minY = 0;
-        char maxX = playfieldX;
-        char maxY = playfieldY;
-};
 class food{
     public:
         char x;
