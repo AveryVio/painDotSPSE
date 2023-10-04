@@ -93,21 +93,37 @@ class player{
             else if (direction == 3) headposX = headposX - 1;
         }
 };
-char startgame(){
-    player Player1(0);
-    player Player2(1);
-    food foodblock(0, 0, 0);
+player Player1(0);
+player Player2(1);
+food foodblock(0, 0, 0);
+void regenFood() {
+    foodblock.nutrition = rand() % 3;
+    foodblock.x = rand() % (playfieldX + 1);
+    foodblock.y = rand() % (playfieldY + 1);
 }
-//interaction
-void arrowControls(){
+void playersEat(){
+    if ((foodblock.x == Player1.headposX) && (foodblock.y == Player1.headposY)){
+        for (int i = foodblock.nutrition; i > 0; i--) Player1.lengthStored[i]= 1;
+        regenFood();
+    }
+    else if ((foodblock.x == Player2.headposX) && (foodblock.y == Player2.headposY)){
+        for (int i = foodblock.nutrition; i > 0; i--) Player2.lengthStored[i]= 1;
+        regenFood();
+    }
 }
-void joystickControls(){
-}
-void controls(){
+void gameTick(){
+    if (Player1.movecheck() && Player2.movecheck()){
+        Player1.move();
+        Player2.move();
+        playersEat();
+    }
+    else;//gameover
+
+
 }
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
-    startgame();
+    srand (66756362064740000);
     return 0;
 }
