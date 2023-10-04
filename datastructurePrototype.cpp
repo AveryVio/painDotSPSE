@@ -31,8 +31,8 @@ class player{
         char length;
         char lengthStored[10];
         player(char playernumber){
-            headposX = 0;
-            headposY = 0;
+            headposX = rand() % ((playfieldX / 2) + 1);
+            headposY = rand() % (playfieldY + 1);
             direction = 0;
             length = 3;
             if (playernumber == 0){
