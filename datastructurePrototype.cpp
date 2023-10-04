@@ -56,10 +56,10 @@ class player{
             }
         };
         char wallcheck(char pdir){
-            if((pdir == 0) && (headposY + 1 == playfieldY))return 0;
-            else if((pdir == 1) && (headposX + 1 == playfieldX))return 0;
-            else if((pdir == 2) && (headposY - 1 == 0))return 0;
-            else if((pdir == 3) && (headposX - 1 == 0))return 0;
+            if((pdir == 0) && (headposY == playfieldY))return 0;
+            else if((pdir == 1) && (headposX == playfieldX))return 0;
+            else if((pdir == 2) && (headposY == 0))return 0;
+            else if((pdir == 3) && (headposX == 0))return 0;
             else return 1;
         }
         char movecheck(){
