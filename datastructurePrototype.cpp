@@ -33,7 +33,7 @@ class player{
         player(char playernumber){
             headposX = rand() % ((playfieldX / 2) + 1);
             headposY = rand() % (playfieldY + 1);
-            direction = 0;
+            direction = rand() * 2;
             length = 3;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
