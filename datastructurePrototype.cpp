@@ -88,7 +88,7 @@ class player{
 };
 player Player1(0);
 player Player2(1);
-food foodblock(0, 0, 0);
+food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
 void regenFood() {
     foodblock.nutrition = rand() % 3;
     foodblock.x = rand() % (playfieldX + 1);
@@ -111,8 +111,6 @@ void gameTick(){
         playersEat();
     }
     else;//gameover
-
-
 }
 //main
 int main(){
