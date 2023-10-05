@@ -8,8 +8,9 @@ using namespace std;
 //game
 class panel{
     public:
-        bool gameState;
+        bool gameState = false;
 };
+panel gamePanel;
 class food{
     public:
         char x;
