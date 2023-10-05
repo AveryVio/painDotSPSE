@@ -48,14 +48,14 @@ class player{
                 }
             }
         };
-        char wallcheck(char pdir){
+        char wallcheck(char pdir){// if wall then 0 else 1
             if((pdir == 0) && (headposY == playfieldY))return 0;
             else if((pdir == 1) && (headposX == playfieldX))return 0;
             else if((pdir == 2) && (headposY == 0))return 0;
             else if((pdir == 3) && (headposX == 0))return 0;
             else return 1;
         }
-        char movecheck(){
+        char movecheck(){// if can move then 0 else 1
             if(wallcheck(0) != 1) return 0;
             else if(wallcheck(1) != 1) return 0;
             else if(wallcheck(2) != 1) return 0;
