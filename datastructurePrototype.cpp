@@ -131,11 +131,17 @@ void gameTick(){
         playersEat();
     }
     else{
+        gamePanel.gameState = false;
     }
 }
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand (66756362064740000);
+    //gamestart
+    gamePanel.gameState = true;
+    while (gamePanel.gameState == true){
+        gameTick();
+    }
     return 0;
 }
