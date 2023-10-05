@@ -21,6 +21,7 @@ class food{
             nutrition = val;
         }
 };
+char playercheck();
 class player{
     public:
         char headposX;
@@ -104,13 +105,28 @@ void playersEat(){
         regenFood();
     }
 }
+char playercheck(){// if players colide then 0 else 1
+        if(Player1.direction == 0){
+            for(int i =Player2.length; i > 0; i--) if ((Player1.headposY + 1 == Player2.tailY[i]) || (Player1.headposY + 1 == Player1.tailY[i])) return 0;
+        }
+        else if(Player1.direction == 1){
+            for(int i =Player2.length; i > 0; i--) if ((Player1.headposX + 1 == Player2.tailX[i]) || (Player1.headposX + 1 == Player1.tailX[i])) return 0;
+        }
+        else if(Player1.direction == 2){
+            for(int i =Player2.length; i > 0; i--) if ((Player1.headposY - 1 == Player2.tailY[i]) || (Player1.headposY - 1 == Player1.tailY[i])) return 0;
+        }
+        else if(Player1.direction == 3){
+            for(int i =Player2.length; i > 0; i--) if ((Player1.headposX - 1 == Player2.tailX[i]) || (Player1.headposX - 1 == Player1.tailX[i])) return 0;
+        }
+};
 void gameTick(){
-    if (Player1.movecheck() && Player2.movecheck()){
-        Player1.move();
-        Player2.move();
+    if (playercheck()){
+        if(Player1.movecheck()) Player1.move();
+        if(Player2.movecheck()) Player2.move();
         playersEat();
     }
-    else;//gameover
+    else{
+    }
 }
 //main
 int main(){
