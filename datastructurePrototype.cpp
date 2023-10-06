@@ -34,10 +34,11 @@ class player{
         char length;
         char lengthStored[10];
         player(char playernumber){
-            headposX = rand() % ((playfieldX / 2) + 1);
-            headposY = rand() % (playfieldY + 1);
+            headposX = (playfieldX / (2 * playernumber)) + rand() % ((playfieldX / 2) + 1);
+            headposY =+ rand() % (playfieldY + 1);
             direction = rand() * 2;
             length = 3;
+            for (int i = 0; i <= 10; i++) lengthStored[i] = 0;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
                     tailX[i] = headposX;
@@ -92,6 +93,7 @@ class player{
 player Player1(0);
 player Player2(1);
 food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
+
 void regenFood() {
     foodblock.nutrition = rand() % 3;
     foodblock.x = rand() % (playfieldX + 1);
@@ -138,11 +140,11 @@ void gameTick(){
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
-    srand (66756362064740000);
+    srand (6);
     //gamestart
     gamePanel.gameState = true;
-    while (gamePanel.gameState == true){
-        gameTick();
-    }
+    gameTick();
+    printf("Player1: %c,%c,%c tail: %c,%c\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.lengthStored);
+    printf("Player2: %c,%c,%c tail: %c,%c", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.lengthStored);
     return 0;
 }
