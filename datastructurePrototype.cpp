@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 using namespace std;
 
 #define playfieldX 64
