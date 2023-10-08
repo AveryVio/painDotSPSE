@@ -95,8 +95,8 @@ player Player1(0);
 player Player2(1);
 food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
 
-void regenFood() {
-    foodblock.nutrition = rand() % 3;
+void regenFood() { /*Tested - mabye working?? not fully sure*/
+    foodblock.nutrition = rand() % (rand() % 5 + 1);
     foodblock.x = rand() % (playfieldX + 1);
     foodblock.y = rand() % (playfieldY + 1);
 }
@@ -151,11 +151,9 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     testGame();
-    foodblock.x = Player1.headposX;
-    foodblock.y = Player1.headposY;
-    foodblock.nutrition = 13;
+    regenFood();
     testGame();
-    playersEat();
+    regenFood();
     testGame();
     return 0;
 }
