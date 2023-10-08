@@ -102,11 +102,11 @@ void regenFood() {
 }
 void playersEat(){
     if ((foodblock.x == Player1.headposX) && (foodblock.y == Player1.headposY)){
-        for (int i = foodblock.nutrition; i > 0; i--) Player1.lengthStored[i]= 1;
+        for (int i = 0; i < foodblock.nutrition; i++) Player1.lengthStored[i]= 1;
         regenFood();
     }
     else if ((foodblock.x == Player2.headposX) && (foodblock.y == Player2.headposY)){
-        for (int i = foodblock.nutrition; i > 0; i--) Player2.lengthStored[i]= 1;
+        for (int i = 0; i < foodblock.nutrition; i++) Player2.lengthStored[i]= 1;
         regenFood();
     }
 }
@@ -138,14 +138,24 @@ void gameTick(){
         gamePanel.gameState = false;
     }
 }
+void testGame(){
+    printf("Player1: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d\r\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
+    printf("Player2: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d\r\n", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
+    printf("Food: x= %d, y= %d, nutrition: %d", foodblock.x, foodblock.y, foodblock.nutrition);
+    printf("\r\n\n\n");
+}
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand (69);
     //gamestart
     gamePanel.gameState = true;
-    gameTick();
-    printf("Player1: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
-    printf("Player2: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
+    testGame();
+    foodblock.x = Player1.headposX;
+    foodblock.y = Player1.headposY;
+    foodblock.nutrition = 13;
+    testGame();
+    playersEat();
+    testGame();
     return 0;
 }
