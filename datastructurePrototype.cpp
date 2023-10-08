@@ -54,7 +54,7 @@ class player{
                 }
             }
         };
-        char wallcheck(char pdir){// if wall then 0 else 1
+        char wallcheck(char pdir){// if wall then 0 else 1 /*Tested - fully working as inteded*/
             if((pdir == 0) && (headposY == playfieldY))return 0;
             else if((pdir == 1) && (headposX == playfieldX))return 0;
             else if((pdir == 2) && (headposY == 0))return 0;
