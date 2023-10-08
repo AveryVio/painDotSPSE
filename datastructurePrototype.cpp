@@ -115,7 +115,7 @@ char biggerPlayerLength(){ /*Tested - fully working as intended*/
     if(Player1.length > Player2.length) return Player1.length;
     else return Player2.length;
 }
-char playercheck(){// if players colide then 0 else 1
+char playercheck(){// if players colide then 0 else 1 
     if((Player1.headposX == Player2.headposX) && (Player1.headposY == Player2.headposY)) return 0;
     else if(Player1.direction == 0){
         for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposY + 1 == Player2.tailY[i]) || (Player1.headposY + 1 == Player1.tailY[i])) return 0;
@@ -155,33 +155,5 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     testGame();
-    printf("1: %d\r\n", Player1.wallcheck(0));
-    printf("1: %d\r\n", Player1.wallcheck(1));
-    printf("1: %d\r\n", Player1.wallcheck(2));
-    printf("1: %d\r\n\n", Player1.wallcheck(3));
-    Player1.headposX = 0;
-    Player1.headposY = 0;
-    printf("1: %d\r\n", Player1.wallcheck(0));
-    printf("1: %d\r\n", Player1.wallcheck(1));
-    printf("1: %d\r\n", Player1.wallcheck(2));
-    printf("1: %d\r\n\n", Player1.wallcheck(3));
-    Player1.headposX = playfieldX;
-    Player1.headposY = 0;
-    printf("1: %d\r\n", Player1.wallcheck(0));
-    printf("1: %d\r\n", Player1.wallcheck(1));
-    printf("1: %d\r\n", Player1.wallcheck(2));
-    printf("1: %d\r\n\n", Player1.wallcheck(3));
-    Player1.headposX = playfieldX;
-    Player1.headposY = playfieldY;
-    printf("1: %d\r\n", Player1.wallcheck(0));
-    printf("1: %d\r\n", Player1.wallcheck(1));
-    printf("1: %d\r\n", Player1.wallcheck(2));
-    printf("1: %d\r\n\n", Player1.wallcheck(3));
-    Player1.headposX = 0;
-    Player1.headposY = playfieldY;
-    printf("1: %d\r\n", Player1.wallcheck(0));
-    printf("1: %d\r\n", Player1.wallcheck(1));
-    printf("1: %d\r\n", Player1.wallcheck(2));
-    printf("1: %d\r\n\n", Player1.wallcheck(3));
     return 0;
 }
