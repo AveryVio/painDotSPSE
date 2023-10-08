@@ -97,7 +97,7 @@ player Player2(1);
 food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
 
 void regenFood() { /*Tested - mabye working?? not fully sure*/
-    foodblock.nutrition = rand() % (rand() % 5 + 1);
+    foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 1);
     foodblock.x = rand() % (playfieldX + 1);
     foodblock.y = rand() % (playfieldY + 1);
 }
