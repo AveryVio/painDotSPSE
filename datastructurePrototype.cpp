@@ -100,7 +100,7 @@ void regenFood() {
     foodblock.x = rand() % (playfieldX + 1);
     foodblock.y = rand() % (playfieldY + 1);
 }
-void playersEat(){
+void playersEat(){ /*Tested - fully working as inteded*/
     if ((foodblock.x == Player1.headposX) && (foodblock.y == Player1.headposY)){
         for (int i = 0; i < foodblock.nutrition; i++) Player1.lengthStored[i]= 1;
         regenFood();
