@@ -97,7 +97,7 @@ player Player2(1);
 food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
 
 void regenFood() { /*Tested - mabye working?? not fully sure*/
-    foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 1);
+    foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
     foodblock.x = rand() % (playfieldX + 1);
     foodblock.y = rand() % (playfieldY + 1);
 }
@@ -155,15 +155,21 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     testGame();
-    Player1.length = 1;
-    printf("%d\r\n",biggerPlayerLength());
-    Player2.length = 0;
-    printf("%d\r\n",biggerPlayerLength());
-    Player1.length = 100;
-    printf("%d\r\n",biggerPlayerLength());
-    Player2.length = 100;
-    printf("%d\r\n",biggerPlayerLength());
-    Player2.length = 101;
-    printf("%d\r\n",biggerPlayerLength());
+    regenFood();
+    testGame();
+    regenFood();
+    testGame();
+        regenFood();
+    testGame();
+    regenFood();
+    testGame();
+        regenFood();
+    testGame();
+    regenFood();
+    testGame();
+        regenFood();
+    testGame();
+    regenFood();
+    testGame();
     return 0;
 }
