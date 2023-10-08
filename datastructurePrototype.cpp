@@ -37,8 +37,9 @@ class player{
             if(playernumber == 0) headposX = rand() % ((playfieldX / 2) + 1);
             else headposX = (playfieldX / 2) + rand() % ((playfieldX / 2) + 1);
             headposY = rand() % (playfieldY + 1);
-            direction = rand() % 5;
             length = 3;
+            if(playernumber == 1) direction = 0;
+            else direction = 2;
             for (int i = 0; i <= 10; i++) lengthStored[i] = 0;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
@@ -110,13 +111,13 @@ void playersEat(){ /*Tested - fully working as inteded*/
         regenFood();
     }
 }
-char biggerPlayerLength(){
+char biggerPlayerLength(){ /*Tested - fully working as intended*/
     if(Player1.length > Player2.length) return Player1.length;
     else return Player2.length;
 }
 char playercheck(){// if players colide then 0 else 1
     if((Player1.headposX == Player2.headposX) && (Player1.headposY == Player2.headposY)) return 0;
-    if(Player1.direction == 0){
+    else if(Player1.direction == 0){
         for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposY + 1 == Player2.tailY[i]) || (Player1.headposY + 1 == Player1.tailY[i])) return 0;
     }
     else if(Player1.direction == 1){
@@ -141,9 +142,10 @@ void gameTick(){
     }
 }
 void testGame(){
-    printf("Player1: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d\r\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
-    printf("Player2: x= %d, y= %d, direction= %d  tail: length= %d, lengthStored= %d, %d, %d, %d, %d\r\n", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
+    printf("Player1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d, %d, %d, %d, %d, %d\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.tailX[0], Player1.tailX[1], Player1.tailX[2], Player1.tailX[3], Player1.tailX[4], Player1.tailX[5], Player1.tailY[0], Player1.tailY[1], Player1.tailY[2], Player1.tailY[3], Player1.tailY[4], Player1.tailY[5], Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
+    printf("Player2: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d, %d, %d, %d, %d, %d\r\n\n", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.tailX[0], Player2.tailX[1], Player2.tailX[2], Player2.tailX[3], Player2.tailX[4], Player2.tailX[5], Player2.tailY[0], Player2.tailY[1], Player2.tailY[2], Player2.tailY[3], Player2.tailY[4], Player2.tailY[5], Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
     printf("Food: x= %d, y= %d, nutrition: %d", foodblock.x, foodblock.y, foodblock.nutrition);
+    printf("\r\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     printf("\r\n\n\n");
 }
 //main
@@ -153,9 +155,15 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     testGame();
-    regenFood();
-    testGame();
-    regenFood();
-    testGame();
+    Player1.length = 1;
+    printf("%d\r\n",biggerPlayerLength());
+    Player2.length = 0;
+    printf("%d\r\n",biggerPlayerLength());
+    Player1.length = 100;
+    printf("%d\r\n",biggerPlayerLength());
+    Player2.length = 100;
+    printf("%d\r\n",biggerPlayerLength());
+    Player2.length = 101;
+    printf("%d\r\n",biggerPlayerLength());
     return 0;
 }
