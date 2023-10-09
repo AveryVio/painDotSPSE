@@ -115,24 +115,28 @@ char biggerPlayerLength(){ /*Tested - fully working as intended*/
     if(Player1.length > Player2.length) return Player1.length;
     else return Player2.length;
 }
-char playercheck(){// if players colide then 0 else 1 
-    if((Player1.headposX == Player2.headposX) && (Player1.headposY == Player2.headposY)) return 0;
-    else if(Player1.direction == 0){
-        for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposY + 1 == Player2.tailY[i]) || (Player1.headposY + 1 == Player1.tailY[i])) return 0;
+char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
+    if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 2;
+    else if(playerN.direction == 0){
+        if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY - 1)) return 1;
+        for(int i = 0; i <= biggerPlayerLength(); i++) if ((playerN.headposY + 1 == playerT.tailY[i]) || (playerN.headposY + 1 == playerN.tailY[i])) return 1;
     }
-    else if(Player1.direction == 1){
-        for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposX + 1 == Player2.tailX[i]) || (Player1.headposX + 1 == Player1.tailX[i])) return 0;
+    else if(playerN.direction == 1){
+        if((playerN.headposX == playerT.headposX - 1) && (playerN.headposY == playerT.headposY)) return 1;
+        for(int i = 0; i <= biggerPlayerLength(); i++) if ((playerN.headposX + 1 == playerT.tailX[i]) || (playerN.headposX + 1 == playerN.tailX[i])) return 1;
     }
-    else if(Player1.direction == 2){
-        for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposY - 1 == Player2.tailY[i]) || (Player1.headposY - 1 == Player1.tailY[i])) return 0;
+    else if(playerN.direction == 2){
+        if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY + 1)) return 1;
+        for(int i = 0; i <= biggerPlayerLength(); i++) if ((playerN.headposY - 1 == playerT.tailY[i]) || (playerN.headposY - 1 == playerN.tailY[i])) return 1;
     }
-    else if(Player1.direction == 3){
-        for(int i = 0; i <= biggerPlayerLength(); i++) if ((Player1.headposX - 1 == Player2.tailX[i]) || (Player1.headposX - 1 == Player1.tailX[i])) return 0;
+    else if(playerN.direction == 3){
+        if((playerN.headposX == playerT.headposX + 1) && (playerN.headposY == playerT.headposY)) return 1;
+        for(int i = 0; i <= biggerPlayerLength(); i++) if ((playerN.headposX - 1 == playerT.tailX[i]) || (playerN.headposX - 1 == playerN.tailX[i])) return 1;
     }
-    else return 1;
+    else return 0;
 };
 void gameTick(){
-    if (playercheck()){
+    if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
         if(Player1.movecheck()) Player1.move();
         if(Player2.movecheck()) Player2.move();
         playersEat();
