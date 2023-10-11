@@ -160,7 +160,7 @@ int main(){
     gamePanel.gameState = true;
     Player1.direction = 0;
     testGame();
-    printf("%d\r\n", playercheck(Player1, Player2));
+    /*printf("%d\r\n", playercheck(Player1, Player2));
     Player1.headposX = Player2.headposX;
     Player1.headposY = Player2.headposY;
     testGame();
@@ -200,6 +200,6 @@ int main(){
     Player1.headposX = 0;
     Player1.headposY = 0;
     testGame();
-    printf("%d\r\n", playercheck(Player1, Player2));
+    printf("%d\r\n", playercheck(Player1, Player2));*/
     return 0;
 }
