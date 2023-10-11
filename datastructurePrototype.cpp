@@ -68,7 +68,7 @@ class player{
             else if(wallcheck(3) != 1) return 0;
             else return 1;
         }
-        void move(){
+        void move(){ /*Tested - fully working as inteded*/
             if (lengthStored[0] !=0) {
                 tailX[length + 1] = tailX[length];
                 tailY[length + 1] = tailY[length];
@@ -163,6 +163,19 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     Player1.direction = 0;
+    testGame();
+    Player1.move();
+    testGame();
+    Player2.move();
+    testGame();
+    Player1.direction = 1;
+    Player1.move();
+    testGame();
+    Player1.move();
+    testGame();
+    Player1.move();
+    testGame();
+    Player1.move();
     testGame();
     /*printf("%d\r\n", playercheck(Player1, Player2));
     Player1.headposX = Player2.headposX;
