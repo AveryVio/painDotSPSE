@@ -54,7 +54,7 @@ class player{
                 }
             }
         };
-        char movecheck(){// if can move then 0 else 1
+        char movecheck(){// if can move then 0 else 1 /*Tested - fully working as inteded*/
             if((direction == 0) && (headposY == playfieldY))return 0;
             if((direction == 1) && (headposX == playfieldX))return 0;
             if((direction == 2) && (headposY == 0))return 0;
@@ -157,6 +157,58 @@ int main(){
     gamePanel.gameState = true;
     Player1.direction = 0;
     testGame();
+    printf("\r\n%d", Player1.movecheck());
+    Player1.direction = 1;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 2;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 3;
+    printf("%d\r\n", Player1.movecheck());
+    Player1.direction = 0;
+    Player1.headposX = 0;
+    Player1.headposY = 0;
+    testGame();
+    printf("\r\n%d", Player1.movecheck());
+    Player1.direction = 1;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 2;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 3;
+    printf("%d\r\n", Player1.movecheck());
+    Player1.direction = 0;
+    Player1.headposX = playfieldX;
+    Player1.headposY = playfieldY;
+    testGame();
+    printf("\r\n%d", Player1.movecheck());
+    Player1.direction = 1;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 2;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 3;
+    printf("%d\r\n", Player1.movecheck());
+    Player1.direction = 0;
+    Player1.headposX = playfieldX;
+    Player1.headposY = 10;
+    testGame();
+    printf("\r\n%d", Player1.movecheck());
+    Player1.direction = 1;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 2;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 3;
+    printf("%d\r\n", Player1.movecheck());
+    Player1.direction = 0;
+    Player1.headposX = playfieldX/2;
+    Player1.headposY = playfieldY-5;
+    testGame();
+    printf("\r\n%d", Player1.movecheck());
+    Player1.direction = 1;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 2;
+    printf("%d", Player1.movecheck());
+    Player1.direction = 3;
+    printf("%d\r\n", Player1.movecheck());
+    Player1.direction = 0;
     /*printf("%d\r\n", playercheck(Player1, Player2));
     Player1.headposX = Player2.headposX;
     Player1.headposY = Player2.headposY;
