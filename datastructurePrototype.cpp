@@ -54,19 +54,12 @@ class player{
                 }
             }
         };
-        char wallcheck(char pdir){// if wall then 0 else 1 /*Tested - fully working as inteded*/
-            if((pdir == 0) && (headposY == playfieldY))return 0;
-            else if((pdir == 1) && (headposX == playfieldX))return 0;
-            else if((pdir == 2) && (headposY == 0))return 0;
-            else if((pdir == 3) && (headposX == 0))return 0;
-            else return 1;
-        }
         char movecheck(){// if can move then 0 else 1
-            if(wallcheck(0) != 1) return 0;
-            else if(wallcheck(1) != 1) return 0;
-            else if(wallcheck(2) != 1) return 0;
-            else if(wallcheck(3) != 1) return 0;
-            else return 1;
+            if((direction == 0) && (headposY == playfieldY))return 0;
+            if((direction == 1) && (headposX == playfieldX))return 0;
+            if((direction == 2) && (headposY == 0))return 0;
+            if((direction == 3) && (headposX == 0))return 0;
+            return 1;
         }
         void move(){ /*Tested - fully working as inteded*/
             if (lengthStored[0] !=0) {
@@ -163,19 +156,6 @@ int main(){
     //gamestart
     gamePanel.gameState = true;
     Player1.direction = 0;
-    testGame();
-    Player1.move();
-    testGame();
-    Player2.move();
-    testGame();
-    Player1.direction = 1;
-    Player1.move();
-    testGame();
-    Player1.move();
-    testGame();
-    Player1.move();
-    testGame();
-    Player1.move();
     testGame();
     /*printf("%d\r\n", playercheck(Player1, Player2));
     Player1.headposX = Player2.headposX;
