@@ -167,79 +167,13 @@ int main(){
     srand (69);
     //gamestart
     gamePanel.gameState = true;
-    Player1.direction = 0;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.headposX = Player2.headposX + 1;
-    Player1.headposY = Player2.headposY;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 1;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY - 1;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 0;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 2;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 3;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    printf("========================================================================\r\n========================================================================\r\n\n\n\n");
-    Player1.headposX = Player2.headposX + 1;
-    Player1.headposY = Player2.headposY + 2;
-    Player1.direction = 0;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 1;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 2;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 3;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    printf("========================================================================\r\n========================================================================\r\n\n\n\n");
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY + 4;
-    Player1.direction = 0;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 1;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 2;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 3;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    printf("========================================================================\r\n========================================================================\r\n\n\n\n");
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY + 1;
-    Player1.direction = 0;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 1;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 2;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    Player1.direction = 3;
-    printf("%d\r\n", playercheck(Player1, Player2));
-    testGame();
-    printf("========================================================================\r\n========================================================================\r\n\n\n\n");
-    
+    for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
+        printf("\r\n%d,%d\r\n%d,%d\r\n",playercheck(Player1, Player2), playercheck(Player2, Player1), Player1.movecheck(), Player1.movecheck());
+        testGame();
+        if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
+            if(!Player1.movecheck()) Player1.move();
+            if(!Player2.movecheck()) Player2.move();
+        }
+    }
     return 0;
 }
