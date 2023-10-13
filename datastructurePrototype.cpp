@@ -110,7 +110,7 @@ void playersEat(){ /*Tested - fully working as inteded*/
 }
 char biggerPlayerLength(){ /*Tested - fully working as intended*/
     if(Player1.length > Player2.length) return Player1.length;
-    else return Player2.length;
+    return Player2.length;
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
     if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 2;
