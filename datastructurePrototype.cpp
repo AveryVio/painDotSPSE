@@ -147,14 +147,12 @@ class gameInfo{
         player winnerInfo;
         player loserInfo;
 };
-void gameTick(){
+void gameTick(){/*Tested - fully working as intended*/
     if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
         if(Player1.movecheck()) Player1.move();
         if(Player2.movecheck()) Player2.move();
         playerEat(Player1);
         playerEat(Player2);
-    }
-    else{
     }
 }
 void testGame(){
@@ -169,13 +167,19 @@ int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand (69);
     //gamestart
-    for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
+    for(int nemamradmatiku = 0; nemamradmatiku < 10; nemamradmatiku++){
         printf("\r\n%d,%d\r\n%d,%d\r\n",playercheck(Player1, Player2), playercheck(Player2, Player1), Player1.movecheck(), Player1.movecheck());
         testGame();
-        if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
-            if(Player1.movecheck()) Player1.move();
-            if(Player2.movecheck()) Player2.move();
-        }
+        gameTick();
+    }
+    Player1.direction = 1;
+    Player2.direction = 3;
+    printf("\r\n------------------------------------------------------------------------------------------------------------------------------------------------------");
+    printf("\r\n------------------------------------------------------------------------------------------------------------------------------------------------------");
+    for(int nemamradmatiku = 0; nemamradmatiku < 10; nemamradmatiku++){
+        printf("\r\n%d,%d\r\n%d,%d\r\n",playercheck(Player1, Player2), playercheck(Player2, Player1), Player1.movecheck(), Player1.movecheck());
+        testGame();
+        gameTick();
     }
     return 0;
 }
