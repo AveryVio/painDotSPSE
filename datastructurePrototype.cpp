@@ -7,11 +7,14 @@ using namespace std;
 #define playfieldY 32
 
 //game
-class panel{
+class gameInfo{
     public:
-        bool gameState = false;
+        uint16_t gemeid;
+        char gamemode;
+        char winner;
+        player winnerInfo;
+        player loserInfo;
 };
-panel gamePanel;
 class food{
     public:
         char x;
@@ -152,7 +155,6 @@ void gameTick(){
         playerEat(Player2);
     }
     else{
-        gamePanel.gameState = false;
     }
 }
 void testGame(){
@@ -167,14 +169,13 @@ int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand (69);
     //gamestart
-    gamePanel.gameState = true;
-    for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
+    /*for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
         printf("\r\n%d,%d\r\n%d,%d\r\n",playercheck(Player1, Player2), playercheck(Player2, Player1), Player1.movecheck(), Player1.movecheck());
         testGame();
         if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
             if(!Player1.movecheck()) Player1.move();
             if(!Player2.movecheck()) Player2.move();
         }
-    }
+    }*/
     return 0;
 }
