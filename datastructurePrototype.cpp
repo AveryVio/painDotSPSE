@@ -98,13 +98,13 @@ void regenFood() { /*Tested - mabye working?? not fully sure*/
     foodblock.x = rand() % (playfieldX + 1);
     foodblock.y = rand() % (playfieldY + 1);
 }
-void playersEat(){ /*Tested - fully working as inteded*/
-    if ((foodblock.x == Player1.headposX) && (foodblock.y == Player1.headposY)){
-        for (int i = 0; i < foodblock.nutrition; i++) Player1.lengthStored[i]= 1;
-        regenFood();
-    }
-    else if ((foodblock.x == Player2.headposX) && (foodblock.y == Player2.headposY)){
-        for (int i = 0; i < foodblock.nutrition; i++) Player2.lengthStored[i]= 1;
+char playerFirstStoredLength(player playerN){//returns higherst stored length
+    for(int v = 0; v < 5; v++) if(playerN.lengthStored[v] == 1) return v;
+    return 0;
+}
+void playerEat(player playerN){ /*Tested - fully working as inteded*/
+    if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
+        for (int i = playerFirstStoredLength(playerN); i < foodblock.nutrition; i++) playerN.lengthStored[i]= 1;
         regenFood();
     }
 }
