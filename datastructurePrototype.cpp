@@ -33,8 +33,8 @@ class player{
             else headposX = (playfieldX / 2) + rand() % ((playfieldX / 2) + 1);
             headposY = rand() % (playfieldY + 1);
             length = 3;
-            if(playernumber == 1) direction = 0;
-            else direction = 2;
+            if(playernumber == 1) direction = 2;
+            else direction = 0;
             for (int i = 0; i <= 5; i++) lengthStored[i] = 0;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
@@ -169,13 +169,13 @@ int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand (69);
     //gamestart
-    /*for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
+    for(int nemamradmatiku = 0; nemamradmatiku < 32; nemamradmatiku++){
         printf("\r\n%d,%d\r\n%d,%d\r\n",playercheck(Player1, Player2), playercheck(Player2, Player1), Player1.movecheck(), Player1.movecheck());
         testGame();
         if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
-            if(!Player1.movecheck()) Player1.move();
-            if(!Player2.movecheck()) Player2.move();
+            if(Player1.movecheck()) Player1.move();
+            if(Player2.movecheck()) Player2.move();
         }
-    }*/
+    }
     return 0;
 }
