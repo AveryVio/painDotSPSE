@@ -32,7 +32,7 @@ class player{
         char tailY[128];
         char direction;
         char length;
-        char lengthStored[10];
+        char lengthStored[5];
         player(char playernumber){
             if(playernumber == 0) headposX = rand() % ((playfieldX / 2) + 1);
             else headposX = (playfieldX / 2) + rand() % ((playfieldX / 2) + 1);
