@@ -40,7 +40,7 @@ class player{
             length = 3;
             if(playernumber == 1) direction = 0;
             else direction = 2;
-            for (int i = 0; i <= 10; i++) lengthStored[i] = 0;
+            for (int i = 0; i <= 5; i++) lengthStored[i] = 0;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
                     tailX[i] = headposX;
