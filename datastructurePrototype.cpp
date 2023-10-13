@@ -148,7 +148,8 @@ void gameTick(){
     if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
         if(Player1.movecheck()) Player1.move();
         if(Player2.movecheck()) Player2.move();
-        playersEat();
+        playerEat(Player1);
+        playerEat(Player2);
     }
     else{
         gamePanel.gameState = false;
