@@ -7,14 +7,6 @@ using namespace std;
 #define playfieldY 32
 
 //game
-class gameInfo{
-    public:
-        uint16_t gemeid;
-        char gamemode;
-        char winner;
-        player winnerInfo;
-        player loserInfo;
-};
 class food{
     public:
         char x;
@@ -146,6 +138,14 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
         }
     }
     return 0;
+};
+class gameInfo{
+    public:
+        uint16_t gemeid;
+        char gamemode;
+        char winner;
+        player winnerInfo;
+        player loserInfo;
 };
 void gameTick(){
     if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
