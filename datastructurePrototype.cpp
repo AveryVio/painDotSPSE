@@ -86,6 +86,30 @@ class player{
             else if (direction == 2) headposY = headposY - 1;
             else if (direction == 3) headposX = headposX - 1;
         }
+        void changeDirection(char requestedDirection){
+            switch (direction){
+            case 0:
+                if(requestedDirection == 1) direction = 1;
+                if(requestedDirection == 2) direction = 2;
+                if(requestedDirection == 3) direction = 3;
+            break;
+            case 1:
+                if(requestedDirection == 0) direction = 0;
+                if(requestedDirection == 2) direction = 2;
+                if(requestedDirection == 3) direction = 3;
+            break;
+            case 2:
+                if(requestedDirection == 0) direction = 0;
+                if(requestedDirection == 1) direction = 1;
+                if(requestedDirection == 3) direction = 3;
+            break;
+            case 3:
+                if(requestedDirection == 0) direction = 0;
+                if(requestedDirection == 1) direction = 1;
+                if(requestedDirection == 2) direction = 2;
+            break;
+            }
+        }
 };
 player Player1(0);
 player Player2(1);
