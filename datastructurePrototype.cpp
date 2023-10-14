@@ -34,7 +34,7 @@ class player{
         player(char playernumber){
             if(playernumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
             else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
-            headposY = rand() % ((PLAYFIELDY + 1) / 4) + ((PLAYFIELDY + 1) / 8);
+            headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
             length = PLAYERSTARTLENGTH;
             if(playernumber == 1) direction = 2;
             else direction = 0;
