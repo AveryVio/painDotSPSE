@@ -171,5 +171,14 @@ int main(){
     srand(69);
     //gamestart
     testGame();
+    long long int milis = 0;
+    for(int j= 0; j < 10;){
+        if(clock() > milis + 1000){
+            gameTick();
+            testGame();
+            milis += 1000;
+            j++;
+        }
+    }
     return 0;
 }
