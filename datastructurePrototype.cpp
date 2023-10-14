@@ -176,11 +176,16 @@ class gameInfo{
 };
 void gameTick(){/*Tested - fully working as intended*/
     if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
-        if(Player1.movecheck()) Player1.move();
-        if(Player2.movecheck()) Player2.move();
+        if(!Player1.movecheck()) Player1.move();
+        if(!Player2.movecheck()) Player2.move();
         playerEat(Player1);
         playerEat(Player2);
     }
+    if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
+        cout << "colision" << endl;
+    }
+    if(Player1.movecheck()) cout << "player1 walled" << endl;
+    if(Player2.movecheck()) cout << "player2 walled" << endl;
 }
 void testGame(){
     printf("Player1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.tailX[0], Player1.tailX[1], Player1.tailX[2], Player1.tailX[3], Player1.tailX[4], Player1.tailX[5], Player1.tailY[0], Player1.tailY[1], Player1.tailY[2], Player1.tailY[3], Player1.tailY[4], Player1.tailY[5], Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
@@ -192,17 +197,22 @@ void testGame(){
 //main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
-    srand(69);
+    srand(69420);
     //gamestart
     testGame();
     long long int milis = 0;
-    for(int j= 0; j < 10;){
+
+    /*for(int j= 0; j < 10;){
         if(clock() > milis + 1000){
             gameTick();
+            if(j % 3 == 0){
+                Player1.changeDirection(rand() % 4);
+                Player2.changeDirection(rand() % 4);
+            }
             testGame();
             milis += 1000;
             j++;
         }
-    }
+    }*/
     return 0;
 }
