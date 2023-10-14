@@ -52,8 +52,8 @@ class player{
             }
         };
         char movecheck(){// if can move then 0 else 1 /*Tested - fully working as inteded*/
-            if((direction == 0) && (headposY == playfieldY))return 0;
-            if((direction == 1) && (headposX == playfieldX))return 0;
+            if((direction == 0) && (headposY == PLAYFIELDY))return 0;
+            if((direction == 1) && (headposX == PLAYFIELDX))return 0;
             if((direction == 2) && (headposY == 0))return 0;
             if((direction == 3) && (headposX == 0))return 0;
             return 1;
@@ -88,12 +88,12 @@ class player{
 };
 player Player1(0);
 player Player2(1);
-food foodblock(rand() % (playfieldX + 1), rand() % (playfieldY + 1), rand() % 3);
+food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), rand() % 3);
 
 void regenFood() { /*Tested - mabye working?? not fully sure*/
     foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
-    foodblock.x = rand() % (playfieldX + 1);
-    foodblock.y = rand() % (playfieldY + 1);
+    foodblock.x = rand() % (PLAYFIELDX + 1);
+    foodblock.y = rand() % (PLAYFIELDY + 1);
 }
 char playerFirstStoredLength(player playerN){//returns higherst stored length
     for(int v = 0; v < 5; v++) if(playerN.lengthStored[v] == 1) return v;
