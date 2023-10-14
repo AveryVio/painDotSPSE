@@ -1,8 +1,8 @@
 #include <iostream>
+using namespace std;
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-using namespace std;
+#include <ctime>
 
 #define PLAYFIELDX 64
 #define PLAYFIELDY 32
