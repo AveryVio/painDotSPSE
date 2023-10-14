@@ -25,16 +25,16 @@ class player{
     public:
         char headposX;
         char headposY;
-        char tailX[128];
-        char tailY[128];
+        char tailX[MAXPLAYERLENGTH];
+        char tailY[MAXPLAYERLENGTH];
         char direction;
         char length;
         char lengthStored[5];
         player(char playernumber){
-            if(playernumber == 0) headposX = rand() % ((playfieldX / 2) + 1);
-            else headposX = (playfieldX / 2) + rand() % ((playfieldX / 2) + 1);
-            headposY = rand() % (playfieldY + 1);
-            length = 3;
+            if(playernumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
+            else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
+            headposY = rand() % ((PLAYFIELDY + 1) / 4) + ((PLAYFIELDY + 1) / 8);
+            length = PLAYERSTARTLENGTH;
             if(playernumber == 1) direction = 2;
             else direction = 0;
             for (int i = 0; i <= 5; i++) lengthStored[i] = 0;
