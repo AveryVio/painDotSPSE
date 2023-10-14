@@ -3,8 +3,10 @@
 #include <stdio.h>
 using namespace std;
 
-#define playfieldX 64
-#define playfieldY 32
+#define PLAYFIELDX 64
+#define PLAYFIELDY 32
+#define MAXPLAYERLENGTH 128
+#define PLAYERSTARTLENGTH 3
 
 //game
 class food{
