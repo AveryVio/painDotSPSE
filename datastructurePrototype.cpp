@@ -4,8 +4,8 @@ using namespace std;
 #include <stdio.h>
 #include <ctime>
 
-#define PLAYFIELDX 64
-#define PLAYFIELDY 32
+#define PLAYFIELDX 32
+#define PLAYFIELDY 16
 #define MAXPLAYERLENGTH 128
 #define PLAYERSTARTLENGTH 3
 
