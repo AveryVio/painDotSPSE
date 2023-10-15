@@ -177,18 +177,21 @@ class gameInfo{
         player loserInfo;
 };
 void gameTick(){/*Tested - fully working as intended*/
-    if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
-        if(!Player1.movecheck()) Player1.move();
-        if(!Player2.movecheck()) Player2.move();
+    if ((playercheck(Player1, Player2)) && (playercheck(Player2, Player1))){
+        if(Player1.movecheck()) Player1.move();
+        else cout << "1nomove" << endl;
+        if(Player2.movecheck()) Player2.move();
+        else cout << "2nomove" << endl;
         playerEat(Player1);
         playerEat(Player2);
     }
     if ((playercheck(Player1, Player2) == 0) && (playercheck(Player2, Player1) == 0)){
         cout << "colision" << endl;
     }
-    if(Player1.movecheck()) cout << "player1 walled" << endl;
-    if(Player2.movecheck()) cout << "player2 walled" << endl;
-}
+    if((Player1.movecheck() == 0) && (Player2.movecheck() == 0)) cout << "both walled" << endl;
+    else if(Player1.movecheck() == 0) cout << "player1 walled" << endl;
+    else if(Player2.movecheck() == 0) cout << "player2 walled" << endl;
+}          
 void testGame(){
     printf("Player1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.tailX[0], Player1.tailX[1], Player1.tailX[2], Player1.tailX[3], Player1.tailX[4], Player1.tailX[5], Player1.tailY[0], Player1.tailY[1], Player1.tailY[2], Player1.tailY[3], Player1.tailY[4], Player1.tailY[5], Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
     printf("Player2: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.tailX[0], Player2.tailX[1], Player2.tailX[2], Player2.tailX[3], Player2.tailX[4], Player2.tailX[5], Player2.tailY[0], Player2.tailY[1], Player2.tailY[2], Player2.tailY[3], Player2.tailY[4], Player2.tailY[5], Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
