@@ -115,7 +115,7 @@ class player{
 };
 player Player1(0);
 player Player2(1);
-food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), rand() % 3);
+food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1));
 
 void regenFood() { /*Tested - mabye working?? not fully sure*/
     foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
