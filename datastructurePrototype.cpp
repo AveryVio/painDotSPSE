@@ -199,25 +199,54 @@ void testGame(){
     printf("\r\n------------------------------------------------------------------------------------------------------------------------------------------------------");
     printf("\r\n\n\n");
 }
-//main
+class Playfield {
+public:
+    static const int width = PLAYFIELDX;
+    static const int height = PLAYFIELDY;
+    char grid[height][width];
+    Playfield() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) grid[i][j] = ' ';
+        }
+    }
+    void display(player player1, player player2, food food) {
+        system("cls");
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) grid[i][j] = 250;
+        }
+        grid[player1.headposY][player1.headposX] = '1';
+        for (int i = 0; i < player2.length; i++) grid[player1.tailY[i]][player1.tailX[i]] = '1';
+        grid[player2.headposY][player2.headposX] = '2';
+        for (int i = 0; i < player2.length; i++) grid[player2.tailY[i]][player2.tailX[i]] = '2';
+        grid[food.y][food.x] = 'F';
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) std::cout << grid[i][j] << ' ';
+            std::cout << std::endl;
+        }
+    }
+};
+Playfield playfield;       
+//main     
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand(69420);
     //gamestart
     testGame();
     long long int milis = 0;
-
-    /*for(int j= 0; j < 10;){
-        if(clock() > milis + 1000){
-            gameTick();
-            if(j % 3 == 0){
+    for(int j= 0; j < 100000;){
+        if(clock() > milis + 1){
+            if(j % 2 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
             }
-            testGame();
-            milis += 1000;
+            //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
+            //testGame();
+            playfield.display(Player1, Player2,foodblock);
+            cout << j << endl;
+            gameTick();
+            milis += 1;
             j++;
         }
-    }*/
+    }
     return 0;
 }
