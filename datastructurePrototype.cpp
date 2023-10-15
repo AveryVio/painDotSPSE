@@ -139,34 +139,34 @@ char biggerPlayerLength(){ /*Tested - fully working as intended*/
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
     if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 2;
     if(playerN.direction == 0){
-        if((playerN.headposX == playerT.headposX) && (playerN.headposY + 1 == playerT.headposY)) return 1;
+        if((playerN.headposX == playerT.headposX) && (playerN.headposY + 1 == playerT.headposY)) return 0;
         for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY + 1 == playerT.tailY[i])) return 1;
-            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY + 1 == playerN.tailY[i])) return 1;
+            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY + 1 == playerT.tailY[i])) return 0;
+            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY + 1 == playerN.tailY[i])) return 0;
         }
     }
     if(playerN.direction == 1){
-        if((playerN.headposX + 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 1;
+        if((playerN.headposX + 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 0;
         for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX + 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 1;
-            if((playerN.headposX + 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 1;
+            if((playerN.headposX + 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 0;
+            if((playerN.headposX + 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 0;
         }
     }
     if(playerN.direction == 2){
-        if((playerN.headposX == playerT.headposX) && (playerN.headposY - 1 == playerT.headposY)) return 1;
+        if((playerN.headposX == playerT.headposX) && (playerN.headposY - 1 == playerT.headposY)) return 0;
         for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY - 1 == playerT.tailY[i])) return 1;
-            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY - 1 == playerN.tailY[i])) return 1;
+            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY - 1 == playerT.tailY[i])) return 0;
+            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY - 1 == playerN.tailY[i])) return 0;
         }
     }
     if(playerN.direction == 3){
-        if((playerN.headposX - 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 1;
+        if((playerN.headposX - 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 0;
         for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX - 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 1;
-            if((playerN.headposX - 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 1;
+            if((playerN.headposX - 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 0;
+            if((playerN.headposX - 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 0;
         }
     }
-    return 0;
+    return 1;
 };
 class gameInfo{
     public:
