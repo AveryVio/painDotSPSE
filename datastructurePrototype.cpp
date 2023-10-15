@@ -235,17 +235,17 @@ int main(){
     testGame();
     long long int milis = 0;
     for(int j= 0; j < 100000;){
-        if(clock() > milis + 1){
+        if(clock() > milis + 1000){
             if(j % 2 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
             }
-            //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
-            //testGame();
-            playfield.display(Player1, Player2,foodblock);
+            printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
+            testGame();
+            //playfield.display(Player1, Player2,foodblock);
             cout << j << endl;
             gameTick();
-            milis += 1;
+            milis += 1000;
             j++;
         }
     }
