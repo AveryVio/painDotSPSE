@@ -177,11 +177,14 @@ class gameInfo{
     public:
         uint16_t gemeid;
         char gamestate;
-        char winner = 0;
+        char winner;
         player winnerInfo;
         player loserInfo;
+        gameInfo(char gamestatep) : winnerInfo(-1), loserInfo(-1){
+            gamestate = gamestatep;
+        }
 };
-gameInfo info;
+gameInfo info(0);
 void gameTick(){/*Tested - fully working as intended*/
     playercheck12Result = playercheck(Player1, Player2);
     playercheck21Result = playercheck(Player2, Player1);
