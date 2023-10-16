@@ -56,7 +56,7 @@ class player{
                     tailY[i] = headposY + i + 1;
                 }
             }
-        };
+        }
         char movecheck(){// if can move then 0 else 1 /*Tested - fully working as inteded*/
             if((direction == 0) && (headposY == PLAYFIELDY))return 0;
             if((direction == 1) && (headposX == PLAYFIELDX))return 0;
