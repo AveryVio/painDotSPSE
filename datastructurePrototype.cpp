@@ -9,6 +9,10 @@ using namespace std;
 #define MAXPLAYERLENGTH 128
 #define PLAYERSTARTLENGTH 3
 
+char playercheck12Result;
+char playercheck21Result;
+char player1movecheckResult;
+char player2movecheckResult;
 //game
 class food{
     public:
