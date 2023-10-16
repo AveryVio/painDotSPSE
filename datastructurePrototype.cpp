@@ -194,39 +194,34 @@ void gameTick(){/*Tested - fully working as intended*/
         playerEat(Player1);
         playerEat(Player2);
     }
-    else if((playercheck12Result == 0) && (playercheck21Result == 0)){
+    else{
         info.gamestate = 0;
-        info.winner = -1;
+        if((playercheck12Result == 0) && (playercheck21Result == 0)) info.winner = -1;
+        else if(playercheck12Result == 0){
+            info.winner = 2;
+            info.winnerInfo = Player2;
+            info.loserInfo = Player1;
+        }
+        else if(playercheck21Result == 0){
+            info.winner = 1;
+            info.winnerInfo = Player1;
+            info.loserInfo = Player2;
+        }
+        if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
+            info.winner = -1;
+        }
+        else if(player1movecheckResult == 0){
+            info.winner = 2;
+            info.winnerInfo = Player2;
+            info.loserInfo = Player1;
+        }
+        else if(player2movecheckResult == 0){
+            info.winner = 1;
+            info.winnerInfo = Player1;
+            info.loserInfo = Player2;
+        }
+        else cout << "nothing happened" << endl;
     }
-    else if(playercheck12Result == 0){
-        info.gamestate = 0;
-        info.winner = 2;
-        info.winnerInfo = Player2;
-        info.loserInfo = Player1;
-    }
-    else if(playercheck21Result == 0){
-        info.gamestate = 0;
-        info.winner = 1;
-        info.winnerInfo = Player1;
-        info.loserInfo = Player2;
-    }
-    if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
-        info.gamestate = 0;
-        info.winner = -1;
-    }
-    else if(player1movecheckResult == 0){
-        info.gamestate = 0;
-        info.winner = 2;
-        info.winnerInfo = Player2;
-        info.loserInfo = Player1;
-    }
-    else if(player2movecheckResult == 0){
-        info.gamestate = 0;
-        info.winner = 1;
-        info.winnerInfo = Player1;
-        info.loserInfo = Player2;
-    }
-    else cout << "nothing happened" << endl;
 }          
 void testGame(){
     printf("Player1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.tailX[0], Player1.tailX[1], Player1.tailX[2], Player1.tailX[3], Player1.tailX[4], Player1.tailX[5], Player1.tailY[0], Player1.tailY[1], Player1.tailY[2], Player1.tailY[3], Player1.tailY[4], Player1.tailY[5], Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
