@@ -8,6 +8,7 @@ using namespace std;
 #define PLAYFIELDY 16
 #define MAXPLAYERLENGTH 128
 #define PLAYERSTARTLENGTH 3
+#define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
 
 char playercheck12Result;
 char playercheck21Result;
