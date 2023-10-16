@@ -175,13 +175,18 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
 class gameInfo{
     public:
         uint16_t gemeid;
-        char gamemode;
-        char winner;
+        char gamestate;
+        char winner = 0;
         player winnerInfo;
         player loserInfo;
 };
+gameInfo info;
 void gameTick(){/*Tested - fully working as intended*/
-    if ((playercheck(Player1, Player2)) && (playercheck(Player2, Player1))){
+    playercheck12Result = playercheck(Player1, Player2);
+    playercheck21Result = playercheck(Player2, Player1);
+    player1movecheckResult = Player1.movecheck();
+    player2movecheckResult = Player2.movecheck();
+    if (playercheck12Result && playercheck21Result){
         if(Player1.movecheck()) Player1.move();
         else cout << "1nomove" << endl;
         if(Player2.movecheck()) Player2.move();
