@@ -251,7 +251,7 @@ public:
         grid[player2.headposY][player2.headposX] = '2';
         for (int i = 0; i < player2.length; i++) grid[player2.tailY[i]][player2.tailX[i]] = '2';
         grid[food.y][food.x] = 'F';
-        for (int i = 0; i < height; i++) {
+        for (int i = height; i >= 0; i--) {
             for (int j = 0; j < width; j++) std::cout << grid[i][j] << ' ';
             std::cout << std::endl;
         }
