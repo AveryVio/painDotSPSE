@@ -243,7 +243,9 @@ public:
     }
     void updatePlayerPositions(player& p, char symbol) {
         grid[p.headposY][p.headposX] = symbol;
-        for (int i = 0; i < p.length; i++) grid[p.tailY[i]][p.tailX[i]] = symbol;
+        for (int i = 0; i < p.length; i++) {
+            grid[p.tailY[i]][p.tailX[i]] = symbol;
+        }
     }
     void predisplay(player player1, player player2, food food){
         updatePlayerPositions(player1, 250);
@@ -251,17 +253,16 @@ public:
         grid[food.y][food.x] = 250;
     }
     void display(player player1, player player2, food food) {
-        system("cls");
-        updatePlayerPositions(player1, '1');
-        updatePlayerPositions(player2, '2');
-        grid[food.y][food.x] = 'F';
-        for (int i = height; i >= 0; i--) {
-            for (int j = 0; j < width; j++) {
-                std::cout << grid[i][j] << ' ';
-            }
-            std::cout << std::endl;
+    updatePlayerPositions(player1, '1');
+    updatePlayerPositions(player2, '2');
+    grid[food.y][food.x] = 'F';
+    for (int i = height; i >= 0; i--) {
+        for (int j = 0; j < width; j++) {
+            std::cout << grid[i][j] << " ";
         }
+        std::cout << std::endl;
     }
+}
 };
 Playfield playfield;       
 //main     
@@ -280,7 +281,7 @@ int main(){
             }
             playfield.predisplay(Player1, Player2, foodblock);
             gameTick();
-            //system("cls");
+            system("cls");
             playfield.display(Player1, Player2, foodblock);
             //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
             testGame();
