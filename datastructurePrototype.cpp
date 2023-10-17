@@ -125,7 +125,12 @@ char playerFirstStoredLength(player playerN){//returns higherst stored length
 }
 void playerEat(player playerN){ /*Tested - fully working as inteded*/
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
-        for (int i = playerFirstStoredLength(playerN); i < foodblock.nutrition; i++) playerN.lengthStored[i]= 1;
+        for (int i = playerFirstStoredLength(playerN); i < 5; i++){
+            if(foodblock.nutrition >= 0){
+                playerN.lengthStored[i] = 1;
+                foodblock.nutrition--;
+            }
+        }
         regenFood();
     }
 }
