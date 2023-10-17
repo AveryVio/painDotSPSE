@@ -120,7 +120,7 @@ void regenFood() { /*Tested - mabye working?? not fully sure*/
     foodblock.y = rand() % (PLAYFIELDY + 1);
 }
 char playerFirstStoredLength(player playerN){//returns higherst stored length
-    for(int v = 0; v < 5; v++) if(playerN.lengthStored[v] == 1) return v;
+    for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
 void playerEat(player playerN){ /*Tested - fully working as inteded*/
