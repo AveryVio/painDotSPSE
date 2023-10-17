@@ -238,21 +238,27 @@ public:
     char grid[height][width];
     Playfield() {
         for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) grid[i][j] = ' ';
+            for (int j = 0; j < width; j++) grid[i][j] = 250;
         }
+    }
+    void updatePlayerPositions(player& p, char symbol) {
+        grid[p.headposY][p.headposX] = symbol;
+        for (int i = 0; i < p.length; i++) grid[p.tailY[i]][p.tailX[i]] = symbol;
+    }
+    void predisplay(player player1, player player2, food food){
+        updatePlayerPositions(player1, 250);
+        updatePlayerPositions(player2, 250);
+        grid[food.y][food.x] = 250;
     }
     void display(player player1, player player2, food food) {
         system("cls");
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) grid[i][j] = 250;
-        }
-        grid[player1.headposY][player1.headposX] = '1';
-        for (int i = 0; i < player2.length; i++) grid[player1.tailY[i]][player1.tailX[i]] = '1';
-        grid[player2.headposY][player2.headposX] = '2';
-        for (int i = 0; i < player2.length; i++) grid[player2.tailY[i]][player2.tailX[i]] = '2';
+        updatePlayerPositions(player1, '1');
+        updatePlayerPositions(player2, '2');
         grid[food.y][food.x] = 'F';
         for (int i = height; i >= 0; i--) {
-            for (int j = 0; j < width; j++) std::cout << grid[i][j] << ' ';
+            for (int j = 0; j < width; j++) {
+                std::cout << grid[i][j] << ' ';
+            }
             std::cout << std::endl;
         }
     }
@@ -267,19 +273,21 @@ int main(){
     long long int milis = 0;
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
-        if(clock() > milis + 1000){
+        //if(clock() > milis + 1000){
             if(j % 2 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
             }
-            //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
-            //testGame();
-            playfield.display(Player1, Player2,foodblock);
-            cout << j << endl;
+            playfield.predisplay(Player1, Player2, foodblock);
             gameTick();
+            //system("cls");
+            playfield.display(Player1, Player2, foodblock);
+            //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
+            testGame();
+            cout << j << endl;
             milis += 1000;
             j++;
-        }
+        //}
         if(info.gamestate == 0);
         else if(info.gamestate == -1);
     }
