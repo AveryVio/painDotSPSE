@@ -73,7 +73,7 @@ class player{
                     for (int i = 9; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
                     lengthStored[10] = 0;
                 }
-                for(int i = length - 1; i > 0; i--){
+                for(int i = length; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
                 }
@@ -189,14 +189,12 @@ void gameTick(){/*Tested - fully working as intended*/
     player2movecheckResult = Player2.movecheck();
     if (playercheck12Result && playercheck21Result){
         if(Player1.movecheck()) Player1.move();
-        else cout << "1nomove" << endl;
         if(Player2.movecheck()) Player2.move();
-        else cout << "2nomove" << endl;
         playerEat(Player1);
         playerEat(Player2);
     }
     else{
-        info.gamestate = 0;
+        if((player1movecheckResult) && (player2movecheckResult)) info.gamestate = 0;
         if((playercheck12Result == 0) && (playercheck21Result == 0)) info.winner = -1;
         else if(playercheck12Result == 0){
             info.winner = 2;
@@ -265,14 +263,6 @@ public:
 }
 };
 Playfield playfield;
-void show(){
-    playfield.predisplay(Player1, Player2, foodblock);
-    gameTick();
-    system("cls");
-    playfield.display(Player1, Player2, foodblock);
-    //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
-    testGame();
-}
 //main     
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
@@ -281,25 +271,21 @@ int main(){
     testGame();
     long long int milis = 0;
     info.gamestate = 1;
-    //for(int j= 0; j < 100000;){
+    for(int j= 0; j < 100000;){
         //if(clock() > milis + 1000){
-            /*if(j % 2 == 0){
+            if(j % 2 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
-            }*/
-            //cout << j << endl;
+            }
+            playfield.predisplay(Player1, Player2, foodblock);
+            gameTick();
+            system("cls");
+            playfield.display(Player1, Player2, foodblock);
+            testGame();
+            cout << j << endl;
             milis += 1000;
-            //j++;
+            j++;
         //}
-        for(int i = 0; i < 10; i++) show();
-        Player2.changeDirection(3);
-        for(int i = 0; i < 30; i++) show();
-        Player2.move();
-        playerEat(Player2);
-        Player2.changeDirection(0);
-        for(int i = 0; i < 10; i++) show();
-        if(info.gamestate == 0);
-        else if(info.gamestate == -1);
-    //}
+    }
     return 0;
 }
