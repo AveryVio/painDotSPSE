@@ -70,10 +70,10 @@ class player{
                     tailX[length + 1] = tailX[length];
                     tailY[length + 1] = tailY[length];
                     length++;
-                    for (int i = 9; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
-                    lengthStored[10] = 0;
+                    for (int i = 4; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
+                    lengthStored[5] = 0;
                 }
-                for(int i = length; i > 0; i--){
+                for(int i = length - 1; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
                 }
@@ -187,39 +187,57 @@ void gameTick(){/*Tested - fully working as intended*/
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
     player2movecheckResult = Player2.movecheck();
-    if (playercheck12Result && playercheck21Result){
-        if(Player1.movecheck()) Player1.move();
-        if(Player2.movecheck()) Player2.move();
+    if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result){
+        Player1.move();
         playerEat(Player1);
+        Player2.move();
         playerEat(Player2);
+        cout << endl << "nowallnoplayer" << endl;
     }
     else{
-        if((player1movecheckResult) && (player2movecheckResult)) info.gamestate = 0;
-        if((playercheck12Result == 0) && (playercheck21Result == 0)) info.winner = -1;
-        else if(playercheck12Result == 0){
-            info.winner = 2;
-            info.winnerInfo = Player2;
-            info.loserInfo = Player1;
+        if (player1movecheckResult && player2movecheckResult) cout << "nowall" << endl;
+        else{
+            if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
+                cout << "wall" << endl;
+                info.gamestate = 0;
+                info.winner = -1;
+            }
+            else if(player1movecheckResult == 0){
+                cout << "1wall" << endl;
+                info.gamestate = 0;
+                info.winner = 2;
+                info.winnerInfo = Player2;
+                info.loserInfo = Player1;
+            }
+            else if(player2movecheckResult == 0){
+                cout << "2wall" << endl;
+                info.gamestate = 0;
+                info.winner = 2;
+                info.winnerInfo = Player2;
+                info.loserInfo = Player1;
+            }
         }
-        else if(playercheck21Result == 0){
-            info.winner = 1;
-            info.winnerInfo = Player1;
-            info.loserInfo = Player2;
+        if(playercheck12Result && playercheck21Result) cout << "noplayer" << endl;
+        else{
+            if((playercheck12Result == 0) && (playercheck21Result == 0)){
+                cout << "player" << endl;
+                info.gamestate = 0;
+                info.winner = -1;
+            }
+            else if(playercheck12Result == 0){
+                cout << "1player" << endl;
+                info.winner = 2;
+                info.winnerInfo = Player2;
+                info.loserInfo = Player1;
+            }
+            else if(playercheck21Result == 0){
+                cout << "2player" << endl;
+                info.winner = 1;
+                info.winnerInfo = Player1;
+                info.loserInfo = Player2;
+            }
         }
-        if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
-            info.winner = -1;
-        }
-        else if(player1movecheckResult == 0){
-            info.winner = 2;
-            info.winnerInfo = Player2;
-            info.loserInfo = Player1;
-        }
-        else if(player2movecheckResult == 0){
-            info.winner = 1;
-            info.winnerInfo = Player1;
-            info.loserInfo = Player2;
-        }
-        else cout << "nothing happened" << endl;
+    if((player1movecheckResult == 0) && (player2movecheckResult == 0) && (playercheck12Result == 0) && (playercheck21Result == 0)) cout << "idk what happened either" << endl;
     }
 }
 void testGame(){
@@ -273,7 +291,7 @@ int main(){
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
         //if(clock() > milis + 1000){
-            if(j % 2 == 0){
+            if(j % 4 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
             }
@@ -287,5 +305,7 @@ int main(){
             j++;
         //}
     }
+    /*Player1.move();
+    testGame();*/
     return 0;
 }
