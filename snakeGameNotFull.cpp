@@ -93,7 +93,6 @@ class player{
 player Player1(0);
 player Player2(1);
 food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), FOODRANDCALC);
-
 void regenFood() { /*Tested - mabye working?? not fully sure*/
     foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
     foodblock.x = rand() % (PLAYFIELDX + 1);
@@ -105,9 +104,9 @@ char playerFirstStoredLength(player playerN){//returns higherst stored length
 }
 void playerEat(player playerN){ /*Tested - fully working as inteded*/
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
-        for (int i = playerFirstStoredLength(playerN); i < 5; i++){
+        for (int n = playerFirstStoredLength(playerN); n <= 5; n++){
             if(foodblock.nutrition >= 0){
-                playerN.lengthStored[i] = 1;
+                playerN.lengthStored[n] = 1;
                 foodblock.nutrition--;
             }
         }
