@@ -57,7 +57,7 @@ class player{
                 }
             }
         }
-        char movecheck(){// if can move then 0 else 1 /*Tested - fully working as inteded*/
+        char movecheck(){// if can move then 1 else 0 /*Tested - fully working as inteded*/
             if((direction == 0) && (headposY == PLAYFIELDY))return 0;
             if((direction == 1) && (headposX == PLAYFIELDX))return 0;
             if((direction == 2) && (headposY == 0))return 0;
@@ -264,7 +264,15 @@ public:
     }
 }
 };
-Playfield playfield;       
+Playfield playfield;
+void show(){
+    playfield.predisplay(Player1, Player2, foodblock);
+    gameTick();
+    system("cls");
+    playfield.display(Player1, Player2, foodblock);
+    //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
+    testGame();
+}
 //main     
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
@@ -273,24 +281,25 @@ int main(){
     testGame();
     long long int milis = 0;
     info.gamestate = 1;
-    for(int j= 0; j < 100000;){
+    //for(int j= 0; j < 100000;){
         //if(clock() > milis + 1000){
-            if(j % 2 == 0){
+            /*if(j % 2 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
-            }
-            playfield.predisplay(Player1, Player2, foodblock);
-            gameTick();
-            system("cls");
-            playfield.display(Player1, Player2, foodblock);
-            //printf("playerchecks: %d, %d\r\nmovechecks: %d, %d\r\n\n\n\n",(playercheck(Player1, Player2)),(playercheck(Player2, Player1)),(Player1.movecheck()),(Player2.movecheck()));
-            testGame();
-            cout << j << endl;
+            }*/
+            //cout << j << endl;
             milis += 1000;
-            j++;
+            //j++;
         //}
+        for(int i = 0; i < 10; i++) show();
+        Player2.changeDirection(3);
+        for(int i = 0; i < 30; i++) show();
+        Player2.move();
+        playerEat(Player2);
+        Player2.changeDirection(0);
+        for(int i = 0; i < 10; i++) show();
         if(info.gamestate == 0);
         else if(info.gamestate == -1);
-    }
+    //}
     return 0;
 }
