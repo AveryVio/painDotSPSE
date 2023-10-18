@@ -164,23 +164,21 @@ void gameTick(){/*Tested - fully working as intended*/
         cout << endl << "nowallnoplayer" << endl;
     }
     else{
+        info.gamestate = 0;
         if (player1movecheckResult && player2movecheckResult) cout << "nowall" << endl;
         else{
             if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
                 cout << "wall" << endl;
-                info.gamestate = 0;
                 info.winner = -1;
             }
             else if(player1movecheckResult == 0){
                 cout << "1wall" << endl;
-                info.gamestate = 0;
                 info.winner = 2;
                 info.winnerInfo = Player2;
                 info.loserInfo = Player1;
             }
             else if(player2movecheckResult == 0){
                 cout << "2wall" << endl;
-                info.gamestate = 0;
                 info.winner = 2;
                 info.winnerInfo = Player2;
                 info.loserInfo = Player1;
@@ -190,7 +188,6 @@ void gameTick(){/*Tested - fully working as intended*/
         else{
             if((playercheck12Result == 0) && (playercheck21Result == 0)){
                 cout << "player" << endl;
-                info.gamestate = 0;
                 info.winner = -1;
             }
             else if(playercheck12Result == 0){
