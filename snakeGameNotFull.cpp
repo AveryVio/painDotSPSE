@@ -58,14 +58,14 @@ class player{
             }
         }
         char movecheck(){// if can move then 1 else 0 /*Tested - fully working as inteded*/
-            if((direction == 0) && (headposY == PLAYFIELDY))return 0;
-            if((direction == 1) && (headposX == PLAYFIELDX))return 0;
+            if((direction == 0) && (headposY == PLAYFIELDY + 1))return 0;
+            if((direction == 1) && (headposX == PLAYFIELDX + 1))return 0;
             if((direction == 2) && (headposY == 0))return 0;
             if((direction == 3) && (headposX == 0))return 0;
             return 1;
         }
         void move(){ /*Tested - fully working as inteded*/
-            if(((direction == 0) && (headposY + 1 != PLAYFIELDY))||((direction == 1) && (headposY + 1 != PLAYFIELDX))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
+            if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
                 if (lengthStored[0] !=0) {
                     tailX[length + 1] = tailX[length];
                     tailY[length + 1] = tailY[length];
@@ -79,10 +79,10 @@ class player{
                 }
                 tailX[0] = headposX;
                 tailY[0] = headposY;
-                if ((direction == 0) && (headposY + 1 != PLAYFIELDY)) headposY = headposY + 1;
-                else if ((direction == 1) && (headposY + 1 != PLAYFIELDX)) headposX = headposX + 1;
-                else if ((direction == 2) && (headposY - 1 != PLAYFIELDY)) headposY = headposY - 1;
-                else if ((direction == 3) && (headposY - 1 != PLAYFIELDX)) headposX = headposX - 1;
+                if ((direction == 0) && (headposY != PLAYFIELDY + 1)) headposY = headposY + 1;
+                else if ((direction == 1) && (headposX != PLAYFIELDX + 1)) headposX = headposX + 1;
+                else if ((direction == 2) && (headposY != 0)) headposY = headposY - 1;
+                else if ((direction == 3) && (headposX != 0)) headposX = headposX - 1;
             }
         }
         void changeDirection(char requestedDirection){
