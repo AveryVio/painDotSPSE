@@ -238,7 +238,7 @@ public:
     static const int height = PLAYFIELDY;
     char grid[height][width];
     Playfield() {
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i <= height; i++) {
             for (int j = 0; j < width; j++) grid[i][j] = 250;
         }
     }
