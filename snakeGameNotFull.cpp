@@ -120,7 +120,7 @@ char biggerPlayerLength(){ /*Tested - fully working as intended*/
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
     if (playerN.headposX == playerT.headposX && playerN.headposY == playerT.headposY) return 2;
-    for (int i = 0; i < playerT.length; i++) {
+    else for (int i = 0; i < playerT.length; i++) {
         if (playerN.headposX == playerT.tailX[i] && playerN.headposY == playerT.tailY[i]) return 2;
         else if(playerN.headposX == playerN.tailX[i] && playerN.headposY == playerN.tailY[i]) return 2;
     }
