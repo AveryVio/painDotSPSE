@@ -135,34 +135,23 @@ char biggerPlayerLength(){ /*Tested - fully working as intended*/
     return Player2.length;
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
-    if((playerN.headposX == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 2;
-    if(playerN.direction == 0){
-        if((playerN.headposX == playerT.headposX) && (playerN.headposY + 1 == playerT.headposY)) return 0;
-        for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY + 1 == playerT.tailY[i])) return 0;
-            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY + 1 == playerN.tailY[i])) return 0;
-        }
+    if (playerN.headposX == playerT.headposX && playerN.headposY == playerT.headposY) return 2;
+    for (int i = 0; i < playerT.length; i++) {
+        if (playerN.headposX == playerT.tailX[i] && playerN.headposY == playerT.tailY[i]) return 2;
+        else if(playerN.headposX == playerN.tailX[i] && playerN.headposY == playerN.tailY[i]) return 2;
     }
-    if(playerN.direction == 1){
-        if((playerN.headposX + 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 0;
-        for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX + 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 0;
-            if((playerN.headposX + 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 0;
-        }
-    }
-    if(playerN.direction == 2){
-        if((playerN.headposX == playerT.headposX) && (playerN.headposY - 1 == playerT.headposY)) return 0;
-        for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX == playerT.tailX[i]) && (playerN.headposY - 1 == playerT.tailY[i])) return 0;
-            if((playerN.headposX == playerN.tailX[i]) && (playerN.headposY - 1 == playerN.tailY[i])) return 0;
-        }
-    }
-    if(playerN.direction == 3){
-        if((playerN.headposX - 1 == playerT.headposX) && (playerN.headposY == playerT.headposY)) return 0;
-        for(int i = 0; i <= biggerPlayerLength(); i++){
-            if((playerN.headposX - 1 == playerT.tailX[i]) && (playerN.headposY == playerT.tailY[i])) return 0;
-            if((playerN.headposX - 1 == playerN.tailX[i]) && (playerN.headposY == playerN.tailY[i])) return 0;
-        }
+    int dx = 0;
+    int dy = 0;
+    if (playerN.direction == 0) dy = 1;
+    else if (playerN.direction == 1) dx = 1;
+    else if (playerN.direction == 2) dy = -1;
+    else if (playerN.direction == 3) dx = -1;
+    int checkX = playerN.headposX + dx;
+    int checkY = playerN.headposY + dy;
+    if (checkX == playerT.headposX && checkY == playerT.headposY) return 0;
+    else for (int i = 0; i < playerT.length; i++) {
+        if (checkX == playerT.tailX[i] && checkY == playerT.tailY[i]) return 0;
+        else if (checkX == playerN.tailX[i] && checkY == playerN.tailY[i]) return 0;
     }
     return 1;
 };
@@ -295,13 +284,54 @@ int main(){
             gameTick();
             system("cls");
             playfield.display(Player1, Player2, foodblock);
+            printf("\r\n%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
             testGame();
             cout << j << endl;
             milis += 1000;
-            j++;
-        //}
-    }
-    /*Player1.move();
-    testGame();*/
+        }
+    }*/
+    Player1.direction = 3;
+    Player1.headposX = Player2.headposX;
+    Player1.headposY = Player2.headposY;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY - 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player2.headposX - 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY + 3;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player2.headposX;
+    Player1.headposY = Player2.headposY + 4;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player2.headposX + 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY + 3;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY + 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposY = Player2.headposY + 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player1.tailX[2];
+    Player1.headposY = Player1.tailY[2];
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player1.tailX[2] + 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
+    Player1.headposX = Player1.tailX[2] - 1;
+    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+    testGame();
     return 0;
 }
