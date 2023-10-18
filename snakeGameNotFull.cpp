@@ -218,7 +218,7 @@ public:
     static const int height = PLAYFIELDY;
     char grid[height][width];
     Playfield() {
-        for (int i = 0; i <= height; i++) {
+        for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) grid[i][j] = 250;
         }
     }
@@ -246,7 +246,7 @@ public:
 }
 };
 Playfield playfield;
-//main     
+//main
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand(69420);
