@@ -86,23 +86,8 @@ class player{
             }
         }
         void changeDirection(char requestedDirection){
-            switch (direction){
-            case 0:
-                if(requestedDirection == 1) direction = 1;
-                if(requestedDirection == 3) direction = 3;
-            break;
-            case 1:
-                if(requestedDirection == 0) direction = 0;
-                if(requestedDirection == 2) direction = 2;
-            break;
-            case 2:
-                if(requestedDirection == 1) direction = 1;
-                if(requestedDirection == 3) direction = 3;
-            break;
-            case 3:
-                if(requestedDirection == 0) direction = 0;
-                if(requestedDirection == 2) direction = 2;
-            break;
+            if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) {
+                direction = requestedDirection;
             }
         }
 };
