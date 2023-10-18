@@ -26,7 +26,6 @@ class food{
             nutrition = val;
         }
 };
-char playercheck();
 class player{
     public:
         char headposX;
