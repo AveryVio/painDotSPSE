@@ -1,3 +1,17 @@
+
+*/
+    input - not implemented
+        pure numbers
+        console(buggy, not fixing since it wont be in produced versions anyway)
+    render options
+    game engine functional (probably)
+functionality information:
+
+usage compatibility: console
+version: 0.0.1
+
+Double The Length
+/*
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
