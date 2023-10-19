@@ -40,8 +40,8 @@ class player{
             else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
             headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
             length = PLAYERSTARTLENGTH;
-            if(playernumber == 1) direction = 2;
-            else direction = 0;
+            if(playernumber == 0) direction = 0;
+            else direction = 2;
             for (int i = 0; i <= 5; i++) lengthStored[i] = 0;
             if (playernumber == 0){
                 for (int i = 0; i < length; i++) {
