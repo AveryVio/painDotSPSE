@@ -1,17 +1,17 @@
-
-*/
-    input - not implemented
-        pure numbers
-        console(buggy, not fixing since it wont be in produced versions anyway)
-    render options
-    game engine functional (probably)
-functionality information:
-
-usage compatibility: console
-version: 0.0.1
-
 Double The Length
 /*
+
+version: 0.0.1
+usage compatibility: console
+
+functionality information:
+    game engine functional (probably)
+    render options
+        console(buggy, not fixing since it wont be in produced versions anyway)
+        pure numbers
+    input - not implemented
+*/
+
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
@@ -20,7 +20,7 @@ using namespace std;
 
 #define PLAYFIELDX 32
 #define PLAYFIELDY 16
-#define MAXPLAYERLENGTH 128
+#define MAXPLAYERLENGTH 256
 #define PLAYERSTARTLENGTH 3
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
 
