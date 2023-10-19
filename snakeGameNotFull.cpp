@@ -150,56 +150,60 @@ class gameInfo{
         }
 };
 gameInfo info(0);
-void gameTick(){/*Tested - fully working as intended*/
+void gameTick(){
+    Player1.move();
+    playerEat(Player1);
+    Player2.move();
+    playerEat(Player2);
+    cout << endl << "nowallnoplayer" << endl;
+}
+void winnerReporter(char winner){
+    info.winner = winner;
+    if(winner == 1){
+        info.winnerInfo = Player1;
+        info.loserInfo = Player2;
+    }
+    else{
+        info.winnerInfo = Player2;
+        info.loserInfo = Player1;
+    }
+}
+void AbsoluteSolver(){/*Tested - fully working as intended*/
     playercheck12Result = playercheck(Player1, Player2);
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
     player2movecheckResult = Player2.movecheck();
-    if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result){
-        Player1.move();
-        playerEat(Player1);
-        Player2.move();
-        playerEat(Player2);
-        cout << endl << "nowallnoplayer" << endl;
-    }
+    if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result) gameTick();
     else{
         info.gamestate = 0;
         if (player1movecheckResult && player2movecheckResult) cout << "nowall" << endl;
         else{
             if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
                 cout << "wall" << endl;
-                info.winner = -1;
+                winnerReporter(-1);
             }
             else if(player1movecheckResult == 0){
                 cout << "1wall" << endl;
-                info.winner = 2;
-                info.winnerInfo = Player2;
-                info.loserInfo = Player1;
+                winnerReporter(2);
             }
             else if(player2movecheckResult == 0){
                 cout << "2wall" << endl;
-                info.winner = 2;
-                info.winnerInfo = Player2;
-                info.loserInfo = Player1;
+                winnerReporter(1);
             }
         }
         if(playercheck12Result && playercheck21Result) cout << "noplayer" << endl;
         else{
             if((playercheck12Result == 0) && (playercheck21Result == 0)){
                 cout << "player" << endl;
-                info.winner = -1;
+                winnerReporter(-1);
             }
             else if(playercheck12Result == 0){
                 cout << "1player" << endl;
-                info.winner = 2;
-                info.winnerInfo = Player2;
-                info.loserInfo = Player1;
+                winnerReporter(2);
             }
             else if(playercheck21Result == 0){
                 cout << "2player" << endl;
-                info.winner = 1;
-                info.winnerInfo = Player1;
-                info.loserInfo = Player2;
+                winnerReporter(1);
             }
         }
     if((player1movecheckResult == 0) && (player2movecheckResult == 0) && (playercheck12Result == 0) && (playercheck21Result == 0)) cout << "idk what happened either" << endl;
