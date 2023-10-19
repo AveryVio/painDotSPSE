@@ -1,5 +1,5 @@
-Double The Length
 /*
+Double The Length
 
 version: 0.0.1
 usage compatibility: console
@@ -70,14 +70,14 @@ class player{
                 }
             }
         }
-        char movecheck(){// if can move then 1 else 0 /*Tested - fully working as inteded*/
+        char movecheck(){// if can move then 1 else 0
             if((direction == 0) && (headposY == PLAYFIELDY + 1))return 0;
             if((direction == 1) && (headposX == PLAYFIELDX + 1))return 0;
             if((direction == 2) && (headposY == 0))return 0;
             if((direction == 3) && (headposX == 0))return 0;
             return 1;
         }
-        void move(){ /*Tested - fully working as inteded*/
+        void move(){
             if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
                 if (lengthStored[0] !=0) {
                     tailX[length + 1] = tailX[length];
@@ -107,7 +107,7 @@ class player{
 player Player1(0);
 player Player2(1);
 food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), FOODRANDCALC);
-void regenFood() { /*Tested - mabye working?? not fully sure*/
+void regenFood() {
     foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
     foodblock.x = rand() % (PLAYFIELDX + 1);
     foodblock.y = rand() % (PLAYFIELDY + 1);
@@ -116,7 +116,7 @@ char playerFirstStoredLength(player playerN){//returns higherst stored length
     for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
-void playerEat(player playerN){ /*Tested - fully working as inteded*/
+void playerEat(player playerN){
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
         for (int n = playerFirstStoredLength(playerN); n <= 5; n++){
             if(foodblock.nutrition >= 0){
@@ -127,7 +127,7 @@ void playerEat(player playerN){ /*Tested - fully working as inteded*/
         regenFood();
     }
 }
-char biggerPlayerLength(){ /*Tested - fully working as intended*/
+char biggerPlayerLength(){
     if(Player1.length > Player2.length) return Player1.length;
     return Player2.length;
 }
@@ -182,7 +182,7 @@ void winnerReporter(char winner){
         info.loserInfo = Player1;
     }
 }
-void AbsoluteSolver(){/*Tested - fully working as intended*/
+void AbsoluteSolver(){
     playercheck12Result = playercheck(Player1, Player2);
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
