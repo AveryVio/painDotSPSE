@@ -17,19 +17,19 @@ using namespace std;
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctime>
-
+//definitions for usefull to update stuff
 #define PLAYFIELDX 32
 #define PLAYFIELDY 16
 #define MAXPLAYERLENGTH 256
 #define PLAYERSTARTLENGTH 3
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
-
+//variables for preformance increases
 char playercheck12Result;
 char playercheck21Result;
 char player1movecheckResult;
 char player2movecheckResult;
-//game
-class food{
+//code
+class food{//class for food objects
     public:
         char x;
         char y;
@@ -40,7 +40,7 @@ class food{
             nutrition = val;
         }
 };
-class player{
+class player{// class fo both players
     public:
         char headposX;
         char headposY;
@@ -70,22 +70,23 @@ class player{
                 }
             }
         }
-        char movecheck(){// if can move then 1 else 0
+        char movecheck(){// if player can move if yes then 1 else 0
             if((direction == 0) && (headposY == PLAYFIELDY + 1))return 0;
             if((direction == 1) && (headposX == PLAYFIELDX + 1))return 0;
             if((direction == 2) && (headposY == 0))return 0;
             if((direction == 3) && (headposX == 0))return 0;
             return 1;
         }
-        void move(){
+        void addLength(){//ads length from stored length to player
+            tailX[length + 1] = tailX[length];
+            tailY[length + 1] = tailY[length];
+            length++;
+            for (int i = 4; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
+            lengthStored[5] = 0;
+        }
+        void move(){//moves the player
             if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
-                if (lengthStored[0] !=0) {
-                    tailX[length + 1] = tailX[length];
-                    tailY[length + 1] = tailY[length];
-                    length++;
-                    for (int i = 4; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
-                    lengthStored[5] = 0;
-                }
+                if (lengthStored[0] !=0) addLength();
                 for(int i = length - 1; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
@@ -107,7 +108,7 @@ class player{
 player Player1(0);
 player Player2(1);
 food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), FOODRANDCALC);
-void regenFood() {
+void regenFood() {//respawns food at another location
     foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
     foodblock.x = rand() % (PLAYFIELDX + 1);
     foodblock.y = rand() % (PLAYFIELDY + 1);
@@ -116,7 +117,7 @@ char playerFirstStoredLength(player playerN){//returns higherst stored length
     for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
-void playerEat(player playerN){
+void playerEat(player playerN){//checks if player can eat if yes, eats the whole food and respawns it
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
         for (int n = playerFirstStoredLength(playerN); n <= 5; n++){
             if(foodblock.nutrition >= 0){
@@ -127,7 +128,7 @@ void playerEat(player playerN){
         regenFood();
     }
 }
-char biggerPlayerLength(){
+char biggerPlayerLength(){//returns length of the bigger player
     if(Player1.length > Player2.length) return Player1.length;
     return Player2.length;
 }
@@ -152,7 +153,7 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
     }
     return 1;
 };
-class gameInfo{
+class gameInfo{// class of information for cloud backup
     public:
         uint16_t gemeid;
         char gamestate;
@@ -164,14 +165,14 @@ class gameInfo{
         }
 };
 gameInfo info(0);
-void gameTick(){
+void gameTick(){//exactly what the name says
     Player1.move();
     playerEat(Player1);
     Player2.move();
     playerEat(Player2);
     cout << endl << "nowallnoplayer" << endl;
 }
-void winnerReporter(char winner){
+void winnerReporter(char winner){//sets a winner and if neede adds additional info
     info.winner = winner;
     if(winner == 1){
         info.winnerInfo = Player1;
@@ -182,7 +183,7 @@ void winnerReporter(char winner){
         info.loserInfo = Player1;
     }
 }
-void AbsoluteSolver(){
+void AbsoluteSolver(){// managed the game engine and win/loose conitions
     playercheck12Result = playercheck(Player1, Player2);
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
@@ -223,14 +224,14 @@ void AbsoluteSolver(){
     if((player1movecheckResult == 0) && (player2movecheckResult == 0) && (playercheck12Result == 0) && (playercheck21Result == 0)) cout << "idk what happened either" << endl;
     }
 }
-void testGame(){
+void testGame(){//for testing only - prints most needed values of the game
     printf("Player1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player1.headposX, Player1.headposY, Player1.direction, Player1.length, Player1.tailX[0], Player1.tailX[1], Player1.tailX[2], Player1.tailX[3], Player1.tailX[4], Player1.tailX[5], Player1.tailY[0], Player1.tailY[1], Player1.tailY[2], Player1.tailY[3], Player1.tailY[4], Player1.tailY[5], Player1.lengthStored[0], Player1.lengthStored[1], Player1.lengthStored[2], Player1.lengthStored[3], Player1.lengthStored[4]);
     printf("Player2: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Player2.headposX, Player2.headposY, Player2.direction, Player2.length, Player2.tailX[0], Player2.tailX[1], Player2.tailX[2], Player2.tailX[3], Player2.tailX[4], Player2.tailX[5], Player2.tailY[0], Player2.tailY[1], Player2.tailY[2], Player2.tailY[3], Player2.tailY[4], Player2.tailY[5], Player2.lengthStored[0], Player2.lengthStored[1], Player2.lengthStored[2], Player2.lengthStored[3], Player2.lengthStored[4]);
     printf("Food: x= %d, y= %d, nutrition: %d", foodblock.x, foodblock.y, foodblock.nutrition);
     printf("\r\n------------------------------------------------------------------------------------------------------------------------------------------------------");
     printf("\r\n\n\n");
 }
-class Playfield {
+class Playfield {//for testing only - used to display the playfield
 public:
     static const int width = PLAYFIELDX;
     static const int height = PLAYFIELDY;
