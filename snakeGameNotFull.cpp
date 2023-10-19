@@ -274,63 +274,21 @@ int main(){
     long long int milis = 0;
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
-        //if(clock() > milis + 1000){
+        if(clock() > milis + 1000){
             if(j % 4 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
             }
             playfield.predisplay(Player1, Player2, foodblock);
-            gameTick();
+            AbsoluteSolver();
             system("cls");
             playfield.display(Player1, Player2, foodblock);
-            printf("\r\n%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
+            //printf("\r\n%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
             testGame();
             cout << j << endl;
             milis += 1000;
+            j++;
         }
-    }*/
-    Player1.direction = 3;
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY - 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player2.headposX - 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY + 3;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player2.headposX;
-    Player1.headposY = Player2.headposY + 4;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player2.headposX + 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY + 3;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY + 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposY = Player2.headposY + 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player1.tailX[2];
-    Player1.headposY = Player1.tailY[2];
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player1.tailX[2] + 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
-    Player1.headposX = Player1.tailX[2] - 1;
-    printf("%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
-    testGame();
+    }
     return 0;
 }
