@@ -117,10 +117,10 @@ char playerFirstStoredLength(player playerN){//returns higherst stored length
     for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
-void playerEat(player playerN){//checks if player can eat if yes, eats the whole food and respawns it
+void playerEat(player& playerN){//checks if player can eat if yes, eats the whole food and respawns it
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
         for (int n = playerFirstStoredLength(playerN); n <= 5; n++){
-            if(foodblock.nutrition >= 0){
+            if(foodblock.nutrition > 0){
                 playerN.lengthStored[n] = 1;
                 foodblock.nutrition--;
             }
