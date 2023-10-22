@@ -56,15 +56,15 @@ class player{// class fo both players
             length = PLAYERSTARTLENGTH;
             if(playernumber == 0) direction = 0;
             else direction = 2;
-            for (int i = 0; i <= 5; i++) lengthStored[i] = 0;
+            for (char i = 0; i <= 5; i++) lengthStored[i] = 0;
             if (playernumber == 0){
-                for (int i = 0; i < length; i++) {
+                for (char i = 0; i < length; i++) {
                     tailX[i] = headposX;
                     tailY[i] = headposY - i - 1;
                 }
             }
             else {
-                for (int i = length - 1; i >= 0; i--) {
+                for (char i = length - 1; i >= 0; i--) {
                     tailX[i] = headposX;
                     tailY[i] = headposY + i + 1;
                 }
@@ -81,13 +81,13 @@ class player{// class fo both players
             tailX[length + 1] = tailX[length];
             tailY[length + 1] = tailY[length];
             length++;
-            for (int i = 0; i < 4; i++) lengthStored[i] = lengthStored[i + 1];
+            for (char i = 0; i < 4; i++) lengthStored[i] = lengthStored[i + 1];
             lengthStored[4] = 0;
         }
         void move(){//moves the player
             if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
                 if (lengthStored[0] != 0) addLength();
-                for(int i = length - 1; i > 0; i--){
+                for(char i = length - 1; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
                 }
@@ -125,12 +125,12 @@ void regenFood() {//respawns food at another location
     } while(foodColiding(Player1) || foodColiding(Player2));
 }
 char playerFirstStoredLength(player playerN){//returns higherst stored length
-    for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
+    for(char v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
 void playerEat(player& playerN){//checks if player can eat if yes, eats the whole food and respawns it
     if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
-        for (int n = playerFirstStoredLength(playerN); n <= 5; n++){
+        for (char n = playerFirstStoredLength(playerN); n <= 5; n++){
             if(foodblock.nutrition > 0){
                 playerN.lengthStored[n] = 1;
                 foodblock.nutrition--;
@@ -145,8 +145,8 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
         if (playerN.headposX == playerT.tailX[i] && playerN.headposY == playerT.tailY[i]) return 2;
         else if(playerN.headposX == playerN.tailX[i] && playerN.headposY == playerN.tailY[i]) return 2;
     }
-    int dx = 0;
-    int dy = 0;
+    char dx = 0;
+    char dy = 0;
     if (playerN.direction == 0) dy = 1;
     else if (playerN.direction == 1) dx = 1;
     else if (playerN.direction == 2) dy = -1;
@@ -162,7 +162,7 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
 };
 class gameInfo{// class of information for cloud backup
     public:
-        uint16_t gemeid;
+        uint32_t gemeid;
         char gamestate;
         char winner;
         player winnerInfo;
