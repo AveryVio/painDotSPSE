@@ -108,10 +108,21 @@ class player{// class fo both players
 player Player1(0);
 player Player2(1);
 food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), FOODRANDCALC);
+char biggerPlayerLength(){//returns length of the bigger player
+    if(Player1.length > Player2.length) return Player1.length;
+    return Player2.length;
+}
+char foodColiding(player& playerT){
+    if (foodblock.x == playerT.headposX && foodblock.y == playerT.headposY) return 1;
+    else for (int i = 0; i < playerT.length; i++) if(foodblock.x == playerT.tailX[i] && foodblock.y == playerT.tailY[i]) return 1;
+    else return 0;
+}
 void regenFood() {//respawns food at another location
-    foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
-    foodblock.x = rand() % (PLAYFIELDX + 1);
-    foodblock.y = rand() % (PLAYFIELDY + 1);
+    do{
+        foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
+        foodblock.x = rand() % (PLAYFIELDX + 1);
+        foodblock.y = rand() % (PLAYFIELDY + 1);
+    } while(foodColiding(Player1) || foodColiding(Player2));
 }
 char playerFirstStoredLength(player playerN){//returns higherst stored length
     for(int v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
@@ -127,10 +138,6 @@ void playerEat(player& playerN){//checks if player can eat if yes, eats the whol
         }
         regenFood();
     }
-}
-char biggerPlayerLength(){//returns length of the bigger player
-    if(Player1.length > Player2.length) return Player1.length;
-    return Player2.length;
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
     if (playerN.headposX == playerT.headposX && playerN.headposY == playerT.headposY) return 2;
