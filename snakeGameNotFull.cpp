@@ -81,12 +81,12 @@ class player{// class fo both players
             tailX[length + 1] = tailX[length];
             tailY[length + 1] = tailY[length];
             length++;
-            for (int i = 4; i > 0; i--) lengthStored[i] = lengthStored[i + 1];
-            lengthStored[5] = 0;
+            for (int i = 0; i < 4; i++) lengthStored[i] = lengthStored[i + 1];
+            lengthStored[4] = 0;
         }
         void move(){//moves the player
             if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
-                if (lengthStored[0] !=0) addLength();
+                if (lengthStored[0] != 0) addLength();
                 for(int i = length - 1; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
