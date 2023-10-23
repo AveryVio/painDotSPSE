@@ -100,9 +100,7 @@ class player{// class fo both players
             }
         }
         void changeDirection(char requestedDirection){
-            if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) {
-                direction = requestedDirection;
-            }
+            if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
         }
 };
 player Player1(0);
