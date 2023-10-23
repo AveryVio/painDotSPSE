@@ -102,6 +102,8 @@ class player{// class fo both players
         void changeDirection(char requestedDirection){
             if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
         }
+        char firstStoredLength();
+        void playerEat();
 };
 player Player1(0);
 player Player2(1);
@@ -122,15 +124,15 @@ void regenFood() {//respawns food at another location
         foodblock.y = rand() % (PLAYFIELDY + 1);
     } while(foodColiding(Player1) || foodColiding(Player2));
 }
-char playerFirstStoredLength(player playerN){//returns higherst stored length
-    for(char v = 5; v >= 0; v--) if(playerN.lengthStored[v] == 1) return v;
+char player::firstStoredLength(){//returns higherst stored length
+    for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
     return 0;
 }
-void playerEat(player& playerN){//checks if player can eat if yes, eats the whole food and respawns it
-    if ((foodblock.x == playerN.headposX) && (foodblock.y == playerN.headposY)){
-        for (char n = playerFirstStoredLength(playerN); n <= 5; n++){
+void player::playerEat(){//checks if player can eat if yes, eats the whole food and respawns it
+    if ((foodblock.x == headposX) && (foodblock.y == headposY)){
+        for (char n = firstStoredLength(); n <= 5; n++){
             if(foodblock.nutrition > 0){
-                playerN.lengthStored[n] = 1;
+                lengthStored[n] = 1;
                 foodblock.nutrition--;
             }
         }
