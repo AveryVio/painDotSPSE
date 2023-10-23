@@ -188,7 +188,7 @@ void AbsoluteSolver(){// managed the game engine and win/loose conitions
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
     player2movecheckResult = Player2.movecheck();
-    if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result) gameTick();
+    if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result)gameTick();
     else{
         info.gamestate = 0;
         if (player1movecheckResult && player2movecheckResult) cout << "nowall" << endl;
