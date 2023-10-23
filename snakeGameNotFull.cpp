@@ -102,7 +102,10 @@ class player{// class fo both players
         void changeDirection(char requestedDirection){
             if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
         }
-        char firstStoredLength();
+        char firstStoredLength(){//returns higherst stored length
+            for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
+            return 0;
+        }
         void playerEat();
 };
 player Player1(0);
@@ -123,10 +126,6 @@ void regenFood() {//respawns food at another location
         foodblock.x = rand() % (PLAYFIELDX + 1);
         foodblock.y = rand() % (PLAYFIELDY + 1);
     } while(foodColiding(Player1) || foodColiding(Player2));
-}
-char player::firstStoredLength(){//returns higherst stored length
-    for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
-    return 0;
 }
 void player::playerEat(){//checks if player can eat if yes, eats the whole food and respawns it
     if ((foodblock.x == headposX) && (foodblock.y == headposY)){
