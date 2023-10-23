@@ -1,7 +1,7 @@
 /*
 Double The Length, Double the lag.
 
-version: 0.0.1
+version: 0.0.2
 usage compatibility: console
 
 functionality information:
