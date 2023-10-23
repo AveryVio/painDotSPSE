@@ -71,10 +71,10 @@ class player{// class fo both players
             }
         }
         char movecheck(){// if player can move if yes then 1 else 0
-            if((direction == 0) && (headposY == PLAYFIELDY + 1))return 0;
-            if((direction == 1) && (headposX == PLAYFIELDX + 1))return 0;
-            if((direction == 2) && (headposY == 0))return 0;
-            if((direction == 3) && (headposX == 0))return 0;
+            if(direction == 0) if(headposY == PLAYFIELDY + 1)return 0;
+            if(direction == 1) if(headposX == PLAYFIELDX + 1)return 0;
+            if(direction == 2) if(headposY == 0)return 0;
+            if(direction == 3) if(headposX == 0)return 0;
             return 1;
         }
         void addLength(){//ads length from stored length to player
