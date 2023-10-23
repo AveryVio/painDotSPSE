@@ -123,7 +123,7 @@ void regenFood() {//respawns food at another location
     } while(foodColiding(Player1) || foodColiding(Player2));
 }
 char playerFirstStoredLength(player playerN){//returns higherst stored length
-    for(char v = 5; v > 0; v--) if(playerN.lengthStored[v] == 1) return v;
+    for(char v = 5; v >= 0; v--) if(playerN.lengthStored[v] == 1) return v;
     return 0;
 }
 void playerEat(player& playerN){//checks if player can eat if yes, eats the whole food and respawns it
@@ -138,11 +138,6 @@ void playerEat(player& playerN){//checks if player can eat if yes, eats the whol
     }
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
-    if (playerN.headposX == playerT.headposX && playerN.headposY == playerT.headposY) return 2;
-    else for (int i = 0; i < playerT.length; i++) {
-        if (playerN.headposX == playerT.tailX[i] && playerN.headposY == playerT.tailY[i]) return 2;
-        else if(playerN.headposX == playerN.tailX[i] && playerN.headposY == playerN.tailY[i]) return 2;
-    }
     char dx = 0;
     char dy = 0;
     if (playerN.direction == 0) dy = 1;
