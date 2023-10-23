@@ -1,5 +1,5 @@
 /*
-Double The Length
+Double The Length, Double the lag.
 
 version: 0.0.1
 usage compatibility: console
