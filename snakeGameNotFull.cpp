@@ -102,6 +102,7 @@ class player{// class fo both players
         void changeDirection(char requestedDirection){
             if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
         }
+        char foodColiding();
         char firstStoredLength(){//returns higherst stored length
             for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
             return 0;
@@ -115,9 +116,9 @@ char biggerPlayerLength(){//returns length of the bigger player
     if(Player1.length > Player2.length) return Player1.length;
     return Player2.length;
 }
-char foodColiding(player& playerT){
-    if (foodblock.x == playerT.headposX && foodblock.y == playerT.headposY) return 1;
-    else if(playerT.length > 5) for (int i = 0; i < playerT.length; i++) if(foodblock.x == playerT.tailX[i] && foodblock.y == playerT.tailY[i]) return 1;
+char player::foodColiding(){
+    if (foodblock.x == headposX && foodblock.y == headposY) return 1;
+    else for (int i = 0; i < length; i++) if(foodblock.x == tailX[i] && foodblock.y == tailY[i]) return 1;
     else return 0;
 }
 void regenFood() {//respawns food at another location
@@ -125,7 +126,7 @@ void regenFood() {//respawns food at another location
         foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
         foodblock.x = rand() % (PLAYFIELDX + 1);
         foodblock.y = rand() % (PLAYFIELDY + 1);
-    } while(foodColiding(Player1) || foodColiding(Player2));
+    } while(Player1.foodColiding() || Player2.foodColiding());
 }
 void player::playerEat(){//checks if player can eat if yes, eats the whole food and respawns it
     if ((foodblock.x == headposX) && (foodblock.y == headposY)){
