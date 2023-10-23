@@ -180,9 +180,9 @@ class gameInfo{// class of information for cloud backup
 gameInfo info(0);
 void gameTick(){//exactly what the name says
     Player1.move();
-    playerEat(Player1);
+    Player1.playerEat();
     Player2.move();
-    playerEat(Player2);
+    Player2.playerEat();
     cout << endl << "nowallnoplayer" << endl;
 }
 void AbsoluteSolver(){// managed the game engine and win/loose conitions
