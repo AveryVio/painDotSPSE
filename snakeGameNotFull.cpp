@@ -163,6 +163,17 @@ class gameInfo{// class of information for cloud backup
         gameInfo(char gamestatep) : winnerInfo(-1), loserInfo(-1){
             gamestate = gamestatep;
         }
+        void winnerReporter(char winner){
+            winner = winner;
+            if(winner == 1){
+                winnerInfo = Player1;
+                loserInfo = Player2;
+            }
+            else{
+                winnerInfo = Player2;
+                loserInfo = Player1;
+            }
+        }
 };
 gameInfo info(0);
 void gameTick(){//exactly what the name says
@@ -171,17 +182,6 @@ void gameTick(){//exactly what the name says
     Player2.move();
     playerEat(Player2);
     cout << endl << "nowallnoplayer" << endl;
-}
-void winnerReporter(char winner){//sets a winner and if neede adds additional info
-    info.winner = winner;
-    if(winner == 1){
-        info.winnerInfo = Player1;
-        info.loserInfo = Player2;
-    }
-    else{
-        info.winnerInfo = Player2;
-        info.loserInfo = Player1;
-    }
 }
 void AbsoluteSolver(){// managed the game engine and win/loose conitions
     playercheck12Result = playercheck(Player1, Player2);
@@ -195,30 +195,30 @@ void AbsoluteSolver(){// managed the game engine and win/loose conitions
         else{
             if((player1movecheckResult == 0) && (player2movecheckResult == 0)){
                 cout << "wall" << endl;
-                winnerReporter(-1);
+                info.winnerReporter(-1);
             }
             else if(player1movecheckResult == 0){
                 cout << "1wall" << endl;
-                winnerReporter(2);
+                info.winnerReporter(2);
             }
             else if(player2movecheckResult == 0){
                 cout << "2wall" << endl;
-                winnerReporter(1);
+                info.winnerReporter(1);
             }
         }
         if(playercheck12Result && playercheck21Result) cout << "noplayer" << endl;
         else{
             if((playercheck12Result == 0) && (playercheck21Result == 0)){
                 cout << "player" << endl;
-                winnerReporter(-1);
+                info.winnerReporter(-1);
             }
             else if(playercheck12Result == 0){
                 cout << "1player" << endl;
-                winnerReporter(2);
+                info.winnerReporter(2);
             }
             else if(playercheck21Result == 0){
                 cout << "2player" << endl;
-                winnerReporter(1);
+                info.winnerReporter(1);
             }
         }
     if((player1movecheckResult == 0) && (player2movecheckResult == 0) && (playercheck12Result == 0) && (playercheck21Result == 0)) cout << "idk what happened either" << endl;
