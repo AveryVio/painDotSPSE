@@ -274,7 +274,7 @@ int main(){
     long long int milis = 0;
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
-        if(clock() > milis + 1000){
+        if(clock() > milis + 500){
             if(j % 4 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
@@ -286,7 +286,7 @@ int main(){
             //printf("\r\n%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
             testGame();
             cout << j << endl;
-            milis += 1000;
+            milis += 500;
             j++;
         }
     }
