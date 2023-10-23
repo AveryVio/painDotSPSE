@@ -112,7 +112,7 @@ char biggerPlayerLength(){//returns length of the bigger player
 }
 char foodColiding(player& playerT){
     if (foodblock.x == playerT.headposX && foodblock.y == playerT.headposY) return 1;
-    else for (int i = 0; i < playerT.length; i++) if(foodblock.x == playerT.tailX[i] && foodblock.y == playerT.tailY[i]) return 1;
+    else if(playerT.length > 5) for (int i = 0; i < playerT.length; i++) if(foodblock.x == playerT.tailX[i] && foodblock.y == playerT.tailY[i]) return 1;
     else return 0;
 }
 void regenFood() {//respawns food at another location
