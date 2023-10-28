@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "d711516b0cf21d64",
+    "type": "split",
+    "children": [
+      {
+        "id": "be7a9b0df81fed47",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a4614e929232aaf8",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": -132.0440031454348,
+                  "y": -125.10967178414103,
+                  "zoom": -0.8333333333333334
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3e8b2010de62ccbf",
+    "type": "split",
+    "children": [
+      {
+        "id": "e39f10a7010ddd22",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b208734d10a41ec2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1146078df9d66305",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4d607fb70e63dc26",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 204.5
+  },
+  "right": {
+    "id": "a0f27a3cbfacbd12",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bfcd9616d30e2d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d11d31ab9bb8c55",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Untitled.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "632e02a4395b0d77",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Untitled.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "261b4d89bfac4a5b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "2f34f82e6a3d5a7b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Untitled.canvas"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "workspaces:Manage workspace layouts": false
+    }
+  },
+  "active": "a4614e929232aaf8",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "calls.md",
+    "Untitled.canvas",
+    "graph.canvas",
+    "player/C-player.md",
+    "F-Startgame.md",
+    "player/move.md",
+    "player/movecheck.md",
+    "player/player.md",
+    "player/wallcheck.md",
+    "player/directionn.md",
+    "player/headposx.md",
+    "player/headposy.md",
+    "player/length.md",
+    "player/lengthstored.md",
+    "player/taily.md",
+    "player/tailx.md",
+    "player/player-functions.md",
+    "player/player-variables.md",
+    "player",
+    "food/food.md",
+    "food/food-functions.md",
+    "food/y.md",
+    "food/x.md",
+    "food/nutrition.md",
+    "food/food-variables.md",
+    "food/C-food.md",
+    "food",
+    "panel/gamestate.md",
+    "panel",
+    "playfield",
+    "pla",
+    "food",
+    "Untitled 1.canvas",
+    "player",
+    "food",
+    "playfield",
+    "panel"
+  ]
+}
