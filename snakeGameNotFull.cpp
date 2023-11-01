@@ -123,7 +123,7 @@ char player::foodColiding(){
 }
 void regenFood() {//respawns food at another location
     do{
-        foodblock.nutrition = (rand() % 1) + (rand() % 2) + (rand() % 3) + (rand() % 1);
+        foodblock.nutrition = (rand() % 1) + (rand() % 3) + (rand() % 1);
         foodblock.x = rand() % (PLAYFIELDX + 1);
         foodblock.y = rand() % (PLAYFIELDY + 1);
     } while(Player1.foodColiding() || Player2.foodColiding());
