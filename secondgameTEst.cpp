@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <stdlib.h>
 
 #define MAXX 256
 #define MAXY 128
