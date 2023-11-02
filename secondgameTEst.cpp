@@ -4,7 +4,7 @@ using namespace std;
 #define MAXX 256
 #define MAXY 128
 #define GRAVITY 4
-#define AIRDRAG 3
+#define AIRDRAG 2
 
 class position{
     public:
@@ -16,15 +16,24 @@ class player{
     position coords;
     int velocityX;
     int velocityY;
-    void changeVelocity(char action, int x, int y);
-};
-void player::changeVelocity(char action, int x, int y){
-    if(action == 'j') {
-        velocityX = x;
-        velocityY = y;
+    int accelerationX;
+    int accelerationY;
+    bool moving;
+    void changeVelocity(){
+        velocityX += accelerationX - AIRDRAG * 0.4;
+        velocityY += accelerationY - GRAVITY * 0.4;
     }
-    else if(action == 'g') velocityY -= (GRAVITY * 0.3 * (0.5 * AIRDRAG));
-    else if(action == 'd') velocityX -= (AIRDRAG * 0.5);
+    void jump(){
+        accelerationX = 10;
+        accelerationY = 8;
+        moving = true;
+    }
+    void changePosition(){
+        
+    }
+};
+void player::changeVelocity(){
+
 }
 player playe;
 int main(){
