@@ -19,8 +19,7 @@ class player{
     void changeVelocity(char action, int x, int y);
 };
 void player::changeVelocity(char action, int x, int y){
-    if(action == 0) return;
-    else if(action == 'j') {
+    if(action == 'j') {
         velocityX = x;
         velocityY = y;
     }
