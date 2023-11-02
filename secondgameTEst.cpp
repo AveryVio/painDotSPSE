@@ -12,6 +12,18 @@ class position{
     int xpos;
     int ypos;
 };
+class fly{
+    public:
+    position coords;
+    position possibleCoords[5];
+    char pos;
+    fly(int x, int y){
+    }
+    void regenerate(){
+        pos = rand() % 6;
+        coords = possibleCoords[pos];
+    }
+};
 class player{
     public:
     position coords;
