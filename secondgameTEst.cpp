@@ -20,6 +20,10 @@ class player{
     int accelerationX;
     int accelerationY;
     bool moving;
+    player(int x, int y){
+        coords.xpos = x;
+        coords.ypos = y;
+    }
     void jump(){
         accelerationX = 10;
         accelerationY = 8;
