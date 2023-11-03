@@ -45,7 +45,9 @@ class player{
         velocityX += accelerationX / 2 - AIRDRAG * 0.4;
         velocityY += accelerationY / 2 - GRAVITY * 0.4;
         if(accelerationX > 1) accelerationX /= 4;
+        else accelerationX -= 1;
         if(accelerationY > 1) accelerationY /= 4;
+        else accelerationY -= 1;
         coords.xpos += velocityX;
         coords.ypos += velocityY;
     }
