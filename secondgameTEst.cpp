@@ -52,7 +52,7 @@ class player{
 };
 class platform{
     public:
-    position topleftPos;
+    position topLeftPos;
     position bottomRightPos;
 };
 class playfield{
@@ -61,6 +61,14 @@ class playfield{
     platform leftPlatform;
     platform rightPlatform;
     platform topPlatform;
+    void setPosition(platform* platform, int topleftX, int topleftY, int bottomrightX, int bottomrightY){
+        platform->topLeftPos.xpos = topleftX;
+        platform->topLeftPos.ypos = topleftY;
+        platform->bottomRightPos.xpos = bottomrightX;
+        platform->bottomRightPos.ypos = bottomrightY;
+    }
+    void createPlayfield(){
+    }
 };
 
 int main(){
