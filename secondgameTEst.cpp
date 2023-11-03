@@ -42,12 +42,10 @@ class player{
         moving = true;
     }
     void move(){
-        velocityX += accelerationX / 2 - AIRDRAG * 0.4;
-        velocityY += accelerationY / 2 - GRAVITY * 0.4;
-        if(accelerationX > 1) accelerationX /= 4;
-        else accelerationX -= 1;
-        if(accelerationY > 1) accelerationY /= 4;
-        else accelerationY -= 1;
+        velocityX += accelerationX / 2;
+        velocityY += accelerationY / 2;
+        accelerationX -= AIRDRAG / 2;
+        accelerationY -= GRAVITY / 2;
         coords.xpos += velocityX;
         coords.ypos += velocityY;
     }
