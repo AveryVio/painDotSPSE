@@ -37,13 +37,15 @@ class player{
         coords.ypos = y;
     }
     void jump(){
-        accelerationX = 10;
-        accelerationY = 8;
+        accelerationX = 16;
+        accelerationY = 10;
         moving = true;
     }
     void move(){
-        velocityX += accelerationX - AIRDRAG * 0.4;
-        velocityY += accelerationY - GRAVITY * 0.4;
+        velocityX += accelerationX / 2 - AIRDRAG * 0.4;
+        velocityY += accelerationY / 2 - GRAVITY * 0.4;
+        if(accelerationX > 1) accelerationX /= 4;
+        if(accelerationY > 1) accelerationY /= 4;
         coords.xpos += velocityX;
         coords.ypos += velocityY;
     }
