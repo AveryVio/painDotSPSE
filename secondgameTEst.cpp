@@ -50,6 +50,18 @@ class player{
         coords.ypos += velocityY;
     }
 };
+class platform{
+    public:
+    position topleftPos;
+    position bottomRightPos;
+};
+class playfield{
+    public:
+    platform bottomPlatform;
+    platform leftPlatform;
+    platform rightPlatform;
+    platform topPlatform;
+};
 
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
