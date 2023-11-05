@@ -54,8 +54,10 @@ class platform{
     position topLeftPos;
     position bottomRightPos;
     char platformClosseness(player* playerT){
-        if((playerT->coords.xpos < topLeftPos.xpos - 5) || (playerT->coords.xpos > bottomRightPos.xpos + 5)) return -1;
-        if((playerT->coords.ypos < bottomRightPos.ypos - 5) || (playerT->coords.ypos > topLeftPos.ypos + 5)) return -1;
+        if((playerT->coords.xpos < topLeftPos.xpos - 10) || (playerT->coords.xpos > bottomRightPos.xpos + 10)) return -1;
+        if((playerT->coords.ypos < bottomRightPos.ypos - 10) || (playerT->coords.ypos > topLeftPos.ypos + 10)) return -1;
+        if(((playerT->coords.xpos + playerT->velocityX) < topLeftPos.xpos) || ((playerT->coords.xpos + playerT->velocityX) > bottomRightPos.xpos)) return 0;
+        if(((playerT->coords.ypos + playerT->velocityY) < bottomRightPos.ypos) || ((playerT->coords.ypos + playerT->velocityY) > topLeftPos.ypos)) return 0;
     }
 };
 class playfield{
