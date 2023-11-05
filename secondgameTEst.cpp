@@ -6,6 +6,7 @@ using namespace std;
 #define MAXY 128
 #define GRAVITY 4
 #define AIRDRAG 2
+#define MAXVELOCITY 16
 
 class position{
     public:
@@ -29,7 +30,6 @@ class player{
     position coords;
     int velocityX;
     int velocityY;
-    int accelerationX;
     int accelerationY;
     bool moving;
     player(int x, int y){
@@ -37,14 +37,13 @@ class player{
         coords.ypos = y;
     }
     void jump(){
-        accelerationX = 16;
+        velocityX = 16;
         accelerationY = 10;
         moving = true;
     }
     void move(){
-        velocityX += accelerationX / 2;
-        velocityY += accelerationY / 2;
-        accelerationX -= AIRDRAG / 2;
+        if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
+        if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
         accelerationY -= GRAVITY / 2;
         coords.xpos += velocityX;
         coords.ypos += velocityY;
