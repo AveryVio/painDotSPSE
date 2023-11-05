@@ -32,6 +32,7 @@ class player{
     int velocityY;
     int accelerationY;
     bool moving;
+    char bouceSide;
     player(int x, int y){
         coords.xpos = x;
         coords.ypos = y;
