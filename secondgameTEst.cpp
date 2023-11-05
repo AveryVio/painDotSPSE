@@ -48,6 +48,7 @@ class player{
         coords.xpos += velocityX;
         coords.ypos += velocityY;
     }
+    void bounce(platform* platformT);
 };
 class platform{
     public:
@@ -74,6 +75,11 @@ class playfield{
     void createPlayfield(){
     }
 };
+playfield gameField;
+
+void player::bounce(platform* platformT){
+    if(platformT->platformClosseness(this))
+}
 
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
