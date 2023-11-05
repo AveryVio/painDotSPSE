@@ -41,13 +41,7 @@ class player{
         accelerationY = 10;
         moving = true;
     }
-    void move(){
-        if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
-        if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
-        accelerationY -= GRAVITY / 2;
-        coords.xpos += velocityX;
-        coords.ypos += velocityY;
-    }
+    void move();
     void bounce(platform* platformT);
 };
 class platform{
@@ -55,8 +49,8 @@ class platform{
     position topLeftPos;
     position bottomRightPos;
     char platformClosseness(player* playerT){
-        if(((playerT->coords.xpos + playerT->velocityX) < topLeftPos.xpos) || ((playerT->coords.xpos + playerT->velocityX) > bottomRightPos.xpos)) return 0;
-        if(((playerT->coords.ypos + playerT->velocityY) < bottomRightPos.ypos) || ((playerT->coords.ypos + playerT->velocityY) > topLeftPos.ypos)) return 0;
+        if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)) return 0;
+        if((playerT->coords.ypos < bottomRightPos.ypos - 1) || (playerT->coords.ypos > topLeftPos.ypos + 1)) return 0;
         return 1;
     }
 };
