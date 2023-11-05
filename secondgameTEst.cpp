@@ -71,9 +71,37 @@ class playfield{
 };
 playfield gameField;
 
-void player::bounce(platform* platformT){
-    if(platformT->platformClosseness(this))
+char biggerNumber(char numOne, char numTwo){
+    if(numOne>numTwo)return numOne;
+    return numTwo;
 }
+char absoluteNumber(char number){
+    if(number < 0) return -number;
+    return number;
+}
+
+void player::bounce(platform* platformT){
+    if(platformT->platformClosseness(this));
+}
+void player::move(){
+    if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
+    if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
+    accelerationY -= GRAVITY / 2;
+    for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
+        
+        if(velocityX >= movei){
+            if(velocityX < 0) --coords.xpos;
+            else if(velocityX > 0) ++coords.xpos;
+        }
+        if(velocityY >= movei){
+            if(velocityY < 0) --coords.ypos;
+            else if(velocityY > 0) ++coords.ypos;
+        }
+    }
+    coords.xpos += velocityX;
+    coords.ypos += velocityY;
+}
+
 
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
