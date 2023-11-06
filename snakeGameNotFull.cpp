@@ -17,6 +17,7 @@ using namespace std;
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctime>
+#include <Windows.h>//for windows console
 //definitions for usefull to update stuff
 #define PLAYFIELDX 32
 #define PLAYFIELDY 16
@@ -276,11 +277,20 @@ int main(){
     long long int milis = 0;
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
-        if(clock() > milis + 500){
-            if(j % 4 == 0){
+        if(clock() > milis + 333
+        ){
+            /*if(j % 4 == 0){
                 Player1.changeDirection(rand() % 4);
                 Player2.changeDirection(rand() % 4);
-            }
+            }*/
+            if(GetKeyState('W') & 0x8000)Player1.changeDirection(0);
+            if(GetKeyState('A') & 0x8000)Player1.changeDirection(3);
+            if(GetKeyState('S') & 0x8000)Player1.changeDirection(2);
+            if(GetKeyState('D') & 0x8000)Player1.changeDirection(1);
+            if(GetKeyState('I') & 0x8000)Player2.changeDirection(0);
+            if(GetKeyState('J') & 0x8000)Player2.changeDirection(3);
+            if(GetKeyState('K') & 0x8000)Player2.changeDirection(2);
+            if(GetKeyState('L') & 0x8000)Player2.changeDirection(1);
             playfield.predisplay(Player1, Player2, foodblock);
             AbsoluteSolver();
             system("cls");
@@ -288,7 +298,7 @@ int main(){
             //printf("\r\n%d,%d\r\n%d,%d\r\n", Player1.movecheck(), Player2.movecheck(), playercheck(Player1,Player2), playercheck(Player2,Player1));
             testGame();
             cout << j << endl;
-            milis += 500;
+            milis += 333;
             j++;
         }
     }
