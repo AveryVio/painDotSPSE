@@ -59,10 +59,11 @@ class platform{
             if(playerT->coords.xpos == topLeftPos.xpos - 1) return 3;
             else if (playerT->coords.xpos == bottomRightPos.xpos + 1) return 1;
         }
-        else if((playerT->coords.xpos < topLeftPos.xpos + 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)){
+        else if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)){
             if(playerT->coords.ypos == topLeftPos.ypos + 1) return 0;
             else if (playerT->coords.ypos == bottomRightPos.ypos - 1) return 2;
         }
+        return -1;
     }
 };
 class playfield{
@@ -76,6 +77,36 @@ class playfield{
         platform->topLeftPos.ypos = topleftY;
         platform->bottomRightPos.xpos = bottomrightX;
         platform->bottomRightPos.ypos = bottomrightY;
+    }
+    char platformCheck(player* playerT){
+        if(!bottomPlatform.platformClosseness(playerT)) return 0;
+        if(!leftPlatform.platformClosseness(playerT)) return 0;
+        if(!rightPlatform.platformClosseness(playerT)) return 0;
+        if(!topPlatform.platformClosseness(playerT)) return 0;
+        return 1;
+    }
+    char touchdetection(player* playerT){
+        platform* platformT;
+        char result = 0;
+        for (char touchdeti = 0; touchdeti < 4;){
+            switch(touchdeti){
+                case 0:
+                platformT = &bottomPlatform;
+                break;
+                case 1:
+                platformT = &bottomPlatform;
+                break;
+                case 2:
+                platformT = &bottomPlatform;
+                break;
+                case 3:
+                platformT = &bottomPlatform;
+                break;
+            }
+            result = platformT->sideTouched(playerT);
+            if(result != -1) return platformT->sideTouched(playerT);
+        }
+        return 1;
     }
     void createPlayfield(){
     }
@@ -99,8 +130,13 @@ void player::move(){
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
+    char touchDetectionResult;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
-        
+        if(gameField.platformCheck(this)){
+            touchDetectionResult = gameField.touchdetection(this);
+            if(touchDetectionResult % 2) velocityX = -velocityX;
+            else velocityY = -velocityY;
+        }
         if(velocityX >= movei){
             if(velocityX < 0) --coords.xpos;
             else if(velocityX > 0) ++coords.xpos;
