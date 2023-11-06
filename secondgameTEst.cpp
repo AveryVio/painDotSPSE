@@ -50,16 +50,16 @@ class platform{
     position topLeftPos;
     position bottomRightPos;
     char platformClosseness(player* playerT){
-        if((playerT->coords.xpos < topLeftPos.xpos + 1) || (playerT->coords.xpos > bottomRightPos.xpos - 1)) return 0;
+        if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)) return 0;
         if((playerT->coords.ypos < bottomRightPos.ypos - 1) || (playerT->coords.ypos > topLeftPos.ypos + 1)) return 0;
         return 1;
     }
     char sideTouched(player* playerT){
         if((playerT->coords.ypos > bottomRightPos.ypos - 1) && (playerT->coords.ypos < topLeftPos.ypos + 1)){
-            if(playerT->coords.xpos == topLeftPos.xpos + 1) return 3;
-            else if (playerT->coords.xpos == bottomRightPos.xpos - 1) return 1;
+            if(playerT->coords.xpos == topLeftPos.xpos - 1) return 3;
+            else if (playerT->coords.xpos == bottomRightPos.xpos + 1) return 1;
         }
-        else if((playerT->coords.xpos < topLeftPos.xpos + 1) || (playerT->coords.xpos > bottomRightPos.xpos - 1)){
+        else if((playerT->coords.xpos < topLeftPos.xpos + 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)){
             if(playerT->coords.ypos == topLeftPos.ypos + 1) return 0;
             else if (playerT->coords.ypos == bottomRightPos.ypos - 1) return 2;
         }
