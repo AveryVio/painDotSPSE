@@ -32,7 +32,6 @@ class player{
     int velocityY;
     int accelerationY;
     bool moving;
-    char bouceSide;
     player(int x, int y){
         coords.xpos = x;
         coords.ypos = y;
@@ -50,9 +49,9 @@ class platform{
     position topLeftPos;
     position bottomRightPos;
     char platformClosseness(player* playerT){
-        if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)) return 0;
-        if((playerT->coords.ypos < bottomRightPos.ypos - 1) || (playerT->coords.ypos > topLeftPos.ypos + 1)) return 0;
-        return 1;
+        if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)) return 1;
+        if((playerT->coords.ypos < bottomRightPos.ypos - 1) || (playerT->coords.ypos > topLeftPos.ypos + 1)) return 1;
+        return 0;
     }
     char sideTouched(player* playerT){
         if((playerT->coords.ypos > bottomRightPos.ypos - 1) && (playerT->coords.ypos < topLeftPos.ypos + 1)){
@@ -79,34 +78,11 @@ class playfield{
         platform->bottomRightPos.ypos = bottomrightY;
     }
     char platformCheck(player* playerT){
-        if(!bottomPlatform.platformClosseness(playerT)) return 0;
-        if(!leftPlatform.platformClosseness(playerT)) return 0;
-        if(!rightPlatform.platformClosseness(playerT)) return 0;
-        if(!topPlatform.platformClosseness(playerT)) return 0;
-        return 1;
-    }
-    char touchdetection(player* playerT){
-        platform* platformT;
-        char result = 0;
-        for (char touchdeti = 0; touchdeti < 4;){
-            switch(touchdeti){
-                case 0:
-                platformT = &bottomPlatform;
-                break;
-                case 1:
-                platformT = &bottomPlatform;
-                break;
-                case 2:
-                platformT = &bottomPlatform;
-                break;
-                case 3:
-                platformT = &bottomPlatform;
-                break;
-            }
-            result = platformT->sideTouched(playerT);
-            if(result != -1) return platformT->sideTouched(playerT);
-        }
-        return 1;
+        if(bottomPlatform.platformClosseness(playerT)) return 1;
+        if(leftPlatform.platformClosseness(playerT)) return 1;
+        if(rightPlatform.platformClosseness(playerT)) return 1;
+        if(topPlatform.platformClosseness(playerT)) return 1;
+        return 0;
     }
     void createPlayfield(){
     }
@@ -122,9 +98,11 @@ char absoluteNumber(char number){
     return number;
 }
 char player::bounce(platform* platformT){
-    bouceSide = platformT->sideTouched(this);
-    if(bouceSide % 2) velocityX = -velocityX;
+    char bounceSide = platformT->sideTouched(this);
+    if(bounceSide % 2) velocityX = -velocityX;
     else velocityY = -velocityY;
+    if(bounceSide != -1) return 0;
+    return 1;
 }
 void player::move(){
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
@@ -133,9 +111,25 @@ void player::move(){
     char touchDetectionResult;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
         if(gameField.platformCheck(this)){
-            touchDetectionResult = gameField.touchdetection(this);
-            if(touchDetectionResult % 2) velocityX = -velocityX;
-            else velocityY = -velocityY;
+            platform* platformT;
+            char result = 0;
+            for (char touchdeti = 0; touchdeti < 4;){
+                switch(touchdeti){
+                    case 0:
+                    platformT = &gameField.bottomPlatform;
+                    break;
+                    case 1:
+                    platformT = &gameField.leftPlatform;
+                    break;
+                    case 2:
+                    platformT = &gameField.rightPlatform;
+                    break;
+                    case 3:
+                    platformT = &gameField.topPlatform;
+                    break;
+                }
+                if(!bounce(platformT)) break;
+            }
         }
         if(velocityX >= movei){
             if(velocityX < 0) --coords.xpos;
