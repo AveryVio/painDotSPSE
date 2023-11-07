@@ -63,12 +63,12 @@ class player{// class fo both players
                     tailX[i] = headposX;
                     tailY[i] = headposY - i - 1;
                 }
+                return;
             }
-            else {//player2 tail
-                for (char i = length - 1; i >= 0; i--) {
-                    tailX[i] = headposX;
-                    tailY[i] = headposY + i + 1;
-                }
+            //player2 tail
+            for (char i = length - 1; i >= 0; i--) {
+                tailX[i] = headposX;
+                tailY[i] = headposY + i + 1;
             }
         }
         char movecheck(){// if player can move if yes then 1 else 0
@@ -177,7 +177,7 @@ class gameInfo{// class of information for cloud backup
                 winnerInfo = Player1;
                 loserInfo = Player2;
             }
-            else {
+            else if(winner == 0) {
                 winnerInfo = Player2;
                 loserInfo = Player1;
             }
