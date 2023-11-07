@@ -9,6 +9,15 @@ using namespace std;
 #define MAXVELOCITY 16
 #define MAXJUMPHEIGHT 26
 
+char biggerNumber(char numOne, char numTwo){
+    if(numOne>numTwo)return numOne;
+    return numTwo;
+}
+char absoluteNumber(char number){
+    if(number < 0) return -number;
+    return number;
+}
+
 class position{
     public:
     int xpos;
@@ -98,14 +107,6 @@ class playfield{
 };
 playfield gameField;
 
-char biggerNumber(char numOne, char numTwo){
-    if(numOne>numTwo)return numOne;
-    return numTwo;
-}
-char absoluteNumber(char number){
-    if(number < 0) return -number;
-    return number;
-}
 char player::bounceCheck(platform* platformT){
     char bounceSide = platformT->sideTouched(this);
     if(bounceSide % 2) velocityX = -velocityX;
