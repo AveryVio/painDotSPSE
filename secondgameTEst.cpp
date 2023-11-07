@@ -42,7 +42,7 @@ class player{
         moving = true;
     }
     void move();
-    char bounce(platform* platformT);
+    char bounceCheck(platform* platformT);
 };
 class platform{
     public:
@@ -97,22 +97,21 @@ char absoluteNumber(char number){
     if(number < 0) return -number;
     return number;
 }
-char player::bounce(platform* platformT){
+char player::bounceCheck(platform* platformT){
     char bounceSide = platformT->sideTouched(this);
     if(bounceSide % 2) velocityX = -velocityX;
     else velocityY = -velocityY;
-    if(bounceSide != -1) return 0;
-    return 1;
+    return bounceSide;
 }
 void player::move(){
+    if(!moving) return;
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
-    char touchDetectionResult;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
         if(gameField.platformCheck(this)){
             platform* platformT;
-            char result = 0;
+            char bounceResult = 0;
             for (char touchdeti = 0; touchdeti < 4;){
                 switch(touchdeti){
                     case 0:
@@ -128,7 +127,9 @@ void player::move(){
                     platformT = &gameField.topPlatform;
                     break;
                 }
-                if(!bounce(platformT)) break;
+                bounceResult = bounceCheck(platformT);
+                if(bounceResult == -1) continue;
+                if(bounceResult == 0) moving = 0;
             }
         }
         if(velocityX >= movei){
