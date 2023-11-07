@@ -35,7 +35,7 @@ class food{//class for food objects
         char x;
         char y;
         char nutrition;
-        food(char x, char y, char val){
+        food(char x, char y, char val){// constructor for food
             x = x;
             y = y;
             nutrition = val;
@@ -50,7 +50,7 @@ class player{// class fo both players
         char direction;
         char length;
         char lengthStored[5];
-        player(char playernumber){
+        player(char playernumber){// consstructor for player
             if(playernumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
             else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
             headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
@@ -58,13 +58,13 @@ class player{// class fo both players
             if(playernumber == 0) direction = 0;
             else direction = 2;
             for (char i = 0; i <= 5; i++) lengthStored[i] = 0;
-            if (playernumber == 0){
+            if (playernumber == 0){//player1 tail
                 for (char i = 0; i < length; i++) {
                     tailX[i] = headposX;
                     tailY[i] = headposY - i - 1;
                 }
             }
-            else {
+            else {//player2 tail
                 for (char i = length - 1; i >= 0; i--) {
                     tailX[i] = headposX;
                     tailY[i] = headposY + i + 1;
@@ -88,12 +88,14 @@ class player{// class fo both players
         void move(){//moves the player
             if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
                 if (lengthStored[0] != 0) addLength();
+                //move tail
                 for(char i = length - 1; i > 0; i--){
                     tailX[i] = tailX[i-1];
                     tailY[i] = tailY[i-1];
                 }
                 tailX[0] = headposX;
                 tailY[0] = headposY;
+                //move head
                 if ((direction == 0) && (headposY != PLAYFIELDY + 1)) headposY = headposY + 1;
                 else if ((direction == 1) && (headposX != PLAYFIELDX + 1)) headposX = headposX + 1;
                 else if ((direction == 2) && (headposY != 0)) headposY = headposY - 1;
@@ -141,14 +143,17 @@ void player::playerEat(){//checks if player can eat if yes, eats the whole food 
     }
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
+    //offset based on direction
     char dx = 0;
     char dy = 0;
     if (playerN.direction == 0) dy = 1;
     else if (playerN.direction == 1) dx = 1;
     else if (playerN.direction == 2) dy = -1;
     else if (playerN.direction == 3) dx = -1;
+    //use offset
     int checkX = playerN.headposX + dx;
     int checkY = playerN.headposY + dy;
+    //actual checking
     if (checkX == playerT.headposX && checkY == playerT.headposY) return 0;
     else for (int i = 0; i < playerT.length; i++) {
         if (checkX == playerT.tailX[i] && checkY == playerT.tailY[i]) return 0;
@@ -166,13 +171,13 @@ class gameInfo{// class of information for cloud backup
         gameInfo(char gamestatep) : winnerInfo(-1), loserInfo(-1){
             gamestate = gamestatep;
         }
-        void winnerReporter(char winner){
+        void winnerReporter(char winner){//sets the winner and the loser for sending to the cloud
             winner = winner;
             if(winner == 1){
                 winnerInfo = Player1;
                 loserInfo = Player2;
             }
-            else{
+            else {
                 winnerInfo = Player2;
                 loserInfo = Player1;
             }
@@ -187,11 +192,14 @@ void gameTick(){//exactly what the name says
     cout << endl << "nowallnoplayer" << endl;
 }
 void AbsoluteSolver(){// managed the game engine and win/loose conitions
+    //checks all nessecary stuff
     playercheck12Result = playercheck(Player1, Player2);
     playercheck21Result = playercheck(Player2, Player1);
     player1movecheckResult = Player1.movecheck();
     player2movecheckResult = Player2.movecheck();
+    //if no collision happened then uses game tick
     if(player1movecheckResult && player2movecheckResult && playercheck12Result && playercheck21Result)gameTick();
+    //else stops the game and prepares winner
     else{
         info.gamestate = 0;
         if (player1movecheckResult && player2movecheckResult) cout << "nowall" << endl;
@@ -239,33 +247,35 @@ public:
     static const int width = PLAYFIELDX;
     static const int height = PLAYFIELDY;
     char grid[height][width];
-    Playfield() {
+    Playfield() {//playfield constructor
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) grid[i][j] = 250;
         }
     }
-    void updatePlayerPositions(player& p, char symbol) {
+    void updatePlayerPositions(player& p, char symbol) {//updated player postions
         grid[p.headposY][p.headposX] = symbol;
         for (int i = 0; i < p.length; i++) {
             grid[p.tailY[i]][p.tailX[i]] = symbol;
         }
     }
-    void predisplay(player player1, player player2, food food){
+    void predisplay(player player1, player player2, food food){//fixes visual bug
         updatePlayerPositions(player1, 250);
         updatePlayerPositions(player2, 250);
         grid[food.y][food.x] = 250;
     }
-    void display(player player1, player player2, food food) {
-    updatePlayerPositions(player1, '1');
-    updatePlayerPositions(player2, '2');
-    grid[food.y][food.x] = 'F';
-    for (int i = height; i >= 0; i--) {
-        for (int j = 0; j < width; j++) {
-            std::cout << grid[i][j] << " ";
+    void display(player player1, player player2, food food) {// displaying playfield
+        //updates postions
+        updatePlayerPositions(player1, '1');
+        updatePlayerPositions(player2, '2');
+        grid[food.y][food.x] = 'F';
+        //prints playfield
+        for (int i = height; i >= 0; i--) {
+            for (int j = 0; j < width; j++) {
+                std::cout << grid[i][j] << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
-}
 };
 Playfield playfield;
 //main
