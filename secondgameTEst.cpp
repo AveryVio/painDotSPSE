@@ -43,6 +43,7 @@ class player{
     }
     void move();
     char bounceCheck(platform* platformT);
+    void bounce();
 };
 class platform{
     public:
@@ -77,7 +78,7 @@ class playfield{
         platform->bottomRightPos.xpos = bottomrightX;
         platform->bottomRightPos.ypos = bottomrightY;
     }
-    char platformCheck(player* playerT){
+    char platformClosenessCheck(player* playerT){
         if(bottomPlatform.platformClosseness(playerT)) return 1;
         if(leftPlatform.platformClosseness(playerT)) return 1;
         if(rightPlatform.platformClosseness(playerT)) return 1;
@@ -103,35 +104,36 @@ char player::bounceCheck(platform* platformT){
     else velocityY = -velocityY;
     return bounceSide;
 }
+void player::bounce(){
+    platform* platformT;
+    char bounceResult = 0;
+    for (char touchdeti = 0; touchdeti < 4;){
+        switch(touchdeti){
+            case 0:
+            platformT = &gameField.bottomPlatform;
+            break;
+            case 1:
+            platformT = &gameField.leftPlatform;
+            break;
+            case 2:
+            platformT = &gameField.rightPlatform;
+            break;
+            case 3:
+            platformT = &gameField.topPlatform;
+            break;
+        }
+        bounceResult = bounceCheck(platformT);
+        if(bounceResult == -1) continue;
+        if(bounceResult == 0) moving = 0;
+    }
+}
 void player::move(){
     if(!moving) return;
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
-        if(gameField.platformCheck(this)){
-            platform* platformT;
-            char bounceResult = 0;
-            for (char touchdeti = 0; touchdeti < 4;){
-                switch(touchdeti){
-                    case 0:
-                    platformT = &gameField.bottomPlatform;
-                    break;
-                    case 1:
-                    platformT = &gameField.leftPlatform;
-                    break;
-                    case 2:
-                    platformT = &gameField.rightPlatform;
-                    break;
-                    case 3:
-                    platformT = &gameField.topPlatform;
-                    break;
-                }
-                bounceResult = bounceCheck(platformT);
-                if(bounceResult == -1) continue;
-                if(bounceResult == 0) moving = 0;
-            }
-        }
+        if(gameField.platformClosenessCheck(this)) bounce();
         if(velocityX >= movei){
             if(velocityX < 0) --coords.xpos;
             else if(velocityX > 0) ++coords.xpos;
