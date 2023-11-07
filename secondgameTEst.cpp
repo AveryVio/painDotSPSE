@@ -7,6 +7,7 @@ using namespace std;
 #define GRAVITY 4
 #define AIRDRAG 2
 #define MAXVELOCITY 16
+#define MAXJUMPHEIGHT 26
 
 class position{
     public:
@@ -25,6 +26,13 @@ class fly{
         coords = possibleCoords[pos];
     }
 };
+class jumpArrow{
+    char direction;
+    position coords;
+    char hop(player* playerT){
+        playerT->jump(MAXJUMPHEIGHT * (1 - direction),MAXJUMPHEIGHT * direction);
+    }
+};
 class player{
     public:
     position coords;
@@ -36,9 +44,9 @@ class player{
         coords.xpos = x;
         coords.ypos = y;
     }
-    void jump(){
-        velocityX = 16;
-        accelerationY = 10;
+    void jump(char velX, char accY){
+        velocityX = velX;
+        accelerationY = accY;
         moving = true;
     }
     void move();
@@ -143,8 +151,6 @@ void player::move(){
             else if(velocityY > 0) ++coords.ypos;
         }
     }
-    coords.xpos += velocityX;
-    coords.ypos += velocityY;
 }
 
 
