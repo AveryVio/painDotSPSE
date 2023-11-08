@@ -49,6 +49,7 @@ class player{
     int velocityY;
     int accelerationY;
     bool moving;
+    char slideCounter;
     player(int x, int y){
         coords.xpos = x;
         coords.ypos = y;
@@ -61,6 +62,7 @@ class player{
     void move();
     char bounceCheck(platform* platformT);
     void bounce();
+    void slide();
 };
 class platform{
     public:
@@ -133,16 +135,34 @@ void player::bounce(){
         }
         bounceResult = bounceCheck(platformT);
         if(bounceResult == -1) continue;
-        if(bounceResult == 0) moving = 0;
+        if(bounceResult == 0) {
+            moving = 0;
+            slideCounter = 5;
+            velocityY = 0;
+            accelerationY = 0;
+        }
     }
 }
+void player::slide(){
+    if(slideCounter == 0) {
+        velocityX = 0;
+        return;
+    }
+    coords.xpos += velocityX / 3;
+    velocityX /= 3;
+    slideCounter--;
+}
 void player::move(){
+    if(slideCounter > 0) slide();
     if(!moving) return;
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
-        if(gameField.platformClosenessCheck(this)) bounce();
+        if(gameField.platformClosenessCheck(this) && (velocityY > 0)){
+            bounce();
+            break;
+        }
         if(velocityX >= movei){
             if(velocityX < 0) --coords.xpos;
             else if(velocityX > 0) ++coords.xpos;
