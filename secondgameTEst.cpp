@@ -25,14 +25,28 @@ class position{
 };
 class fly{
     public:
-    position coords;
-    position possibleCoords[5];
+    char coords;
+    position possibleCoords[6];
     char pos;
-    fly(int x, int y){
+    fly(){
+        //set fly coords
+        possibleCoords[0].xpos = 3 * MAXX / 8;
+        possibleCoords[0].ypos = MAXY / 8;
+        possibleCoords[1].xpos = MAXX / 16;
+        possibleCoords[1].ypos = MAXY / 8;
+        possibleCoords[2].xpos = MAXX - MAXX / 16;
+        possibleCoords[2].ypos = 5 * MAXY / 16;
+        possibleCoords[3].xpos = MAXX - MAXX / 16;
+        possibleCoords[3].ypos = 5 * MAXY / 16;
+        possibleCoords[4].xpos = MAXX / 2;
+        possibleCoords[4].ypos = MAXY / 2;
+        //hard fly coords;
+        possibleCoords[5].xpos = MAXX / 2;
+        possibleCoords[5].ypos = MAXY;
     }
-    void regenerate(){
-        pos = rand() % 6;
-        coords = possibleCoords[pos];
+    void flyRegenerate(bool hardmode){
+        if(hardmode) coords = 5;
+        else coords = rand() % 5;
     }
 };
 class jumpArrow{
@@ -106,26 +120,28 @@ class playfield{
         return 0;
     }
     void createPlayfield(){
+        //generate fly
+        food.flyRegenerate(false);
         //create bottom platform
         bottomPlatform.topLeftPos.xpos = MAXX / 4;
-        bottomPlatform.topLeftPos.ypos = MAXY / 8;
+        bottomPlatform.topLeftPos.ypos = MAXY / 16;
         bottomPlatform.bottomRightPos.xpos = MAXX - MAXX / 4;
         bottomPlatform.bottomRightPos.ypos = 0;
         //create left platform
         leftPlatform.topLeftPos.xpos = 0;
-        leftPlatform.topLeftPos.ypos = 3 * MAXY / 8;
+        leftPlatform.topLeftPos.ypos = MAXY / 4;
         leftPlatform.bottomRightPos.xpos = MAXX / 8;
-        leftPlatform.bottomRightPos.ypos = MAXY / 4;
+        leftPlatform.bottomRightPos.ypos = 3 * MAXY / 16;
         //create right platform
         rightPlatform.topLeftPos.xpos = MAXX - MAXX / 8;
-        rightPlatform.topLeftPos.ypos = 3 * MAXY / 8;
+        rightPlatform.topLeftPos.ypos = MAXY / 4;
         rightPlatform.bottomRightPos.xpos = MAXX;
-        rightPlatform.bottomRightPos.ypos = MAXY / 4;
+        rightPlatform.bottomRightPos.ypos = 3 * MAXY / 16;
         //create top platform
         topPlatform.topLeftPos.xpos = 3 * MAXX / 8;
-        topPlatform.topLeftPos.ypos = 5 * MAXY / 16;
+        topPlatform.topLeftPos.ypos = 7 * MAXY / 16;
         topPlatform.bottomRightPos.xpos = MAXX - 3 * MAXX / 8;
-        topPlatform.bottomRightPos.ypos = 3 * MAXY / 16;
+        topPlatform.bottomRightPos.ypos = 3 * MAXY / 8;
         //yes this is nessecary since it's needed to be configutable
     }
 };
