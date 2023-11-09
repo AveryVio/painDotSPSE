@@ -22,6 +22,8 @@ class position{
     public:
     int xpos;
     int ypos;
+    private:
+    int e;
 };
 class fly{
     public:
