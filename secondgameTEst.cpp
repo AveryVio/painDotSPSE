@@ -58,6 +58,7 @@ class jumpArrow{
 };
 class player{
     public:
+    int score = 0;
     position coords;
     int velocityX;
     int velocityY;
@@ -76,7 +77,15 @@ class player{
     void move();
     char bounceCheck(platform* platformT);
     void bounce();
-    void slide();
+    void slide(){
+        if(slideCounter == 0) {
+            velocityX = 0;
+            return;
+        }
+        coords.xpos += velocityX / 3;
+        velocityX /= 3;
+        slideCounter--;
+    }
 };
 class platform{
     public:
@@ -180,15 +189,6 @@ void player::bounce(){
             accelerationY = 0;
         }
     }
-}
-void player::slide(){
-    if(slideCounter == 0) {
-        velocityX = 0;
-        return;
-    }
-    coords.xpos += velocityX / 3;
-    velocityX /= 3;
-    slideCounter--;
 }
 void player::move(){
     if(slideCounter > 0) slide();
