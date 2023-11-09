@@ -22,12 +22,6 @@ class position{
     public:
     int xpos;
     int ypos;
-    private:
-<<<<<<< HEAD
-    char e;
-=======
-    int e;
->>>>>>> testbranch
 };
 class fly{
     public:
