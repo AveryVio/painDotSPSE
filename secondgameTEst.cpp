@@ -91,6 +91,7 @@ class playfield{
     platform leftPlatform;
     platform rightPlatform;
     platform topPlatform;
+    fly food;
     void setPosition(platform* platform, int topleftX, int topleftY, int bottomrightX, int bottomrightY){
         platform->topLeftPos.xpos = topleftX;
         platform->topLeftPos.ypos = topleftY;
@@ -105,6 +106,27 @@ class playfield{
         return 0;
     }
     void createPlayfield(){
+        //create bottom platform
+        bottomPlatform.topLeftPos.xpos = MAXX / 4;
+        bottomPlatform.topLeftPos.ypos = MAXY / 8;
+        bottomPlatform.bottomRightPos.xpos = MAXX - MAXX / 4;
+        bottomPlatform.bottomRightPos.ypos = 0;
+        //create left platform
+        leftPlatform.topLeftPos.xpos = 0;
+        leftPlatform.topLeftPos.ypos = 3 * MAXY / 8;
+        leftPlatform.bottomRightPos.xpos = MAXX / 8;
+        leftPlatform.bottomRightPos.ypos = MAXY / 4;
+        //create right platform
+        rightPlatform.topLeftPos.xpos = MAXX - MAXX / 8;
+        rightPlatform.topLeftPos.ypos = 3 * MAXY / 8;
+        rightPlatform.bottomRightPos.xpos = MAXX;
+        rightPlatform.bottomRightPos.ypos = MAXY / 4;
+        //create top platform
+        topPlatform.topLeftPos.xpos = 3 * MAXX / 8;
+        topPlatform.topLeftPos.ypos = 5 * MAXY / 16;
+        topPlatform.bottomRightPos.xpos = MAXX - 3 * MAXX / 8;
+        topPlatform.bottomRightPos.ypos = 3 * MAXY / 16;
+        //yes this is nessecary since it's needed to be configutable
     }
 };
 playfield gameField;
