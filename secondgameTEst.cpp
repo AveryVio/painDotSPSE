@@ -27,6 +27,7 @@ class fly{
     public:
     char coords;
     position possibleCoords[6];
+    char hardmode;
     fly(){
         //set fly coords
         possibleCoords[0].xpos = 3 * MAXX / 8;
@@ -91,6 +92,7 @@ class player{
     void move();
     char bounceCheck(platform* platformT);
     void bounce();
+    void scoring(fly *flyT);
 };
 class platform{
     public:
@@ -220,6 +222,11 @@ char flyCheck(player *playerT, fly *flyT){
     if(playerT->coords.xpos != flyT->possibleCoords[flyT->coords].xpos) return 0;
     if(playerT->coords.ypos != flyT->possibleCoords[flyT->coords].ypos) return 0;
     return 1;
+}
+void player::scoring(fly *flyT){
+    if(!flyCheck(this, flyT)) return;
+    if(flyT->hardmode)score += 2;
+    else score++;
 }
 
 int main(){
