@@ -231,6 +231,17 @@ void player::scoring(fly *flyT){
     else score++;
 }
 
+void startFrogGame(){
+    frogGame.createPlayfield();
+    do{
+        do{
+            frog1.coords = frogGame.food.possibleCoords[rand() % 5];
+        } while((frog1.coords.xpos == frogGame.food.possibleCoords[frogGame.food.coords].xpos) && (frog1.coords.ypos == frogGame.food.possibleCoords[frogGame.food.coords].ypos));
+        do{
+            frog2.coords = frogGame.food.possibleCoords[rand() % 5];
+        } while((frog2.coords.xpos == frogGame.food.possibleCoords[frogGame.food.coords].xpos) && (frog2.coords.ypos == frogGame.food.possibleCoords[frogGame.food.coords].ypos));
+    } while((frog1.coords.xpos == frog2.coords.xpos) && (frog1.coords.ypos == frog2.coords.ypos));
+}
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     return 0;
