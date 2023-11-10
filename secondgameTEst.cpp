@@ -74,10 +74,7 @@ class player{
         accelerationY = accY;
         moving = true;
     }
-    void move();
-    char bounceCheck(platform* platformT);
-    void bounce();
-    void slide(){
+        void slide(){
         if(slideCounter == 0) {
             velocityX = 0;
             return;
@@ -92,6 +89,9 @@ class player{
         else if(coords.xpos < 0) coords.xpos = MAXX;
         else if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
     }
+    void move();
+    char bounceCheck(platform* platformT);
+    void bounce();
 };
 class platform{
     public:
