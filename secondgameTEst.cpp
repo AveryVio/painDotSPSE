@@ -53,7 +53,7 @@ class jumpArrow{
     char direction;
     position coords;
     char hop(player* playerT){
-        playerT->jump(MAXJUMPHEIGHT * (1 - direction),MAXJUMPHEIGHT * direction);
+        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
     }
 };
 class player{
@@ -85,6 +85,12 @@ class player{
         coords.xpos += velocityX / 3;
         velocityX /= 3;
         slideCounter--;
+    }
+    void edgePortal(){
+        if(coords.ypos < 0);//gameover
+        if(coords.xpos >= MAXX) coords.xpos = 0;
+        else if(coords.xpos < 0) coords.xpos = MAXX;
+        else if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
     }
 };
 class platform{
