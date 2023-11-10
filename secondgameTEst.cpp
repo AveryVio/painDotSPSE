@@ -83,7 +83,6 @@ class player{
         else if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
     }
     void move();
-    void bounce();
     void scoring(fly *flyT);
 };
 class jumpArrow{
@@ -170,7 +169,7 @@ char bounceCheck(player* PlayerT, platform* platformT){
     else PlayerT->velocityY = -PlayerT->velocityY;
     return bounceSide;
 }
-void player::bounce(){
+void bounce(player* playerT){
     platform* platformT;
     char bounceResult = 0;
     for (char touchdeti = 0; touchdeti < 4;){
@@ -191,10 +190,10 @@ void player::bounce(){
         bounceResult = bounceCheck(playerT,platformT);
         if(bounceResult == -1) continue;
         if(bounceResult == 0) {
-            moving = 0;
-            slideCounter = 5;
-            velocityY = 0;
-            accelerationY = 0;
+            playerT->moving = 0;
+            playerT->slideCounter = 5;
+            playerT->velocityY = 0;
+            playerT->accelerationY = 0;
         }
     }
 }
@@ -206,7 +205,7 @@ void player::move(){
     accelerationY -= GRAVITY / 2;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
         if(frogGame.platformClosenessCheck(this) && (velocityY > 0)){
-            bounce();
+            bounce(this);
             break;
         }
         if(velocityX >= movei){
