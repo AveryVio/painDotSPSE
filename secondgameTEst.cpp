@@ -27,7 +27,6 @@ class fly{
     public:
     char coords;
     position possibleCoords[6];
-    char pos;
     fly(){
         //set fly coords
         possibleCoords[0].xpos = 3 * MAXX / 8;
