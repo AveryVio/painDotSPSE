@@ -161,7 +161,7 @@ class playfield{
         //yes this is nessecary since it's needed to be configutable
     }
 };
-playfield gameField;
+playfield frogGame;
 
 char player::bounceCheck(platform* platformT){
     char bounceSide = platformT->sideTouched(this);
@@ -175,16 +175,16 @@ void player::bounce(){
     for (char touchdeti = 0; touchdeti < 4;){
         switch(touchdeti){
             case 0:
-            platformT = &gameField.bottomPlatform;
+            platformT = &frogGame.bottomPlatform;
             break;
             case 1:
-            platformT = &gameField.leftPlatform;
+            platformT = &frogGame.leftPlatform;
             break;
             case 2:
-            platformT = &gameField.rightPlatform;
+            platformT = &frogGame.rightPlatform;
             break;
             case 3:
-            platformT = &gameField.topPlatform;
+            platformT = &frogGame.topPlatform;
             break;
         }
         bounceResult = bounceCheck(platformT);
@@ -204,7 +204,7 @@ void player::move(){
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
-        if(gameField.platformClosenessCheck(this) && (velocityY > 0)){
+        if(frogGame.platformClosenessCheck(this) && (velocityY > 0)){
             bounce();
             break;
         }
