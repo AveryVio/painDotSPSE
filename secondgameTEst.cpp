@@ -231,6 +231,61 @@ void player::scoring(fly *flyT){
     else score++;
 }
 
+void displayPlayfield(const playfield& field) {
+    // Create a 2D array to represent the playfield
+    char playfieldArray[MAXY][MAXX];
+    // Initialize the array with empty spaces
+    for (int i = 0; i < MAXY; ++i) {
+        for (int j = 0; j < MAXX; ++j) {
+            playfieldArray[i][j] = ' ';
+        }
+    }
+    // Place the platforms on the playfield
+    for (int i = field.bottomPlatform.topLeftPos.ypos; i <= field.bottomPlatform.bottomRightPos.ypos; ++i) {
+        for (int j = field.bottomPlatform.topLeftPos.xpos; j <= field.bottomPlatform.bottomRightPos.xpos; ++j) {
+            playfieldArray[i][j] = '-';
+        }
+    }
+    for (int i = field.leftPlatform.topLeftPos.ypos; i <= field.leftPlatform.bottomRightPos.ypos; ++i) {
+        for (int j = field.leftPlatform.topLeftPos.xpos; j <= field.leftPlatform.bottomRightPos.xpos; ++j) {
+            playfieldArray[i][j] = '-';
+        }
+    }
+    for (int i = field.rightPlatform.topLeftPos.ypos; i <= field.rightPlatform.bottomRightPos.ypos; ++i) {
+        for (int j = field.rightPlatform.topLeftPos.xpos; j <= field.rightPlatform.bottomRightPos.xpos; ++j) {
+            playfieldArray[i][j] = '-';
+        }
+    }
+    for (int i = field.topPlatform.topLeftPos.ypos; i <= field.topPlatform.bottomRightPos.ypos; ++i) {
+        for (int j = field.topPlatform.topLeftPos.xpos; j <= field.topPlatform.bottomRightPos.xpos; ++j) {
+            playfieldArray[i][j] = '-';
+        }
+    }
+    for (int i = frog1.coords.ypos; i <= frog1.coords.ypos; ++i) {
+        for (int j = frog1.coords.xpos; j <= frog1.coords.xpos; ++j) {
+            playfieldArray[i][j] = '1';
+        }
+    }
+    for (int i = frog2.coords.ypos; i <= frog2.coords.ypos; ++i) {
+        for (int j = frog2.coords.xpos; j <= frog2.coords.xpos; ++j) {
+            playfieldArray[i][j] = '2';
+        }
+    }
+    for (int i = field.food.possibleCoords[field.food.coords].ypos; i <= field.food.possibleCoords[field.food.coords].ypos; ++i) {
+        for (int j = field.food.possibleCoords[field.food.coords].xpos; j <= field.food.possibleCoords[field.food.coords].xpos; ++j) {
+            playfieldArray[i][j] = 'F';
+        }
+    }
+    // You can add similar code for the other platforms, flies, and other elements
+    // Display the playfield
+    for (int i = 0; i < MAXY; ++i) {
+        for (int j = 0; j < MAXX; ++j) {
+            std::cout << playfieldArray[i][j] << ' ';
+        }
+        std::cout << '\n';
+    }
+}
+
 void startFrogGame(){
     frogGame.createPlayfield();
     do{
