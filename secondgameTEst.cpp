@@ -83,7 +83,6 @@ class player{
         else if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
     }
     void move();
-    char bounceCheck(platform* platformT);
     void bounce();
     void scoring(fly *flyT);
 };
@@ -165,10 +164,10 @@ playfield frogGame;
 player frog1;
 player frog2;
 
-char player::bounceCheck(platform* platformT){
-    char bounceSide = platformT->sideTouched(this);
-    if(bounceSide % 2) velocityX = -velocityX;
-    else velocityY = -velocityY;
+char bounceCheck(player* PlayerT, platform* platformT){
+    char bounceSide = platformT->sideTouched(PlayerT);
+    if(bounceSide % 2) PlayerT->velocityX = -PlayerT->velocityX;
+    else PlayerT->velocityY = -PlayerT->velocityY;
     return bounceSide;
 }
 void player::bounce(){
@@ -189,7 +188,7 @@ void player::bounce(){
             platformT = &frogGame.topPlatform;
             break;
         }
-        bounceResult = bounceCheck(platformT);
+        bounceResult = bounceCheck(playerT,platformT);
         if(bounceResult == -1) continue;
         if(bounceResult == 0) {
             moving = 0;
