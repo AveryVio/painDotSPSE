@@ -49,13 +49,6 @@ class fly{
         else coords = rand() % 5;
     }
 };
-class jumpArrow{
-    char direction;
-    position coords;
-    char hop(player* playerT){
-        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
-    }
-};
 class player{
     public:
     int score = 0;
@@ -93,6 +86,13 @@ class player{
     char bounceCheck(platform* platformT);
     void bounce();
     void scoring(fly *flyT);
+};
+class jumpArrow{
+    char direction;
+    position coords;
+    char hop(player* playerT){
+        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
+    }
 };
 class platform{
     public:
