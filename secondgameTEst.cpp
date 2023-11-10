@@ -216,7 +216,11 @@ void player::move(){
         }
     }
 }
-
+char flyCheck(player *playerT, fly *flyT){
+    if(playerT->coords.xpos != flyT->possibleCoords[flyT->coords].xpos) return 0;
+    if(playerT->coords.ypos != flyT->possibleCoords[flyT->coords].ypos) return 0;
+    return 1;
+}
 
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
