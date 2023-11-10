@@ -162,6 +162,8 @@ class playfield{
     }
 };
 playfield frogGame;
+player frog1;
+player frog2;
 
 char player::bounceCheck(platform* platformT){
     char bounceSide = platformT->sideTouched(this);
