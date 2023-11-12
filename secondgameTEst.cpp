@@ -201,8 +201,6 @@ void bounce(player* playerT){
     }
 }
 void player::move(){
-    if(slideCounter > 0) slide();
-    if(!moving) return;
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
     if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
     accelerationY -= GRAVITY / 2;
@@ -230,6 +228,18 @@ void player::scoring(fly *flyT){
     if(!flyCheck(this, flyT)) return;
     if(flyT->hardmode)score += 2;
     else score++;
+}
+
+void frogGameTick(){
+    if(frog1.slideCounter > 0) frog1.slide();
+    if(frog1.moving == true) frog1.move();
+    frog1.edgePortal();
+    if(frog2.slideCounter > 0) frog2.slide();
+    if(frog2.moving == true) frog2.move();
+    frog2.edgePortal();
+}
+void frogGameEngine(){
+    frogGameTick();
 }
 
 void displayPlayfield(playfield& field) {
