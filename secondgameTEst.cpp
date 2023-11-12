@@ -238,24 +238,23 @@ void displayPlayfield(playfield& field) {
             playfieldArray[i][j] = ' ';
         }
     }
-    // Place the platforms on the playfield
-    for (char i = field.bottomPlatform.topLeftPos.ypos; i <= field.bottomPlatform.bottomRightPos.ypos; i++) {
-        for (char j = field.bottomPlatform.topLeftPos.xpos; j <= field.bottomPlatform.bottomRightPos.xpos; j++) {
+    for(char i = field.bottomPlatform.bottomRightPos.ypos; i <= field.bottomPlatform.topLeftPos.ypos; i++){
+        for(int j = field.bottomPlatform.topLeftPos.xpos; j <= field.bottomPlatform.bottomRightPos.xpos; j++) {
             playfieldArray[i][j] = 'b';
         }
     }
-    for (int i = field.leftPlatform.topLeftPos.ypos; i <= field.leftPlatform.bottomRightPos.ypos; ++i) {
-        for (int j = field.leftPlatform.topLeftPos.xpos; j <= field.leftPlatform.bottomRightPos.xpos; ++j) {
+    for(char i = field.leftPlatform.bottomRightPos.ypos; i <= field.leftPlatform.topLeftPos.ypos; i++){
+        for(int j = field.leftPlatform.topLeftPos.xpos; j <= field.leftPlatform.bottomRightPos.xpos; j++) {
             playfieldArray[i][j] = 'l';
         }
     }
-    for (int i = field.rightPlatform.topLeftPos.ypos; i <= field.rightPlatform.bottomRightPos.ypos; ++i) {
-        for (int j = field.rightPlatform.topLeftPos.xpos; j <= field.rightPlatform.bottomRightPos.xpos; ++j) {
+    for(char i = field.rightPlatform.bottomRightPos.ypos; i <= field.rightPlatform.topLeftPos.ypos; i++){
+        for(int j = field.rightPlatform.topLeftPos.xpos; j <= field.rightPlatform.bottomRightPos.xpos; j++) {
             playfieldArray[i][j] = 'r';
         }
     }
-    for (int i = field.topPlatform.topLeftPos.ypos; i <= field.topPlatform.bottomRightPos.ypos; ++i) {
-        for (int j = field.topPlatform.topLeftPos.xpos; j <= field.topPlatform.bottomRightPos.xpos; ++j) {
+    for(char i = field.topPlatform.bottomRightPos.ypos; i <= field.topPlatform.topLeftPos.ypos; i++){
+        for(int j = field.topPlatform.topLeftPos.xpos; j <= field.topPlatform.bottomRightPos.xpos; j++) {
             playfieldArray[i][j] = 't';
         }
     }
