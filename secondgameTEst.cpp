@@ -86,10 +86,11 @@ class player{
     void scoring(fly *flyT);
 };
 class jumpArrow{
+    public:
     char direction;
     position coords;
     char hop(player* playerT){
-        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
+        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * (direction / 60),MAXJUMPHEIGHT * (direction / 60));
     }
 };
 class platform{
