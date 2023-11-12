@@ -32,9 +32,9 @@ class fly{
         //set fly coords
         possibleCoords[0].xpos = 3 * MAXX / 8;
         possibleCoords[0].ypos = MAXY / 8;
-        possibleCoords[1].xpos = MAXX / 16;
+        possibleCoords[1].xpos = 5 * MAXX / 8;
         possibleCoords[1].ypos = MAXY / 8;
-        possibleCoords[2].xpos = MAXX - MAXX / 16;
+        possibleCoords[2].xpos = MAXX / 16;
         possibleCoords[2].ypos = 5 * MAXY / 16;
         possibleCoords[3].xpos = MAXX - MAXX / 16;
         possibleCoords[3].ypos = 5 * MAXY / 16;
