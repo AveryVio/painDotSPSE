@@ -163,6 +163,8 @@ class playfield{
 playfield frogGame;
 player frog1(2*MAXX/3,MAXY/2);
 player frog2(MAXX/3,MAXY/2);
+jumpArrow frog1Arrow;
+jumpArrow frog2Arrow;
 
 char bounceCheck(player* PlayerT, platform* platformT){
     char bounceSide = platformT->sideTouched(PlayerT);
