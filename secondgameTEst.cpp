@@ -296,6 +296,8 @@ void startFrogGame(){
             frog2.coords = frogGame.food.possibleCoords[rand() % 5];
         } while((frog2.coords.xpos == frogGame.food.possibleCoords[frogGame.food.coords].xpos) && (frog2.coords.ypos == frogGame.food.possibleCoords[frogGame.food.coords].ypos));
     } while((frog1.coords.xpos == frog2.coords.xpos) && (frog1.coords.ypos == frog2.coords.ypos));
+    frog1.moving = false;
+    frog2.moving = false;
 }
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
