@@ -202,7 +202,7 @@ void bounce(player* playerT){
 }
 void player::move(){
     if(velocityX <= MAXVELOCITY) velocityX -= (AIRDRAG / 2 - 1);
-    if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;
+    if(velocityY <= MAXVELOCITY) velocityY += accelerationY / 2;// to be fixed idk how it doesnt work
     accelerationY -= GRAVITY / 2;
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
         if(frogGame.platformClosenessCheck(this) && (velocityY > 0)){
