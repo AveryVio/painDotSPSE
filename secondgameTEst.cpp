@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
+#include <Windows.h>
 
 #define MAXX 256
 #define MAXY 128
@@ -301,5 +302,14 @@ void startFrogGame(){
 }
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
+    startFrogGame();
+    displayPlayfield(frogGame);
+    /*for(uint16_t i = 0; i < 100000; i++){
+        if(GetKeyState('Z') & 0x8000) frog1Arrow.hop(&frog1);
+        if(GetKeyState('M') & 0x8000) frog2Arrow.hop(&frog2);
+        frogGameEngine();
+        system("cls");
+        displayPlayfield(frogGame);
+    }*/
     return 0;
 }
