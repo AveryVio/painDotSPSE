@@ -269,6 +269,8 @@ void displayPlayfield(playfield& field) {
         }
         std::cout << '\n';
     }
+    std::cout << frog1.coords.xpos << "," << frog1.coords.ypos << ";" << frog2.coords.xpos << "," << frog2.coords.ypos << endl;
+    cout << field.food.coords << endl;
 }
 
 void startFrogGame(){
