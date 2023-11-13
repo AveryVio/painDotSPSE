@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
+#include <ctime>
 #include <Windows.h>
 
 #define MAXX 256
@@ -302,12 +303,19 @@ int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     startFrogGame();
     displayPlayfield(frogGame);
-    /*for(uint16_t i = 0; i < 100000; i++){
-        if(GetKeyState('Z') & 0x8000) frog1Arrow.hop(&frog1);
-        if(GetKeyState('M') & 0x8000) frog2Arrow.hop(&frog2);
-        frogGameEngine();
-        system("cls");
-        displayPlayfield(frogGame);
-    }*/
+    frog1Arrow.hop(&frog1);
+    frog2Arrow.hop(&frog2);
+    long long int milis = 0;
+    for(uint16_t i = 0; i < 100000; i++){
+        if(clock() > milis + 50){
+            if(GetKeyState('Z') & 0x8000) frog1Arrow.hop(&frog1);
+            if(GetKeyState('M') & 0x8000) frog2Arrow.hop(&frog2);
+            frogGameEngine();
+            system("cls");
+            displayPlayfield(frogGame);
+            cout<< frog1.velocityY << ","<<frog2.velocityY << endl;
+            milis += 50;
+        }
+    }
     return 0;
 }
