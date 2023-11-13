@@ -209,11 +209,11 @@ void player::move(){
             bounce(this);
             break;
         }
-        if(velocityX >= movei){
+        if(absoluteNumber(velocityX) >= movei){
             if(velocityX < 0) --coords.xpos;
             else if(velocityX > 0) ++coords.xpos;
         }
-        if(velocityY >= movei){
+        if(absoluteNumber(velocityY) >= movei){
             if(velocityY < 0) --coords.ypos;
             else if(velocityY > 0) ++coords.ypos;
         }
