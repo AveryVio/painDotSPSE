@@ -169,8 +169,8 @@ jumpArrow frog2Arrow;
 
 char bounceCheck(player* PlayerT, platform* platformT){
     char bounceSide = platformT->sideTouched(PlayerT);
-    if(bounceSide % 2) PlayerT->velocityX = -PlayerT->velocityX / 5;
-    else PlayerT->velocityY = -PlayerT->velocityY / 5;
+    if(bounceSide % 2) PlayerT->velocityY = -PlayerT->velocityY / 5;
+    else PlayerT->velocityX = -PlayerT->velocityX / 5;
     return bounceSide;
 }
 void bounce(player* playerT){
