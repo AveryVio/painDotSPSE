@@ -91,7 +91,7 @@ class jumpArrow{
     char direction;
     position coords;
     char hop(player* playerT){
-        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * (direction / 60),MAXJUMPHEIGHT * (direction / 60));
+        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
     }
 };
 class platform{
