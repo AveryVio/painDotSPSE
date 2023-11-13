@@ -77,10 +77,10 @@ class player{
         slideCounter--;
     }
     void edgePortal(){
-        if(coords.ypos < 0);//gameover
+        if(coords.ypos < 0) coords.ypos = MAXY - 1;//gameover
         if(coords.xpos >= MAXX) coords.xpos = 0;
-        else if(coords.xpos < 0) coords.xpos = MAXX;
-        else if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
+        if(coords.xpos < 0) coords.xpos = MAXX - 1;
+        if (coords.ypos >= MAXY) coords.ypos = 3 * MAXY / 5;
     }
     void move();
     void scoring(fly *flyT);
