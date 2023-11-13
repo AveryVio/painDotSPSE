@@ -56,16 +56,15 @@ class player{
     position coords;
     int velocityX;
     int velocityY;
-    int accelerationY;
     bool moving;
     char slideCounter;
     player(int x, int y){
         coords.xpos = x;
         coords.ypos = y;
     }
-    void jump(char velX, char accY){
+    void jump(char velX, char velY){
         velocityX = velX;
-        accelerationY = accY;
+        velocityX = velY;
         moving = true;
     }
         void slide(){
@@ -197,7 +196,7 @@ void bounce(player* playerT){
             playerT->moving = 0;
             playerT->slideCounter = 5;
             playerT->velocityY = 0;
-            playerT->accelerationY = 0;
+            playerT->velocityY = 0;
         }
     }
 }
