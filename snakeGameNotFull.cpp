@@ -154,8 +154,9 @@ char playercheck(player playerN, player playerT){// if both colide then 2, if as
     int checkX = playerN.headposX + dx;
     int checkY = playerN.headposY + dy;
     //actual checking
-    if (checkX == playerT.headposX && checkY == playerT.headposY) return 0;
-    else for (int i = 0; i < playerT.length; i++) {
+    if (checkX == playerT.headposX && checkY == playerT.headposY) return 0;//if heads colide
+    else if((checkX + dx == playerT.headposX && checkY + dy == playerT.headposY) && ((playerN.direction % 2) == (playerT.direction % 2))) return 0;//if players colide face to face (this is an edge case)
+    else for (int i = 0; i < playerT.length; i++) {//if head colides body
         if (checkX == playerT.tailX[i] && checkY == playerT.tailY[i]) return 0;
         else if (checkX == playerN.tailX[i] && checkY == playerN.tailY[i]) return 0;
     }
