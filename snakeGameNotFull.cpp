@@ -135,11 +135,11 @@ void player::playerEat(){//checks if player can eat if yes, eats the whole food 
     if ((foodblock.x == headposX) && (foodblock.y == headposY)){
         for (char n = firstStoredLength(); n <= 5; n++){
             if(foodblock.nutrition > 0){
-                lengthStored[n] = 1;
-                foodblock.nutrition--;
-            }
+            lengthStored[n] = 1;
+            foodblock.nutrition--;
         }
-        regenFood();
+    }
+    regenFood();
     }
 }
 char playercheck(player playerN, player playerT){// if both colide then 2, if asked player then 1 else 0
@@ -270,7 +270,7 @@ public:
         grid[food.y][food.x] = 'F';
         //prints playfield
         for (int i = height; i >= 0; i--) {
-            for (int j = 0; j < width; j++) {
+            for (int j = 0; j < width; j++){
                 std::cout << grid[i][j] << " ";
             }
             std::cout << std::endl;
