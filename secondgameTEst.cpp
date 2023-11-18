@@ -51,7 +51,7 @@ class fly{
         else coords = rand() % 5;
     }
 };
-class player{
+class frog{
     public:
     int score = 0;
     position coords;
@@ -59,7 +59,7 @@ class player{
     int velocityY;
     bool moving;
     char slideCounter;
-    player(int x, int y){
+    frog(int x, int y){
         coords.xpos = x;
         coords.ypos = y;
     }
@@ -88,29 +88,29 @@ class player{
 };
 class jumpArrow{
     public:
-    char direction;
+    char direction = 1;
     position coords;
-    char hop(player* playerT){
-        playerT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
+    char hop(frog* frogT){
+        frogT->jump(MAXJUMPHEIGHT - MAXJUMPHEIGHT * direction,MAXJUMPHEIGHT * direction);
     }
 };
 class platform{
     public:
     position topLeftPos;
     position bottomRightPos;
-    char platformClosseness(player* playerT){
-        if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)) return 1;
-        if((playerT->coords.ypos < bottomRightPos.ypos - 1) || (playerT->coords.ypos > topLeftPos.ypos + 1)) return 1;
+    char platformClosseness(frog* frogT){
+        if((frogT->coords.xpos < topLeftPos.xpos - 1) || (frogT->coords.xpos > bottomRightPos.xpos + 1)) return 1;
+        if((frogT->coords.ypos < bottomRightPos.ypos - 1) || (frogT->coords.ypos > topLeftPos.ypos + 1)) return 1;
         return 0;
     }
-    char sideTouched(player* playerT){
-        if((playerT->coords.ypos > bottomRightPos.ypos - 1) && (playerT->coords.ypos < topLeftPos.ypos + 1)){
-            if(playerT->coords.xpos == topLeftPos.xpos - 1) return 3;
-            else if (playerT->coords.xpos == bottomRightPos.xpos + 1) return 1;
+    char sideTouched(frog* frogT){
+        if((frogT->coords.ypos > bottomRightPos.ypos - 1) && (frogT->coords.ypos < topLeftPos.ypos + 1)){
+            if(frogT->coords.xpos == topLeftPos.xpos - 1) return 3;
+            else if (frogT->coords.xpos == bottomRightPos.xpos + 1) return 1;
         }
-        else if((playerT->coords.xpos < topLeftPos.xpos - 1) || (playerT->coords.xpos > bottomRightPos.xpos + 1)){
-            if(playerT->coords.ypos == topLeftPos.ypos + 1) return 0;
-            else if (playerT->coords.ypos == bottomRightPos.ypos - 1) return 2;
+        else if((frogT->coords.xpos < topLeftPos.xpos - 1) || (frogT->coords.xpos > bottomRightPos.xpos + 1)){
+            if(frogT->coords.ypos == topLeftPos.ypos + 1) return 0;
+            else if (frogT->coords.ypos == bottomRightPos.ypos - 1) return 2;
         }
         return -1;
     }
@@ -128,11 +128,11 @@ class playfield{
         platform->bottomRightPos.xpos = bottomrightX;
         platform->bottomRightPos.ypos = bottomrightY;
     }
-    char platformClosenessCheck(player* playerT){
-        if(bottomPlatform.platformClosseness(playerT)) return 1;
-        if(leftPlatform.platformClosseness(playerT)) return 1;
-        if(rightPlatform.platformClosseness(playerT)) return 1;
-        if(topPlatform.platformClosseness(playerT)) return 1;
+    char platformClosenessCheck(frog* frogT){
+        if(bottomPlatform.platformClosseness(frogT)) return 1;
+        if(leftPlatform.platformClosseness(frogT)) return 1;
+        if(rightPlatform.platformClosseness(frogT)) return 1;
+        if(topPlatform.platformClosseness(frogT)) return 1;
         return 0;
     }
     void createPlayfield(){
@@ -162,18 +162,18 @@ class playfield{
     }
 };
 playfield frogGame;
-player frog1(2*MAXX/3,MAXY/2);
-player frog2(MAXX/3,MAXY/2);
+frog frog1(2*MAXX/3,MAXY/2);
+frog frog2(MAXX/3,MAXY/2);
 jumpArrow frog1Arrow;
 jumpArrow frog2Arrow;
 
-char bounceCheck(player* PlayerT, platform* platformT){
-    char bounceSide = platformT->sideTouched(PlayerT);
-    if(bounceSide % 2) PlayerT->velocityX = -PlayerT->velocityX / 5;
-    else PlayerT->velocityY = -PlayerT->velocityY / 5;
+char bounceCheck(frog* FrogT, platform* platformT){
+    char bounceSide = platformT->sideTouched(FrogT);
+    if(bounceSide % 2) FrogT->velocityX = -FrogT->velocityX / 5;
+    else FrogT->velocityY = -FrogT->velocityY / 5;
     return bounceSide;
 }
-void bounce(player* playerT){
+void bounce(frog* frogT){
     platform* platformT;
     char bounceResult = 0;
     for (char touchdeti = 0; touchdeti < 4;){
@@ -191,19 +191,21 @@ void bounce(player* playerT){
             platformT = &frogGame.topPlatform;
             break;
         }
-        bounceResult = bounceCheck(playerT,platformT);
+        bounceResult = bounceCheck(frogT,platformT);
         if(bounceResult == -1) continue;
         if(bounceResult == 0) {
-            playerT->moving = 0;
-            playerT->slideCounter = 5;
-            playerT->velocityY = 0;
-            playerT->velocityY = 0;
+            frogT->moving = 0;
+            frogT->slideCounter = 5;
+            frogT->velocityY = 0;
+            frogT->velocityY = 0;
         }
     }
 }
-void player::move(){
+void frog::move(){
     if(absoluteNumber(velocityX) <= MAXVELOCITY + velocityX) velocityX -= (AIRDRAG / 2);
     if(absoluteNumber(velocityY) <= MAXVELOCITY + velocityY) velocityY -= (GRAVITY / 2);// to be fixed idk how it doesnt work
+    /*coords.xpos += velocityX;
+    coords.ypos += velocityY;*/
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
         if(frogGame.platformClosenessCheck(this) && (velocityY > 0)){
             bounce(this);
@@ -219,12 +221,12 @@ void player::move(){
         }
     }
 }
-char flyCheck(player *playerT, fly *flyT){
-    if(playerT->coords.xpos != flyT->possibleCoords[flyT->coords].xpos) return 0;
-    if(playerT->coords.ypos != flyT->possibleCoords[flyT->coords].ypos) return 0;
+char flyCheck(frog *frogT, fly *flyT){
+    if(frogT->coords.xpos != flyT->possibleCoords[flyT->coords].xpos) return 0;
+    if(frogT->coords.ypos != flyT->possibleCoords[flyT->coords].ypos) return 0;
     return 1;
 }
-void player::scoring(fly *flyT){
+void frog::scoring(fly *flyT){
     if(!flyCheck(this, flyT)) return;
     if(flyT->hardmode)score += 2;
     else score++;
