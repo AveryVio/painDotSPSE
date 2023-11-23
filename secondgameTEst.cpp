@@ -193,7 +193,7 @@ void bounce(frog* frogT){
         }
         bounceResult = bounceCheck(frogT,platformT);
         if(bounceResult == -1) continue;
-        if(bounceResult == 0) {
+        if((bounceResult == 0) && (frogT->velocityY < 0)) {
             frogT->moving = 0;
             frogT->slideCounter = 5;
             frogT->velocityY = 0;
@@ -207,8 +207,8 @@ void frog::move(){
     /*coords.xpos += velocityX;
     coords.ypos += velocityY;*/
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
-        if(frogGame.platformClosenessCheck(this) && (velocityY > 0)){
-            bounce(this);
+        if(frogGame.platformClosenessCheck(this)){
+            //bounce(this);//this breaks it for some reason
             break;
         }
         if(absoluteNumber(velocityX) >= movei){
