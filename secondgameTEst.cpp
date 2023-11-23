@@ -4,12 +4,12 @@ using namespace std;
 #include <ctime>
 #include <Windows.h>
 
-#define MAXX 256
-#define MAXY 128
+#define MAXX 64
+#define MAXY 32
 #define GRAVITY 4
-#define AIRDRAG 2
-#define MAXVELOCITY 16
-#define MAXJUMPHEIGHT 26
+#define AIRDRAG 3
+#define MAXVELOCITY 4
+#define MAXJUMPHEIGHT 10
 
 char biggerNumber(char numOne, char numTwo){
     if(numOne>numTwo)return numOne;
