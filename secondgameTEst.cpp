@@ -309,14 +309,14 @@ int main(){
     frog2Arrow.hop(&frog2);*/
     long long int milis = 0;
     for(uint16_t i = 0; i < 100000; i++){
-        if(clock() > milis + 50){
+        if(clock() > milis + 500){
             if(GetKeyState('Z') & 0x8000) frog1Arrow.hop(&frog1);
             if(GetKeyState('M') & 0x8000) frog2Arrow.hop(&frog2);
             frogGameEngine();
             system("cls");
             displayPlayfield(frogGame);
             cout<< frog1.velocityY << ","<<frog2.velocityY << endl;
-            milis += 50;
+            milis += 500;
         }
     }
     return 0;
