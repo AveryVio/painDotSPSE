@@ -305,8 +305,8 @@ int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     startFrogGame();
     displayPlayfield(frogGame);
-    frog1Arrow.hop(&frog1);
-    frog2Arrow.hop(&frog2);
+    /*frog1Arrow.hop(&frog1);
+    frog2Arrow.hop(&frog2);*/
     long long int milis = 0;
     for(uint16_t i = 0; i < 100000; i++){
         if(clock() > milis + 50){
