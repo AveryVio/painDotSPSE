@@ -203,7 +203,7 @@ void bounce(frog* frogT){
 }
 void frog::move(){
     if(absoluteNumber(velocityX) <= MAXVELOCITY + velocityX) velocityX -= (AIRDRAG / 2);
-    if(absoluteNumber(velocityY) <= MAXVELOCITY + velocityY) velocityY -= (GRAVITY / 2);// to be fixed idk how it doesnt work
+    if(absoluteNumber(velocityY) <= MAXVELOCITY + velocityY) velocityY -= (GRAVITY / 2);
     /*coords.xpos += velocityX;
     coords.ypos += velocityY;*/
     for (char movei = 0; movei < absoluteNumber(biggerNumber(velocityX,velocityY)); movei++){
