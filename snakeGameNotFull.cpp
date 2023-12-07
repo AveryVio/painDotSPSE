@@ -236,6 +236,13 @@ void AbsoluteSolver(){// manages the game engine and win/loose conitions
     if((snake1movecheckResult == 0) && (snake2movecheckResult == 0) && (snakecheck12Result == 0) && (snakecheck21Result == 0)) cout << "idk what happened either" << endl;
     }
 }
+void snakeEngine(){//manages all snake game processes
+    playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
+    AbsoluteSolver();//game engine
+    system("cls");//clears terminal
+    playfield.display(Snake1, Snake2, foodblock);//display the game
+    testGame();//print game info
+}
 void testGame(){//for testing only - prints most needed values of the game
     printf("Snake1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Snake1.headposX, Snake1.headposY, Snake1.direction, Snake1.length, Snake1.tailX[0], Snake1.tailX[1], Snake1.tailX[2], Snake1.tailX[3], Snake1.tailX[4], Snake1.tailX[5], Snake1.tailY[0], Snake1.tailY[1], Snake1.tailY[2], Snake1.tailY[3], Snake1.tailY[4], Snake1.tailY[5], Snake1.lengthStored[0], Snake1.lengthStored[1], Snake1.lengthStored[2], Snake1.lengthStored[3], Snake1.lengthStored[4]);
     printf("Snake2: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Snake2.headposX, Snake2.headposY, Snake2.direction, Snake2.length, Snake2.tailX[0], Snake2.tailX[1], Snake2.tailX[2], Snake2.tailX[3], Snake2.tailX[4], Snake2.tailX[5], Snake2.tailY[0], Snake2.tailY[1], Snake2.tailY[2], Snake2.tailY[3], Snake2.tailY[4], Snake2.tailY[5], Snake2.lengthStored[0], Snake2.lengthStored[1], Snake2.lengthStored[2], Snake2.lengthStored[3], Snake2.lengthStored[4]);
@@ -297,12 +304,7 @@ int main(){
             if(GetKeyState('J') & 0x8000)Snake2.changeDirection(3);
             if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
             if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
-            playfield.predisplay(Snake1, Snake2, foodblock);
-            AbsoluteSolver();
-            system("cls");
-            playfield.display(Snake1, Snake2, foodblock);
-            //printf("\r\n%d,%d\r\n%d,%d\r\n", Snake1.movecheck(), Snake2.movecheck(), snakecheck(Snake1,Snake2), snakecheck(Snake2,Snake1));
-            testGame();
+            snakeEngine();
             cout << j << endl;
             milis += 333;
             j++;
