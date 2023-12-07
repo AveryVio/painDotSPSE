@@ -192,7 +192,7 @@ void gameTick(){//exactly what the name says
     Snake2.snakeEat();
     cout << endl << "nowallnosnake" << endl;
 }
-void AbsoluteSolver(){// managed the game engine and win/loose conitions
+void AbsoluteSolver(){// manages the game engine and win/loose conitions
     //checks all nessecary stuff
     snakecheck12Result = snakecheck(Snake1, Snake2);
     snakecheck21Result = snakecheck(Snake2, Snake1);
