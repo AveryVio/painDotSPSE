@@ -236,6 +236,18 @@ void AbsoluteSolver(){// manages the game engine and win/loose conitions
     if((snake1movecheckResult == 0) && (snake2movecheckResult == 0) && (snakecheck12Result == 0) && (snakecheck21Result == 0)) cout << "idk what happened either" << endl;
     }
 }
+void getInput(){//get player input
+    //player 1 input
+    if(GetKeyState('W') & 0x8000)Snake1.changeDirection(0);
+    if(GetKeyState('A') & 0x8000)Snake1.changeDirection(3);
+    if(GetKeyState('S') & 0x8000)Snake1.changeDirection(2);
+    if(GetKeyState('D') & 0x8000)Snake1.changeDirection(1);
+    //player 2 input
+    if(GetKeyState('I') & 0x8000)Snake2.changeDirection(0);
+    if(GetKeyState('J') & 0x8000)Snake2.changeDirection(3);
+    if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
+    if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
+}
 void snakeEngine(){//manages all snake game processes
     playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
     AbsoluteSolver();//game engine
@@ -296,14 +308,7 @@ int main(){
     info.gamestate = 1;
     for(int j= 0; j < 100000;){
             if(clock() > milis + 333){
-            if(GetKeyState('W') & 0x8000)Snake1.changeDirection(0);
-            if(GetKeyState('A') & 0x8000)Snake1.changeDirection(3);
-            if(GetKeyState('S') & 0x8000)Snake1.changeDirection(2);
-            if(GetKeyState('D') & 0x8000)Snake1.changeDirection(1);
-            if(GetKeyState('I') & 0x8000)Snake2.changeDirection(0);
-            if(GetKeyState('J') & 0x8000)Snake2.changeDirection(3);
-            if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
-            if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
+            getInput();
             snakeEngine();
             cout << j << endl;
             milis += 333;
