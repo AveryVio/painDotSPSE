@@ -39,29 +39,36 @@ menu mainScreen;
 menu snakeScreen;
 menu frogScreen;
 menu pongScreen;
+menu menuScreen;
 
-void setButton(button buttonT, char* nameT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
-    strcpy(buttonT.text,nameT);
+void buttonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT.startX = startXT;
     buttonT.startY = startXT;
     buttonT.width = widthT;
     buttonT.height = heightT;
 }
 
-#define setMenu(menuNameref, button1ref, button2ref, button3ref, gameName, button1Name, button2Name, button3Name) \
-    strcpy(menuNameref,gameName);\
-    setButton(button1ref, button1Name, 43*MAXX/128, 4*MAXY/128, 43, 13);\
-    setButton(button2ref, button2Name, 43*MAXX/128, 16*MAXY/128, 43, 13);\
-    setButton(button3ref, button3Name, 43*MAXX/128, 28*MAXY/128, 43, 13);
+void setButton(button buttonT, char* nameT){
+    strcpy(buttonT.text,nameT);
+}
+
+#define setMenu(gameName, button1Name, button2Name, button3Name) \
+    strcpy(menuScreen.menuName,gameName);\
+    setButton(menuScreen.buttons[0], button1Name);\
+    setButton(menuScreen.buttons[1], button2Name);\
+    setButton(menuScreen.buttons[2], button3Name);
 
 int main(){
+    buttonPos(menuScreen.buttons[0], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    buttonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
+    buttonPos(menuScreen.buttons[2], 43*MAXX/128, 28*MAXY/64, 43, 13);
     //main menu
-    setMenu(mainScreen.menuName,mainScreen.buttons[0],mainScreen.buttons[1],mainScreen.buttons[2],ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
+    setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
     //snake menu
-    setMenu(snakeScreen.menuName,snakeScreen.buttons[0],snakeScreen.buttons[1],snakeScreen.buttons[2],SNAKENAME,PLAY,BACK,SLEEP)
+    setMenu(SNAKENAME,PLAY,BACK,SLEEP)
     //frog menu
-    setMenu(frogScreen.menuName,frogScreen.buttons[0],frogScreen.buttons[1],frogScreen.buttons[2],SNAKENAME,PLAY,BACK,SLEEP)
+    setMenu(FROGNAME,PLAY,BACK,SLEEP)
     //pong menu
-    setMenu(pongScreen.menuName,pongScreen.buttons[0],pongScreen.buttons[1],pongScreen.buttons[2],SNAKENAME,PLAY,BACK,SLEEP)
+    setMenu(PONGNAME,PLAY,BACK,SLEEP)
     return 0;
 }
