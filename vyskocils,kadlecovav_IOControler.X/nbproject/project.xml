@@ -6,6 +6,7 @@
             <name>vyskocils,kadlecovav_IOControler</name>
             <creation-uuid>68a8b627-c080-4154-9a8d-56d4c819f524</creation-uuid>
             <make-project-type>0</make-project-type>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList/>
             <confList>
@@ -14,7 +15,6 @@
                     <type>2</type>
                 </confElem>
             </confList>
-            <sourceEncoding>ISO-8859-1</sourceEncoding>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>
             </formatting>
