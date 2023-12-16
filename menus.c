@@ -35,13 +35,9 @@ typedef struct userMenu{
     button buttons[3];
 } menu;
 
-menu mainScreen;
-menu snakeScreen;
-menu frogScreen;
-menu pongScreen;
 menu menuScreen;
 
-void buttonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
+void mennuButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT.startX = startXT;
     buttonT.startY = startXT;
     buttonT.width = widthT;
@@ -59,9 +55,9 @@ void setButton(button buttonT, char* nameT){
     setButton(menuScreen.buttons[2], button3Name);
 
 int main(){
-    buttonPos(menuScreen.buttons[0], 43*MAXX/128, 4*MAXY/64, 43, 13);
-    buttonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    buttonPos(menuScreen.buttons[2], 43*MAXX/128, 28*MAXY/64, 43, 13);
+    mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    mennuButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
+    mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 28*MAXY/64, 43, 13);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
     //snake menu
