@@ -34,8 +34,14 @@ typedef struct userMenu{
     char menuName[16];
     button buttons[3];
 } menu;
+typedef struct deathScreen{
+    char deathMessage[32];
+    button restartButton;
+    button backButton;
+} death;
 
 menu menuScreen;
+death deathScreen;
 
 void mennuButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT.startX = startXT;
@@ -53,6 +59,7 @@ void setButton(button buttonT, char* nameT){
     setButton(menuScreen.buttons[0], button1Name);\
     setButton(menuScreen.buttons[1], button2Name);\
     setButton(menuScreen.buttons[2], button3Name);
+#define setDeathMessage(dMessage) strcpy(deathScreen.deathMessage,dMessage);
 
 int main(){
     mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 4*MAXY/64, 43, 13);
@@ -66,5 +73,10 @@ int main(){
     setMenu(FROGNAME,PLAY,BACK,SLEEP)
     //pong menu
     setMenu(PONGNAME,PLAY,BACK,SLEEP)
+    //
+    //death screen
+    setDeathMessage(/**/)
+    setButton(deathScreen.restartButton, /**/);
+    setButton(deathScreen.backButton, /**/);
     return 0;
 }
