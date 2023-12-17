@@ -85,9 +85,16 @@ int main(){
     setMenu(PONGNAME,PLAY,BACK,SLEEP)
     //
     //death screen
-    setDeathMessage(/**/)
-    setButton(deathScreen.restartButton, /**/);
-    setButton(deathScreen.backButton, /**/);
-    mennuButtonPos(deathScreen.restartButton, );
+    //setup
+    setButton(deathScreen.restartButton, RESTART);
+    setButton(deathScreen.backButton, BACK);
+    mennuButtonPos(deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43, 13);
+    mennuButtonPos(deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43, 13);
+    //player 1 win
+    setDeathMessage(PLAYER1WIN)
+    //player 2 win
+    setDeathMessage(PLAYER2WIN)
+    //no player win
+    setDeathMessage(NOPLAYERWIN)
     return 0;
 }
