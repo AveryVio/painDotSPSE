@@ -62,9 +62,11 @@ void setButton(button buttonT, char* nameT){
 #define setDeathMessage(dMessage) strcpy(deathScreen.deathMessage,dMessage);
 
 int main(){
-    mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    //menu screen
+    //setup
+    mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
     mennuButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 28*MAXY/64, 43, 13);
+    mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
     //snake menu
