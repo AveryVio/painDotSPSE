@@ -78,5 +78,6 @@ int main(){
     setDeathMessage(/**/)
     setButton(deathScreen.restartButton, /**/);
     setButton(deathScreen.backButton, /**/);
+    mennuButtonPos(deathScreen.restartButton, );
     return 0;
 }
