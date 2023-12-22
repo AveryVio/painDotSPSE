@@ -43,74 +43,74 @@ class food{//class for food objects
 };
 class snake{// class fo both snakes
     public:
-        char headposX;
-        char headposY;
-        char tailX[MAXSNAKELENGTH];
-        char tailY[MAXSNAKELENGTH];
-        char direction;
-        char length;
-        char lengthStored[5];
-        snake(char snakenumber){// consstructor for snake
-            if(snakenumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
-            else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
-            headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
-            length = SNAKESTARTLENGTH;
-            if(snakenumber == 0) direction = 0;
-            else direction = 2;
-            for (char i = 0; i <= 5; i++) lengthStored[i] = 0;
-            if (snakenumber == 0){//snake1 tail
-                for (char i = 0; i < length; i++) {
-                    tailX[i] = headposX;
-                    tailY[i] = headposY - i - 1;
-                }
-                return;
-            }
-            //snake2 tail
-            for (char i = length - 1; i >= 0; i--) {
+    char headposX;
+    char headposY;
+    char tailX[MAXSNAKELENGTH];
+    char tailY[MAXSNAKELENGTH];
+    char direction;
+    char length;
+    char lengthStored[5];
+    snake(char snakenumber){// consstructor for snake
+        if(snakenumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
+        else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
+        headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
+        length = SNAKESTARTLENGTH;
+        if(snakenumber == 0) direction = 0;
+        else direction = 2;
+        for (char i = 0; i <= 5; i++) lengthStored[i] = 0;
+        if (snakenumber == 0){//snake1 tail
+            for (char i = 0; i < length; i++) {
                 tailX[i] = headposX;
-                tailY[i] = headposY + i + 1;
+                tailY[i] = headposY - i - 1;
             }
+            return;
         }
-        char movecheck(){// if snake can move if yes then 1 else 0
-            if(direction == 0) if(headposY == PLAYFIELDY + 1)return 0;
-            if(direction == 1) if(headposX == PLAYFIELDX + 1)return 0;
-            if(direction == 2) if(headposY == 0)return 0;
-            if(direction == 3) if(headposX == 0)return 0;
-            return 1;
+        //snake2 tail
+        for (char i = length - 1; i >= 0; i--) {
+            tailX[i] = headposX;
+            tailY[i] = headposY + i + 1;
         }
-        void addLength(){//ads length from stored length to snake
-            tailX[length + 1] = tailX[length];
-            tailY[length + 1] = tailY[length];
-            length++;
-            for (char i = 0; i < 4; i++) lengthStored[i] = lengthStored[i + 1];
-            lengthStored[4] = 0;
-        }
-        void move(){//moves the snake
-            if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
-                if (lengthStored[0] != 0) addLength();
-                //move tail
-                for(char i = length - 1; i > 0; i--){
-                    tailX[i] = tailX[i-1];
-                    tailY[i] = tailY[i-1];
-                }
-                tailX[0] = headposX;
-                tailY[0] = headposY;
-                //move head
-                if ((direction == 0) && (headposY != PLAYFIELDY + 1)) headposY = headposY + 1;
-                else if ((direction == 1) && (headposX != PLAYFIELDX + 1)) headposX = headposX + 1;
-                else if ((direction == 2) && (headposY != 0)) headposY = headposY - 1;
-                else if ((direction == 3) && (headposX != 0)) headposX = headposX - 1;
+    }
+    char movecheck(){// if snake can move if yes then 1 else 0
+        if(direction == 0) if(headposY == PLAYFIELDY + 1)return 0;
+        if(direction == 1) if(headposX == PLAYFIELDX + 1)return 0;
+        if(direction == 2) if(headposY == 0)return 0;
+        if(direction == 3) if(headposX == 0)return 0;
+        return 1;
+    }
+    void addLength(){//ads length from stored length to snake
+        tailX[length + 1] = tailX[length];
+        tailY[length + 1] = tailY[length];
+        length++;
+        for (char i = 0; i < 4; i++) lengthStored[i] = lengthStored[i + 1];
+        lengthStored[4] = 0;
+    }
+    void move(){//moves the snake
+        if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
+            if (lengthStored[0] != 0) addLength();
+            //move tail
+            for(char i = length - 1; i > 0; i--){
+                tailX[i] = tailX[i-1];
+                tailY[i] = tailY[i-1];
             }
+            tailX[0] = headposX;
+            tailY[0] = headposY;
+            //move head
+            if ((direction == 0) && (headposY != PLAYFIELDY + 1)) headposY = headposY + 1;
+            else if ((direction == 1) && (headposX != PLAYFIELDX + 1)) headposX = headposX + 1;
+            else if ((direction == 2) && (headposY != 0)) headposY = headposY - 1;
+            else if ((direction == 3) && (headposX != 0)) headposX = headposX - 1;
         }
-        void changeDirection(char requestedDirection){
-            if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
-        }
-        char foodColiding();
-        char firstStoredLength(){//returns higherst stored length
-            for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
-            return 0;
-        }
-        void snakeEat();
+    }
+    void changeDirection(char requestedDirection){
+        if (requestedDirection != direction && (requestedDirection + 2) % 4 != direction) direction = requestedDirection;
+    }
+    char foodColiding();
+    char firstStoredLength(){//returns higherst stored length
+        for(char v = 5; v >= 0; v--) if(lengthStored[v] == 1) return v;
+        return 0;
+    }
+    void snakeEat();
 };
 snake Snake1(0);
 snake Snake2(1);
