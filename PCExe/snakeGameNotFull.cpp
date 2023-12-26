@@ -254,13 +254,6 @@ void getInput(){//get player input
     if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
     if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
 }
-void snakeEngine(){//manages all snake game processes
-    playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
-    AbsoluteSolver();//game engine
-    system("cls");//clears terminal
-    playfield.display(Snake1, Snake2, foodblock);//display the game
-    testGame();//print game info
-}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void testGame(){//for testing only - prints most needed values of the game
     printf("Snake1: x= %d, y= %d, direction= %d  tail: \r\nlength= %d, first6x= %d, %d, %d, %d, %d, %d, first6y= %d, %d, %d, %d, %d, %d \r\nlengthStored= %d, %d, %d, %d, %d\r\n\n", Snake1.headposX, Snake1.headposY, Snake1.direction, Snake1.length, Snake1.tailX[0], Snake1.tailX[1], Snake1.tailX[2], Snake1.tailX[3], Snake1.tailX[4], Snake1.tailX[5], Snake1.tailY[0], Snake1.tailY[1], Snake1.tailY[2], Snake1.tailY[3], Snake1.tailY[4], Snake1.tailY[5], Snake1.lengthStored[0], Snake1.lengthStored[1], Snake1.lengthStored[2], Snake1.lengthStored[3], Snake1.lengthStored[4]);
@@ -306,7 +299,13 @@ public:
 };
 Playfield playfield;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//main
+void snakeEngine(){//manages all snake game processes
+    playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
+    AbsoluteSolver();//game engine
+    system("cls");//clears terminal
+    playfield.display(Snake1, Snake2, foodblock);//display the game
+    testGame();//print game info
+}
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand(69420);
