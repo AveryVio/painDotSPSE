@@ -21,8 +21,8 @@ using namespace std;
 #include <Windows.h>//for windows console
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //definitions for usefull to update stuff
-#define PLAYFIELDX 32
-#define PLAYFIELDY 16
+#define PLAYFIELDMAXX 32
+#define PLAYFIELDMAXY 16
 #define MAXSNAKELENGTH 256
 #define SNAKESTARTLENGTH 3
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
@@ -55,9 +55,9 @@ class snake{
     char length;
     char lengthStored[5];
     snake(char snakenumber){// consstructor for snake
-        if(snakenumber == 0) headposX = rand() % ((PLAYFIELDX / 2) + 1);
-        else headposX = (PLAYFIELDX / 2) + rand() % ((PLAYFIELDX / 2) + 1);
-        headposY = ((PLAYFIELDY + 1) / 8) + rand() % ((PLAYFIELDY + 1) / 4);
+        if(snakenumber == 0) headposX = rand() % ((PLAYFIELDMAXX / 2) + 1);
+        else headposX = (PLAYFIELDMAXX / 2) + rand() % ((PLAYFIELDMAXX / 2) + 1);
+        headposY = ((PLAYFIELDMAXY + 1) / 8) + rand() % ((PLAYFIELDMAXY + 1) / 4);
         length = SNAKESTARTLENGTH;
         if(snakenumber == 0) direction = 0;
         else direction = 2;
@@ -76,8 +76,8 @@ class snake{
         }
     }
     char movecheck(){// if snake can move if yes then 1 else 0
-        if(direction == 0) if(headposY == PLAYFIELDY + 1)return 0;
-        if(direction == 1) if(headposX == PLAYFIELDX + 1)return 0;
+        if(direction == 0) if(headposY == PLAYFIELDMAXY + 1)return 0;
+        if(direction == 1) if(headposX == PLAYFIELDMAXX + 1)return 0;
         if(direction == 2) if(headposY == 0)return 0;
         if(direction == 3) if(headposX == 0)return 0;
         return 1;
@@ -90,7 +90,7 @@ class snake{
         lengthStored[4] = 0;
     }
     void move(){//moves the snake
-        if(((direction == 0) && (headposY + 1 != PLAYFIELDY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDY))||((direction == 3) && (headposY - 1 != PLAYFIELDX))){//this is only for testing purposes
+        if(((direction == 0) && (headposY + 1 != PLAYFIELDMAXY + 1))||((direction == 1) && (headposY + 1 != PLAYFIELDMAXX + 1))||((direction == 2) && (headposY - 1 != PLAYFIELDMAXY))||((direction == 3) && (headposY - 1 != PLAYFIELDMAXX))){//this is only for testing purposes
             if (lengthStored[0] != 0) addLength();
             //move tail
             for(char i = length - 1; i > 0; i--){
@@ -100,8 +100,8 @@ class snake{
             tailX[0] = headposX;
             tailY[0] = headposY;
             //move head
-            if ((direction == 0) && (headposY != PLAYFIELDY + 1)) headposY = headposY + 1;
-            else if ((direction == 1) && (headposX != PLAYFIELDX + 1)) headposX = headposX + 1;
+            if ((direction == 0) && (headposY != PLAYFIELDMAXY + 1)) headposY = headposY + 1;
+            else if ((direction == 1) && (headposX != PLAYFIELDMAXX + 1)) headposX = headposX + 1;
             else if ((direction == 2) && (headposY != 0)) headposY = headposY - 1;
             else if ((direction == 3) && (headposX != 0)) headposX = headposX - 1;
         }
@@ -119,7 +119,7 @@ class snake{
 //objects
 snake Snake1(0);//player 1
 snake Snake2(1);//player 2
-food foodblock(rand() % (PLAYFIELDX + 1), rand() % (PLAYFIELDY + 1), FOODRANDCALC);
+food foodblock(rand() % (PLAYFIELDMAXX + 1), rand() % (PLAYFIELDMAXY + 1), FOODRANDCALC);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char biggerSnakeLength(){//returns length of the bigger snake
     if(Snake1.length > Snake2.length) return Snake1.length;
@@ -133,8 +133,8 @@ char snake::foodColiding(){
 void regenFood() {//respawns food at another location
     do{
         foodblock.nutrition = (rand() % 1) + (rand() % 3) + (rand() % 1);
-        foodblock.x = rand() % (PLAYFIELDX + 1);
-        foodblock.y = rand() % (PLAYFIELDY + 1);
+        foodblock.x = rand() % (PLAYFIELDMAXX + 1);
+        foodblock.y = rand() % (PLAYFIELDMAXY + 1);
     } while(Snake1.foodColiding() || Snake2.foodColiding());
 }
 void snake::snakeEat(){//checks if snake can eat if yes, eats the whole food and respawns it
@@ -264,8 +264,8 @@ void testGame(){//for testing only - prints most needed values of the game
 }
 class Playfield {//for testing only - used to display the playfield
 public:
-    static const int width = PLAYFIELDX;
-    static const int height = PLAYFIELDY;
+    static const int width = PLAYFIELDMAXX;
+    static const int height = PLAYFIELDMAXY;
     char grid[height][width];
     Playfield() {//playfield constructor
         for (int i = 0; i < height; i++) {
