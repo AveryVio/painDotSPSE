@@ -299,6 +299,10 @@ public:
 };
 Playfield playfield;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void innitSnake(){
+    cout << "This device is sponsored by the dotSPSE project" << endl;
+    info.gamestate = 1;
+}
 void snakeEngine(){//manages all snake game processes
     playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
     AbsoluteSolver();//game engine
@@ -312,9 +316,9 @@ int main(){
     //gamestart
     testGame();
     long long int milis = 0;
-    info.gamestate = 1;
+    innitSnake();
     for(int j= 0; j < 100000;){
-            if(clock() > milis + 333){
+        if(clock() > milis + 333){
             getInput();
             snakeEngine();
             cout << j << endl;
