@@ -278,12 +278,10 @@ public:
             grid[p.tailY[i]][p.tailX[i]] = symbol;
         }
     }
-    void predisplay(snake snake1, snake snake2, food food){//fixes visual bug
-        updateSnakePositions(snake1, 250);
-        updateSnakePositions(snake2, 250);
-        grid[food.y][food.x] = 250;
-    }
-    void display(snake snake1, snake snake2, food food) {// displaying playfield
+    void displaySnake(snake snake1, snake snake2, food food) {// displaying playfield
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) grid[i][j] = 250;
+        }
         //updates postions
         updateSnakePositions(snake1, '1');
         updateSnakePositions(snake2, '2');
@@ -304,11 +302,7 @@ void innitSnake(){
     info.gamestate = 1;
 }
 void snakeEngine(){//manages all snake game processes
-    playfield.predisplay(Snake1, Snake2, foodblock);//solves display issues
     AbsoluteSolver();//game engine
-    system("cls");//clears terminal
-    playfield.display(Snake1, Snake2, foodblock);//display the game
-    testGame();//print game info
 }
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
@@ -317,13 +311,14 @@ int main(){
     testGame();
     long long int milis = 0;
     innitSnake();
-    for(int j= 0; j < 100000;){
-        if(clock() > milis + 333){
+    while(1){
+        if(clock() > milis + 250){
             getInput();
             snakeEngine();
-            cout << j << endl;
-            milis += 333;
-            j++;
+            system("cls");//clears terminal
+            playfield.displaySnake(Snake1, Snake2, foodblock);//display the game
+            testGame();//print game info
+            milis += 250;
         }
     }
     return 0;
