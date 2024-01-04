@@ -12,22 +12,22 @@ using namespace std;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define LANGUAGE "CZ"
 
-#define PLAY "Play"
-#define BACK "Back"
-#define SLEEP "Sleep mode"
-#define RESTART "New game"
-#define PLAYER1WIN "Player 1 wins!"
-#define PLAYER2WIN "Player 2 wins!"
-#define NOPLAYERWIN "It's a tie!"
-#define PLAY "Hrat"
-#define BACK "Zpet"
-#define SLEEP "Spat"
-#define RESTART "Nova hra"
-#define PLAYER1WIN "Hrac 1 vyhrava!"
-#define PLAYER2WIN "Hrac 2 vyhrava!"
-#define NOPLAYERWIN "Remiza"
 #if(LANGUAGE == "EN")
+    #define PLAY "Play"
+    #define BACK "Back"
+    #define SLEEP "Sleep mode"
+    #define RESTART "New game"
+    #define PLAYER1WIN "Player 1 wins!"
+    #define PLAYER2WIN "Player 2 wins!"
+    #define NOPLAYERWIN "It's a tie!"
 #elif(LANGUAGE == "CZ")
+    #define PLAY "Hrat"
+    #define BACK "Zpet"
+    #define SLEEP "Spat"
+    #define RESTART "Nova hra"
+    #define PLAYER1WIN "Hrac 1 vyhrava!"
+    #define PLAYER2WIN "Hrac 2 vyhrava!"
+    #define NOPLAYERWIN "Remiza"
 #endif
 
 #define ARCADENAME "testname"
