@@ -54,7 +54,7 @@ void readButtons(){
     (IO_PE0_GetValue() == 1)? setButton(4): clearButton(4);
 }
 
-void readJoysticks(){
+void readJoystick(){
     ADC0_StartConversion(ADC_MUXPOS_AIN1_gc);
     while(!ADC0_IsConversionDone());
     JoystickX = ADC0_GetConversionResult();
