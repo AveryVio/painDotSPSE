@@ -98,16 +98,19 @@ void mennuButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t
     buttonT.height = heightT;
 }
 
-void setButton(button buttonT, char* nameT){
+void setButton(button buttonT, const char* nameT){
     strcpy(buttonT.text,nameT);
 }
 
-#define setMenu(gameName, button1Name, button2Name, button3Name) \
-    strcpy(menuScreen.menuName,gameName);\
-    setButton(menuScreen.buttons[0], button1Name);\
-    setButton(menuScreen.buttons[1], button2Name);\
+void setMenu(const char* gameName, const char* button1Name, const char* button2Name, const char* button3Name){
+    strcpy(menuScreen.menuName,gameName);
+    setButton(menuScreen.buttons[0], button1Name);
+    setButton(menuScreen.buttons[1], button2Name);
     setButton(menuScreen.buttons[2], button3Name);
-#define setDeathMessage(dMessage) strcpy(deathScreen.deathMessage,dMessage);
+}
+void setDeathMessage(const char* dMessage){
+    strcpy(deathScreen.deathMessage,dMessage);
+}
 
 void innitMenus(){
     //menu screen
@@ -115,13 +118,13 @@ void innitMenus(){
     mennuButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
     mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
     //main menu
-    setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
+    setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
     /*//snake menu
-    setMenu(SNAKENAME,PLAY,BACK,SLEEP)
+    setMenu(SNAKENAME,PLAY,BACK,SLEEP);
     //frog menu
-    setMenu(FROGNAME,PLAY,BACK,SLEEP)
+    setMenu(FROGNAME,PLAY,BACK,SLEEP);
     //pong menu
-    setMenu(PONGNAME,PLAY,BACK,SLEEP)*/
+    setMenu(PONGNAME,PLAY,BACK,SLEEP);*/
     //
     //death screen
     setButton(deathScreen.restartButton, RESTART);
@@ -129,11 +132,11 @@ void innitMenus(){
     mennuButtonPos(deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43, 13);
     mennuButtonPos(deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43, 13);
     //player 1 win
-    setDeathMessage(PLAYER1WIN)
+    setDeathMessage(PLAYER1WIN);
     //player 2 win
-    /*setDeathMessage(PLAYER2WIN)
+    /*setDeathMessage(PLAYER2WIN);
     //no player win
-    setDeathMessage(NOPLAYERWIN)*/
+    setDeathMessage(NOPLAYERWIN);*/
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
