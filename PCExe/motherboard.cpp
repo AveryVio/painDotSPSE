@@ -10,30 +10,32 @@ using namespace std;
 #include <cstring>
 #include <Windows.h>//for windows console
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define LANGUAGE "CZ"
+#define CZ 0
+#define EN 1
+#define LANGUAGE EN
 
-#if(LANGUAGE == "EN")
-    #define PLAY "Play"
-    #define BACK "Back"
-    #define SLEEP "Sleep mode"
-    #define RESTART "New game"
-    #define PLAYER1WIN "Player 1 wins!"
-    #define PLAYER2WIN "Player 2 wins!"
-    #define NOPLAYERWIN "It's a tie!"
-#elif(LANGUAGE == "CZ")
-    #define PLAY "Hrat"
-    #define BACK "Zpet"
-    #define SLEEP "Spat"
-    #define RESTART "Nova hra"
-    #define PLAYER1WIN "Hrac 1 vyhrava!"
-    #define PLAYER2WIN "Hrac 2 vyhrava!"
-    #define NOPLAYERWIN "Remiza"
+#if(LANGUAGE == EN)
+    const char PLAY[] = "Play";
+    const char BACK[] = "Back";
+    const char SLEEP[] = "Sleep mode";
+    const char RESTART[] = "New game";
+    const char PLAYER1WIN[] = "Player 1 wins!";
+    const char PLAYER2WIN[] = "Player 2 wins!";
+    const char NOPLAYERWIN[] = "It's a tie!";
+#elif(LANGUAGE == CZ)
+    const char PLAY[] = "Hrat";
+    const char BACK[] = "Zpet";
+    const char SLEEP[] = "Spat";
+    const char RESTART[] = "Nova hra";
+    const char PLAYER1WIN[] = "Hrac 1 vyhrava!";
+    const char PLAYER2WIN[] = "Hrac 2 vyhrava!";
+    const char NOPLAYERWIN[] = "Remiza";
 #endif
 
-#define ARCADENAME "testname"
-#define SNAKENAME "Double Slither"
-#define FROGNAME "Hop O!"
-#define PONGNAME "Pong"
+const char ARCADENAME[] = "testname";
+const char SNAKENAME[] = "Double Slither";
+const char FROGNAME[] = "Hop O!";
+const char PONGNAME[] = "Pong";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //definitions for usefull to update stuff
 #define MAXX 32
