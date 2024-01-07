@@ -528,13 +528,13 @@ void displayMenu(bool deathOrMenu){
         for (int j = 0; j < width; j++) grid[i][j] = 250;
     }
     if (deathOrMenu){
-            addButton(menuScreen.buttons[0]);
-            addButton(menuScreen.buttons[1]);
-            addButton(menuScreen.buttons[2]);
+        addButton(menuScreen.buttons[0]);
+        addButton(menuScreen.buttons[1]);
+        addButton(menuScreen.buttons[2]);
     }
     else if (!deathOrMenu){
-            addButton(deathScreen.restartButton);
-            addButton(deathScreen.backButton);
+        addButton(deathScreen.restartButton);
+        addButton(deathScreen.backButton);
     }
     playfield.displayGrid();
 }
