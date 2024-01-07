@@ -562,7 +562,7 @@ int main(){
     /*while(1){z
         if(clock() > milis + 250){
             getInput();
-            if(!gameON);
+            if(!gameON) displayMenu();
             if(gameON) snakeEngine();
             system("cls");//clears terminal
             //playfield.displaySnake(Snake1, Snake2, foodblock);//display the game
