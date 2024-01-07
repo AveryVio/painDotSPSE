@@ -124,32 +124,34 @@ typedef struct deathScreen{
 menu menuScreen;
 death deathScreen;
 
-void mennuButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
-    buttonT.startX = startXT;
-    buttonT.startY = startXT;
-    buttonT.width = widthT;
-    buttonT.height = heightT;
+void mennuButtonPos(button* buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
+    buttonT->startX = startXT;
+    buttonT->startY = startXT;
+    buttonT->width = widthT;
+    buttonT->height = heightT;
 }
 
-void setButton(button buttonT, const char* nameT){
-    strcpy(buttonT.text,nameT);
+void setButton(button *buttonT, const char* nameT){
+    Memcpy(buttonT->text,nameT,sizeof(nameT) * 4);
 }
 
 void setMenu(const char* gameName, const char* button1Name, const char* button2Name, const char* button3Name){
-    strcpy(menuScreen.menuName,gameName);
-    setButton(menuScreen.buttons[0], button1Name);
-    setButton(menuScreen.buttons[1], button2Name);
-    setButton(menuScreen.buttons[2], button3Name);
+    //strcpy(menuScreen.menuName,gameName);
+    Memcpy(menuScreen.menuName,gameName,sizeof(gameName) * 5);
+    setButton(&menuScreen.buttons[0], button1Name);
+    setButton(&menuScreen.buttons[1], button2Name);
+    setButton(&menuScreen.buttons[2], button3Name);
 }
 void setDeathMessage(const char* dMessage){
-    strcpy(deathScreen.deathMessage,dMessage);
+    //strcpy(deathScreen.deathMessage,dMessage);
+    Memcpy(deathScreen.deathMessage,dMessage,sizeof(dMessage) * 5);
 }
 
 void innitMenus(){
     //menu screen
-    mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
-    mennuButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    mennuButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
+    mennuButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
+    mennuButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
     /*//snake menu
