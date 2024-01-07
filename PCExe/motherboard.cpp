@@ -15,27 +15,27 @@ using namespace std;
 #define LANGUAGE EN
 
 #if(LANGUAGE == EN)
-    const char PLAY[] = "Play";
-    const char BACK[] = "Back";
-    const char SLEEP[] = "Sleep mode";
-    const char RESTART[] = "New game";
-    const char PLAYER1WIN[] = "Player 1 wins!";
-    const char PLAYER2WIN[] = "Player 2 wins!";
-    const char NOPLAYERWIN[] = "It's a tie!";
+    #define PLAY "Play"
+    #define BACK "Back"
+    #define SLEEP "Sleep mode"
+    #define RESTART "New game"
+    #define PLAYER1WIN "Player 1 wins!"
+    #define PLAYER2WIN "Player 2 wins!"
+    #define NOPLAYERWIN "It's a tie!"
 #elif(LANGUAGE == CZ)
-    const char PLAY[] = "Hrat";
-    const char BACK[] = "Zpet";
-    const char SLEEP[] = "Spat";
-    const char RESTART[] = "Nova hra";
-    const char PLAYER1WIN[] = "Hrac 1 vyhrava!";
-    const char PLAYER2WIN[] = "Hrac 2 vyhrava!";
-    const char NOPLAYERWIN[] = "Remiza";
+    #define PLAY "Hrat"
+    #define BACK "Zpet"
+    #define SLEEP "Spat"
+    #define RESTART "Nova hra"
+    #define PLAYER1WIN "Hrac 1 vyhrava!"
+    #define PLAYER2WIN "Hrac 2 vyhrava!"
+    #define NOPLAYERWIN "Remiza"
 #endif
 
-const char ARCADENAME[] = "testname";
-const char SNAKENAME[] = "Double Slither";
-const char FROGNAME[] = "Hop O!";
-const char PONGNAME[] = "Pong";
+#define ARCADENAME "testname"
+#define SNAKENAME "Double Slither"
+#define FROGNAME "Hop O!"
+#define PONGNAME "Pong"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //definitions for usefull to update stuff
 #define MAXX 32
