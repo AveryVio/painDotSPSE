@@ -6,7 +6,7 @@ using namespace std;
 #include <stdio.h>
 #include <ctime>
 #include <inttypes.h>
-//#include <string.h> only if i need original memcpy of buttons
+#include <string.h>
 //#include <cstring>
 #include <Windows.h>//for windows console
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
