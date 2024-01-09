@@ -490,7 +490,7 @@ public:
 };
 Playfield playfield;
 
-/**/
+
 void addButton(button buttonT) {
     char textLength = 0;
     while (buttonT.text[textLength] != '\0') textLength++;
