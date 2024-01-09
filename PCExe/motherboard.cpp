@@ -114,11 +114,13 @@ typedef struct menuButton{
 typedef struct userMenu{
     char menuName[16];
     button buttons[3];
+    uint8_t selected;
 } menu;
 typedef struct deathScreen{
     char deathMessage[32];
     button restartButton;
     button backButton;
+    uint8_t selected;
 } death;
 
 menu menuScreen;
