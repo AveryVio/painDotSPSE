@@ -151,9 +151,9 @@ void setDeathMessage(const char* dMessage){
 
 void innitMenus(){
     //menu screen
-    mennuButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
-    mennuButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    mennuButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    mennuButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    mennuButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    mennuButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
     /*//snake menu
