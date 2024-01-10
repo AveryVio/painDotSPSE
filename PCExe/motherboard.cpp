@@ -504,39 +504,27 @@ Playfield playfield;
 
 
 void addButton(button buttonT) {
-    char textLength = 0;
-    while (buttonT.text[textLength] != '\0') textLength++;
-    char spacesBefore = (buttonT.width - textLength - 2) / 2;
-    char spacesAfter = buttonT.width - textLength - 2 - spacesBefore;
-    for (int widths = 0; widths < buttonT.width; widths++) grid[1][widths] = '#';
-    std::cout << endl;
-    for (int i = 1; i < buttonT.height - 2; ++i) {
-        grid[i][1] = '#';
-        for (int j = 1; j < width - 2; j++){
-            if (i == buttonT.height / 2) {
-                if(spacesBefore <= (j - spacesAfter - textLength - 1)) grid[i][j] = 250;
-                if(textLength <= (j - spacesBefore - 1)) grid[i][j] = buttonT.text[j - spacesBefore - 2];
-                if(spacesAfter <= (j - spacesBefore - textLength - 1)) grid[i][j] = 250;
-            }
-            else {
-                for (char widths = 1; widths < buttonT.width - 2; widths++) grid[i][j] = 250;
-            }
-            /*
-            std::cout << '#';
-            if (i == buttonT.height / 2) {
-                for (char widths = 0; widths < spacesBefore; widths++) std::cout << ' ';
-                std::cout << buttonT.text;
-                for (char widths = 0; widths < spacesAfter; widths++) std::cout << ' ';
-            }
-            else {
-                for (char widths = 0; widths < buttonT.width - 2; widths++) std::cout << ' ';
-            }
-            std::cout << '#' << endl;
-            */
+    #define posy buttonT.startY// - height
+    #define posx buttonT.startX// - width
+
+    char textLength = textlen(buttonT.text);
+    char spacesBefore = (buttonT.width - textLength) / 2;
+    char spacesAfter = buttonT.width - textLength - spacesBefore;
+
+    for (int widths = 0; widths <= buttonT.width; widths++) grid[buttonT.height + posy][widths + posx] = '#';
+    for (int i = 0; i < buttonT.height; ++i) {
+        grid[i + posy][posx] = '#';
+        if (i == buttonT.height / 2) {
+            for(char widths = 0; widths <= spacesBefore; widths++) grid[i + posy][widths + posx + 1] = 250;
+            for(char widths = 0; widths <= textLength; widths++) grid[i + posy][widths + posx + spacesBefore + 1] = buttonT.text[widths];
+            for(char widths = 0; widths <= spacesAfter; widths++) grid[i + posy][widths + posx + spacesBefore + textLength + 1] = 250;
         }
-        grid[i][1] = '#';
+        else {
+            for (char j = 1; j < buttonT.width; j++) grid[i + posy][j + posx] = 250;
+        }
+        grid[i + posy][buttonT.width + posx] = '#';
     }
-    for (int widths = 0; widths < buttonT.width; widths++) grid[1][widths] = '#';
+    for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = '#';
 }
 void displayMenu(bool deathOrMenu){
     for (int i = 0; i < height; i++) {
