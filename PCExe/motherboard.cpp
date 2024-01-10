@@ -129,7 +129,7 @@ typedef struct deathScreen{
 menu menuScreen;
 death deathScreen;
 
-void mennuButtonPos(button* buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
+void ButtonPos(button* buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT->startX = startXT;
     buttonT->startY = startXT;
     buttonT->width = widthT;
@@ -154,9 +154,9 @@ void setDeathMessage(const char* dMessage){
 
 void innitMenus(){
     //menu screen
-    mennuButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    mennuButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    mennuButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
     /*//snake menu
@@ -169,14 +169,15 @@ void innitMenus(){
     //death screen
     setButton(&deathScreen.restartButton, RESTART);
     setButton(&deathScreen.backButton, BACK);
-    mennuButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
-    mennuButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
     //player 1 win
     setDeathMessage(PLAYER1WIN);
     //player 2 win
     /*setDeathMessage(PLAYER2WIN);
     //no player win
     setDeathMessage(NOPLAYERWIN);*/
+    printf("%de%de\r\n",MAXX,menuScreen.buttons[0].startX);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
