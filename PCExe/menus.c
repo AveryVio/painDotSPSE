@@ -51,7 +51,7 @@ typedef struct deathScreen{
 menu menuScreen;
 death deathScreen;
 
-void mennuButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
+void ButtonPos(button buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT.startX = startXT;
     buttonT.startY = startXT;
     buttonT.width = widthT;
@@ -72,9 +72,9 @@ void setButton(button buttonT, char* nameT){
 int main(){
     //menu screen
     //setup
-    mennuButtonPos(menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
-    mennuButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    mennuButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
     //snake menu
@@ -88,8 +88,8 @@ int main(){
     //setup
     setButton(deathScreen.restartButton, RESTART);
     setButton(deathScreen.backButton, BACK);
-    mennuButtonPos(deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43, 13);
-    mennuButtonPos(deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43, 13);
+    ButtonPos(deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43, 13);
+    ButtonPos(deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43, 13);
     //player 1 win
     setDeathMessage(PLAYER1WIN)
     //player 2 win
