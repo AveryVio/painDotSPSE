@@ -526,20 +526,19 @@ void addButton(button buttonT) {
     }
     for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = '#';
 }
-void displayMenu(bool deathOrMenu){
+void updateMenus(bool deathOrMenu){
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) grid[i][j] = 250;
     }
     if (deathOrMenu){
-        addButton(menuScreen.buttons[0]);
-        addButton(menuScreen.buttons[1]);
-        addButton(menuScreen.buttons[2]);
+        addButton(menuScreen.primaryButton);
+        addButton(menuScreen.secondaryButton);
+        addButton(menuScreen.ternaryButton);
     }
     else if (!deathOrMenu){
         addButton(deathScreen.restartButton);
         addButton(deathScreen.backButton);
     }
-    playfield.displayGrid();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void innitSnake(){
