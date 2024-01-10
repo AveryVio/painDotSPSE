@@ -40,7 +40,9 @@ typedef struct menuButton{
 } button;
 typedef struct userMenu{
     char menuName[16];
-    button buttons[3];
+    button primaryButton;
+    button secondaryButton;
+    button ternaryButton;
 } menu;
 typedef struct deathScreen{
     char deathMessage[32];
@@ -64,17 +66,17 @@ void setButton(button buttonT, char* nameT){
 
 #define setMenu(gameName, button1Name, button2Name, button3Name) \
     strcpy(menuScreen.menuName,gameName);\
-    setButton(menuScreen.buttons[0], button1Name);\
-    setButton(menuScreen.buttons[1], button2Name);\
-    setButton(menuScreen.buttons[2], button3Name);
+    setButton(menuScreen.primaryButton, button1Name);\
+    setButton(menuScreen.secondaryButton, button2Name);\
+    setButton(menuScreen.ternaryButton, button3Name);
 #define setDeathMessage(dMessage) strcpy(deathScreen.deathMessage,dMessage);
 
 int main(){
     //menu screen
     //setup
-    ButtonPos(menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43, 13);
-    ButtonPos(menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43, 13);
-    ButtonPos(menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 43, 13);
+    ButtonPos(menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 43, 13);
     //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP)
     //snake menu

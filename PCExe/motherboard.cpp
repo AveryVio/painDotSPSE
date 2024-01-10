@@ -116,7 +116,9 @@ typedef struct menuButton{
 } button;
 typedef struct userMenu{
     char menuName[16];
-    button buttons[3];
+    button primaryButton;
+    button secondaryButton;
+    button ternaryButton;
     uint8_t selected;
 } menu;
 typedef struct deathScreen{
@@ -141,24 +143,31 @@ void setButton(button *buttonT, const char* nameT){
 }
 
 void setMenu(const char* gameName, const char* button1Name, const char* button2Name, const char* button3Name){
-    //strcpy(menuScreen.menuName,gameName);
     Memcpy(menuScreen.menuName,gameName,sizeof(gameName) * 5);
-    setButton(&menuScreen.buttons[0], button1Name);
-    setButton(&menuScreen.buttons[1], button2Name);
-    setButton(&menuScreen.buttons[2], button3Name);
+    setButton(&menuScreen.primaryButton, button1Name);
+    setButton(&menuScreen.secondaryButton, button2Name);
+    setButton(&menuScreen.ternaryButton, button3Name);
 }
 void setDeathMessage(const char* dMessage){
-    //strcpy(deathScreen.deathMessage,dMessage);
     Memcpy(deathScreen.deathMessage,dMessage,sizeof(dMessage) * 5);
+}
+void updateMenu(const char* gameName, const char* button1Name, const char* button2Name, const char* button3Name){
+    Memcpy(menuScreen.menuName,gameName,sizeof(gameName) * 5);
+    setButton(&menuScreen.primaryButton, button1Name);
+    setButton(&menuScreen.secondaryButton, button2Name);
+    setButton(&menuScreen.ternaryButton, button3Name);
+    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
 }
 
 void innitMenus(){
     //menu screen
-    ButtonPos(&menuScreen.buttons[0], 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.buttons[1], 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.buttons[2], 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    //main menu
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
+    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    //main menu
     /*//snake menu
     setMenu(SNAKENAME,PLAY,BACK,SLEEP);
     //frog menu
@@ -177,7 +186,6 @@ void innitMenus(){
     /*setDeathMessage(PLAYER2WIN);
     //no player win
     setDeathMessage(NOPLAYERWIN);*/
-    printf("%de%de\r\n",MAXX,menuScreen.buttons[0].startX);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
