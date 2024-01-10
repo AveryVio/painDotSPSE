@@ -45,6 +45,7 @@ using namespace std;
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
 //variables for state management
 bool gameON;
+char gameChioce;
 //variables for preformance increases
 char snakecheck12Result;
 char snakecheck21Result;
