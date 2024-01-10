@@ -73,16 +73,19 @@ char snake2movecheckResult;
 void * Memcpy(void* dst, const void* src, unsigned int cnt){
     char *pszDest = (char *)dst;
     const char *pszSource =( const char*)src;
-    if((pszDest!= NULL) && (pszSource!= NULL))
-    {
-        while(cnt) //till cnt
-        {
-            //Copy byte by byte
+    if((pszDest!= NULL) && (pszSource!= NULL)){
+        while(cnt){
             *(pszDest++)= *(pszSource++);
             --cnt;
         }
+        *pszDest = '\0';
     }
     return dst;
+}
+char textlen(char* textIn){
+    char len = 0;
+    for(;(*textIn); textIn++) len++;
+    return len;
 }
 
 
