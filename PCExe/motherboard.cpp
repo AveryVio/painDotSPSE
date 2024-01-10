@@ -574,15 +574,14 @@ int main(){
     long long int milis = 0;
     innitMenus();
     innitSnake();
-    menuScreen.buttons[1].text[0] = 'e';
-    displayMenu(1);
-    cout <<"e"<< endl;
-    //displayMenu(true);
+    updateMenus(1);
+    playfield.displayGrid();
+    //updateMenus(true);
     //gameON = true;
     /*while(1){z
         if(clock() > milis + 250){
             getInput();
-            if(!gameON) displayMenu();
+            if(!gameON) updateMenus();
             if(gameON) snakeEngine();
             system("cls");//clears terminal
             //playfield.displaySnake(Snake1, Snake2, foodblock);//display the game
