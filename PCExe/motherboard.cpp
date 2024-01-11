@@ -157,17 +157,23 @@ void updateMenu(const char* gameName, const char* button1Name, const char* butto
     setButton(&menuScreen.primaryButton, button1Name);
     setButton(&menuScreen.secondaryButton, button2Name);
     setButton(&menuScreen.ternaryButton, button3Name);
-    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 39*MAXX/128, 11*MAXY/64);
+}
+void updateDeath(){
+    setButton(&deathScreen.restartButton, RESTART);
+    setButton(&deathScreen.backButton, BACK);
+    ButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
 }
 
 void innitMenus(){
     //menu screen
     setMenu(ARCADENAME,SNAKENAME,FROGNAME,SLEEP);
-    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&menuScreen.primaryButton, 43*MAXX/128, 28*MAXY/64, 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 39*MAXX/128, 11*MAXY/64);
     //main menu
     /*//snake menu
     setMenu(SNAKENAME,PLAY,BACK,SLEEP);
@@ -179,10 +185,9 @@ void innitMenus(){
     //death screen
     setButton(&deathScreen.restartButton, RESTART);
     setButton(&deathScreen.backButton, BACK);
-    ButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
-    ButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 43*MAXX/128, 13*MAXY/64);
+    ButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
+    ButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
     //player 1 win
-    setDeathMessage(PLAYER1WIN);
     //player 2 win
     /*setDeathMessage(PLAYER2WIN);
     //no player win
