@@ -541,7 +541,7 @@ void addButton(button buttonT, char selected) {
         for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = 250;
     }
 }
-void updateMenus(bool deathOrMenu){
+void updateMenus(){
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) grid[i][j] = 250;
     }
@@ -550,7 +550,7 @@ void updateMenus(bool deathOrMenu){
         addButton(menuScreen.secondaryButton, menuScreen.selected % 2);
         addButton(menuScreen.ternaryButton, menuScreen.selected % 3);
     }
-    else if (!deathOrMenu){
+    else{
         addButton(deathScreen.restartButton, deathScreen.selected % 1);
         addButton(deathScreen.backButton, deathScreen.selected % 2);
     }
