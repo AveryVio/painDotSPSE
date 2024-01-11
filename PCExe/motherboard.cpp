@@ -134,7 +134,7 @@ death deathScreen;
 
 void ButtonPos(button* buttonT, uint16_t startXT, uint16_t startYT, uint16_t widthT, uint16_t heightT){
     buttonT->startX = startXT;
-    buttonT->startY = startXT;
+    buttonT->startY = startYT;
     buttonT->width = widthT;
     buttonT->height = heightT;
 }
