@@ -389,7 +389,7 @@ void gameTick(){//exactly what the name says
     Snake2.snakeEat();
     cout << endl << "nowallnosnake" << endl;
 }
-void SnakeDeath(){// manages the game engine and win/loose conitions
+void SnakeGameEngine(){// manages the game engine and win/loose conitions
     //checks all nessecary stuff
     char snakecheck12Result = snakecheck(Snake1, Snake2);
     char snakecheck21Result = snakecheck(Snake2, Snake1);
@@ -553,7 +553,7 @@ void updateMenus(){
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void snakeEngine(){//manages all snake game processes
-    SnakeDeath();//game engine
+    SnakeGameEngine();//game engine
 }
 void innitSnake(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
