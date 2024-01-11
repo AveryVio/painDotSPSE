@@ -366,13 +366,9 @@ char snakecheck(snake snakeN, snake snakeT){// if both colide then 2, if asked s
 class gameInfo{// class of information for cloud backup
     public:
         uint32_t gemeid;
-        char gamestate;
         char winner;
         snake winnerInfo;
         snake loserInfo;
-        gameInfo(char gamestatep) : winnerInfo(-1), loserInfo(-1){
-            gamestate = gamestatep;
-        }
         void winnerReporter(char winner){//sets the winner and the loser for sending to the cloud
             winner = winner;
             if(winner == 1){
@@ -385,7 +381,7 @@ class gameInfo{// class of information for cloud backup
             }
         }
 };
-gameInfo info(0);
+gameInfo info;
 void gameTick(){//exactly what the name says
     Snake1.move();
     Snake1.snakeEat();
