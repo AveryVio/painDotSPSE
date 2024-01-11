@@ -623,7 +623,7 @@ void getInput(){//get player input
 void absoluteSolver(){
     if(debug)testGame();
     if(gameON) snakeEngine();
-    else updateMenus(false);
+    else updateMenus();
     system("cls");
     playfield.displayGrid();
 }
@@ -634,8 +634,7 @@ int main(){
     if(debug)testGame();
     long long int milis = 0;
     innitMenus();
-    innitSnake();
-    updateMenus(true);
+    updateMenus();
     while(1){
         if(clock() > milis + 250){
             getInput();
