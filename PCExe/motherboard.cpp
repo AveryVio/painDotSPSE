@@ -511,7 +511,7 @@ public:
 Playfield playfield;
 
 
-void addButton(button buttonT) {
+void addButton(button buttonT, char selected) {
     #define posy buttonT.startY// - height
     #define posx buttonT.startX// - width
 
@@ -519,33 +519,51 @@ void addButton(button buttonT) {
     char spacesBefore = (buttonT.width - textLength) / 2;
     char spacesAfter = buttonT.width - textLength - spacesBefore;
 
-    for (int widths = 0; widths <= buttonT.width; widths++) grid[buttonT.height + posy][widths + posx] = '#';
-    for (int i = 0; i < buttonT.height; ++i) {
-        grid[i + posy][posx] = '#';
-        if (i == buttonT.height / 2) {
-            for(char widths = 0; widths <= spacesBefore; widths++) grid[i + posy][widths + posx + 1] = 250;
-            for(char widths = 0; widths <= textLength; widths++) grid[i + posy][widths + posx + spacesBefore + 1] = buttonT.text[widths];
-            for(char widths = 0; widths <= spacesAfter; widths++) grid[i + posy][widths + posx + spacesBefore + textLength + 1] = 250;
+    if(selected == 0) {
+        for (int widths = 0; widths <= buttonT.width; widths++) grid[buttonT.height + posy][widths + posx] = '#';
+        for (int i = 0; i < buttonT.height; ++i) {
+            grid[i + posy][posx] = '#';
+            if (i == buttonT.height / 2) {
+                for(char widths = 0; widths <= spacesBefore; widths++) grid[i + posy][widths + posx + 1] = 250;
+                for(char widths = 0; widths <= textLength; widths++) grid[i + posy][widths + posx + spacesBefore + 1] = buttonT.text[widths];
+                for(char widths = 0; widths <= spacesAfter; widths++) grid[i + posy][widths + posx + spacesBefore + textLength + 1] = 250;
+            }
+            else {
+                for (char j = 1; j < buttonT.width; j++) grid[i + posy][j + posx] = 250;
+            }
+            grid[i + posy][buttonT.width + posx] = '#';
         }
-        else {
-            for (char j = 1; j < buttonT.width; j++) grid[i + posy][j + posx] = 250;
-        }
-        grid[i + posy][buttonT.width + posx] = '#';
+        for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = '#';
     }
-    for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = '#';
+    else {
+        for (int widths = 0; widths <= buttonT.width; widths++) grid[buttonT.height + posy][widths + posx] = 250;
+        for (int i = 0; i < buttonT.height; ++i) {
+            grid[i + posy][posx] = 250;
+            if (i == buttonT.height / 2) {
+                for(char widths = 0; widths <= spacesBefore; widths++) grid[i + posy][widths + posx + 1] = 250;
+                for(char widths = 0; widths <= textLength; widths++) grid[i + posy][widths + posx + spacesBefore + 1] = buttonT.text[widths];
+                for(char widths = 0; widths <= spacesAfter; widths++) grid[i + posy][widths + posx + spacesBefore + textLength + 1] = 250;
+            }
+            else {
+                for (char j = 1; j < buttonT.width; j++) grid[i + posy][j + posx] = 250;
+            }
+            grid[i + posy][buttonT.width + posx] = 250;
+        }
+        for (int widths = 0; widths <= buttonT.width; widths++) grid[posy][widths + posx] = 250;
+    }
 }
 void updateMenus(bool deathOrMenu){
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) grid[i][j] = 250;
     }
     if (deathOrMenu){
-        addButton(menuScreen.primaryButton);
-        addButton(menuScreen.secondaryButton);
-        addButton(menuScreen.ternaryButton);
+        addButton(menuScreen.primaryButton, menuScreen.selected % 1);
+        addButton(menuScreen.secondaryButton, menuScreen.selected % 2);
+        addButton(menuScreen.ternaryButton, menuScreen.selected % 3);
     }
     else if (!deathOrMenu){
-        addButton(deathScreen.restartButton);
-        addButton(deathScreen.backButton);
+        addButton(deathScreen.restartButton, deathScreen.selected % 1);
+        addButton(deathScreen.backButton, deathScreen.selected % 2);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
