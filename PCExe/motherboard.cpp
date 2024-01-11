@@ -44,8 +44,9 @@ using namespace std;
 #define SNAKESTARTLENGTH 3
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)
 //variables for state management
-bool gameON;
+bool gameON = false;
 char gameChioce;
+bool deathOrMenu = true;
 //debug variable
 bool debug = true;
 
@@ -158,12 +159,6 @@ void updateMenu(const char* gameName, const char* button1Name, const char* butto
     ButtonPos(&menuScreen.secondaryButton, 43*MAXX/128, 16*MAXY/64, 39*MAXX/128, 11*MAXY/64);
     ButtonPos(&menuScreen.ternaryButton, 43*MAXX/128, 4*MAXY/64, 39*MAXX/128, 11*MAXY/64);
 }
-void updateDeath(){
-    setButton(&deathScreen.restartButton, RESTART);
-    setButton(&deathScreen.backButton, BACK);
-    ButtonPos(&deathScreen.restartButton, 43*MAXX/128, 39*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
-    ButtonPos(&deathScreen.backButton, 43*MAXX/128, 22*MAXY/64 , 39*MAXX/128, 11*MAXY/64);
-}
 
 void innitMenus(){
     //menu screen
@@ -191,6 +186,16 @@ void innitMenus(){
     setDeathMessage(NOPLAYERWIN);*/
     menuScreen.selected = 1;
     deathScreen.selected = 1;
+}
+
+void menuSelect(bool UpOrDown){
+    if(deathOrMenu){
+        if(UpOrDown && (menuScreen.selected < 3)) menuScreen.selected++;
+        if(!UpOrDown && (menuScreen.selected > 1)) menuScreen.selected--;
+        return;
+    }
+    if(UpOrDown && (deathScreen.selected < 3)) deathScreen.selected++;
+    if(!UpOrDown && (deathScreen.selected > 1)) deathScreen.selected--;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -449,19 +454,6 @@ void SnakeDeath(){// manages the game engine and win/loose conitions
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void getInput(){//get player input
-    //player 1 input
-    if(GetKeyState('W') & 0x8000)Snake1.changeDirection(0);
-    if(GetKeyState('A') & 0x8000)Snake1.changeDirection(3);
-    if(GetKeyState('S') & 0x8000)Snake1.changeDirection(2);
-    if(GetKeyState('D') & 0x8000)Snake1.changeDirection(1);
-    //player 2 input
-    if(GetKeyState('I') & 0x8000)Snake2.changeDirection(0);
-    if(GetKeyState('J') & 0x8000)Snake2.changeDirection(3);
-    if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
-    if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static const int width = MAXX;
 static const int height = MAXY;
 char grid[height][width];
@@ -570,6 +562,24 @@ void innitSnake(){
 }
 void snakeEngine(){//manages all snake game processes
     SnakeDeath();//game engine
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void confirmSelection(){
+    if(!deathOrMenu){
+        if(deathScreen.selected == 1);
+        if(deathScreen.selected == 2);
+        return;
+    }
+    if(gameChioce == 0){
+        if(menuScreen.selected == 1)gameChioce = 1;
+        if(menuScreen.selected == 2)printf("This game is not supported yet.\r\n");
+        if(menuScreen.selected == 3);
+    }
+    else{
+        if(menuScreen.selected == 1)innitSnake();
+        if(menuScreen.selected == 2)gameChioce = 0;
+        if(menuScreen.selected == 3);
+    }
+}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
