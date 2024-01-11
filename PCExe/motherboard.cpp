@@ -367,10 +367,10 @@ class gameInfo{// class of information for cloud backup
     public:
         uint32_t gemeid;
         char winner;
-        snake winnerInfo;
-        snake loserInfo;
-        void winnerReporter(char winner){//sets the winner and the loser for sending to the cloud
-            winner = winner;
+        snake winnerInfo = -1;
+        snake loserInfo = 1;
+        void winnerReporter(char winnerT){//sets the winner and the loser for sending to the cloud
+            winner = winnerT;
             if(winner == 1){
                 winnerInfo = Snake1;
                 loserInfo = Snake2;
