@@ -46,11 +46,6 @@ using namespace std;
 //variables for state management
 bool gameON;
 char gameChioce;
-//variables for preformance increases
-char snakecheck12Result;
-char snakecheck21Result;
-char snake1movecheckResult;
-char snake2movecheckResult;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -393,10 +388,10 @@ void gameTick(){//exactly what the name says
 }
 void AbsoluteSolver(){// manages the game engine and win/loose conitions
     //checks all nessecary stuff
-    snakecheck12Result = snakecheck(Snake1, Snake2);
-    snakecheck21Result = snakecheck(Snake2, Snake1);
-    snake1movecheckResult = Snake1.movecheck();
-    snake2movecheckResult = Snake2.movecheck();
+    char snakecheck12Result = snakecheck(Snake1, Snake2);
+    char snakecheck21Result = snakecheck(Snake2, Snake1);
+    char snake1movecheckResult = Snake1.movecheck();
+    char snake2movecheckResult = Snake2.movecheck();
     //if no collision happened then uses game tick
     if(snake1movecheckResult && snake2movecheckResult && snakecheck12Result && snakecheck21Result)gameTick();
     //else stops the game and prepares winner
