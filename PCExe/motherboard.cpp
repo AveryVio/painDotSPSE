@@ -46,6 +46,8 @@ using namespace std;
 //variables for state management
 bool gameON;
 char gameChioce;
+//debug variable
+bool debug = true;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -587,28 +589,28 @@ void snakeEngine(){//manages all snake game processes
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void absoluteSolver(){
+    if(debug)testGame();
+    if(gameON) snakeEngine();
+    else updateMenus(false);
+    system("cls");
+    playfield.displayGrid();
+}
 int main(){
     cout << "This device is sponsored by the dotSPSE project" << endl;
     srand(69420);
     //gamestart
-    testGame();
+    if(debug)testGame();
     long long int milis = 0;
     innitMenus();
     innitSnake();
-    updateMenus(1);
-    playfield.displayGrid();
-    //updateMenus(true);
-    //gameON = true;
-    /*while(1){z
+    updateMenus(true);
+    while(1){
         if(clock() > milis + 250){
             getInput();
-            if(!gameON) updateMenus();
-            if(gameON) snakeEngine();
-            system("cls");//clears terminal
-            //playfield.displaySnake(Snake1, Snake2, foodblock);//display the game
-            testGame();//print game info
+            absoluteSolver();
             milis += 250;
         }
-    }*/
+    }
     return 0;
 }
