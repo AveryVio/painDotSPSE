@@ -403,7 +403,7 @@ void SnakeDeath(){// manages the game engine and win/loose conitions
     if(snake1movecheckResult && snake2movecheckResult && snakecheck12Result && snakecheck21Result)gameTick();
     //else stops the game and prepares winner
     else{
-        info.gamestate = 0;
+        gameON = false;
         if (snake1movecheckResult && snake2movecheckResult) cout << "nowall" << endl;
         else{
             if((snake1movecheckResult == 0) && (snake2movecheckResult == 0)){
