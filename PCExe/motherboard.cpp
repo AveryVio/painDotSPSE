@@ -582,6 +582,25 @@ void confirmSelection(){
         if(menuScreen.selected == 3);
     }
 }
+void getInput(){//get player input
+    if(gameON){
+        //player 1 input
+        if(GetKeyState('W') & 0x8000)Snake1.changeDirection(0);
+        if(GetKeyState('A') & 0x8000)Snake1.changeDirection(3);
+        if(GetKeyState('S') & 0x8000)Snake1.changeDirection(2);
+        if(GetKeyState('D') & 0x8000)Snake1.changeDirection(1);
+        //player 2 input
+        if(GetKeyState('I') & 0x8000)Snake2.changeDirection(0);
+        if(GetKeyState('J') & 0x8000)Snake2.changeDirection(3);
+        if(GetKeyState('K') & 0x8000)Snake2.changeDirection(2);
+        if(GetKeyState('L') & 0x8000)Snake2.changeDirection(1);
+    }
+    else {
+        if(GetKeyState('W') & 0x8000)menuSelect(1);
+        if(GetKeyState('A') & 0x8000)gameChioce = 0;
+        if(GetKeyState('S') & 0x8000)menuSelect(0);
+        if(GetKeyState('D') & 0x8000)confirmSelection();
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
