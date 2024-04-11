@@ -38,8 +38,8 @@ using namespace std;
 #define PONGNAME "Pong"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //definitions for usefull to update stuff
-#define MAXX 32
-#define MAXY 16
+#define MAXX (480/7)
+#define MAXY (320/7)
 #define MAXSNAKELENGTH 256
 #define SNAKESTARTLENGTH 3
 #define FOODRANDCALC (2 * (rand() % 1)) + (rand() % 2) + (rand() % 3)

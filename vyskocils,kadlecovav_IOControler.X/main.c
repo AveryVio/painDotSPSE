@@ -1,17 +1,5 @@
- /*
- * MAIN Generated Driver File
- * 
- * @file main.c
- * 
- * @defgroup main MAIN
- * 
- * @brief This is the generated driver implementation file for the MAIN driver.
- *
- * @version MAIN Driver Version 1.0.0
-*/
-
 /*
-© [2023] Microchip Technology Inc. and its subsidiaries.
+© [2024] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -31,6 +19,8 @@
     THIS SOFTWARE.
 */
 #include "mcc_generated_files/system/system.h"
+
+#define CONTROLERNUMBER 1
 
 uint16_t JoystickX;
 uint16_t JoystickY;
@@ -66,7 +56,13 @@ void readJoystick(){
 
 int main(void){
     SYSTEM_Initialize();
+    char printingFlag = 0;
+    char controlerPicked = 0;
     while(1){
-        TWI0_Tasks(void);
-    }    
+        if(controlerPicked == CONTROLERNUMBER){
+            printingFlag = 1;
+            printf("e");
+            printingFlag = 0;
+        }
+    }
 }

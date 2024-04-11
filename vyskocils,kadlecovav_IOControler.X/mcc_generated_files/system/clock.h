@@ -10,7 +10,7 @@
  * @version CLKCTRL Driver Version 1.0.2
 */
 /*
-© [2023] Microchip Technology Inc. and its subsidiaries.
+© [2024] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -35,7 +35,7 @@
 #define CLOCK_H
 
 #ifndef F_CPU
-#define F_CPU 4000000UL
+#define F_CPU 1000000UL
 #endif
 
 #include "ccp.h"
