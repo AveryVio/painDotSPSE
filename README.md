@@ -1,3 +1,6 @@
+this repo is very much outdated and probably broken. just put it here for fun lol
+
+/* old readme
 # testname
 
 Tato konzole je pokuz udělat zařízení pro zabavení při dlouhé chvíli.
@@ -25,3 +28,4 @@ SPŠE Plzeň
 ## Odkazy
 
 ![Static Badge](https://img.shields.io/badge/repozit%C3%A1%C5%99?style=flat&logo=gitlab&logoColor=%23FFFFFF&label=Gitlab&labelColor=FF6E00&color=%23777777&link=https%3A%2F%2Fgitlab.com%2Fspseplzen%2Fiot%2Fseminar_work_repositories%2Fyears%2F2023_2024%2F2_year%2Fdigitalni_hra_kadlecovav_vyskocils)
+*/
