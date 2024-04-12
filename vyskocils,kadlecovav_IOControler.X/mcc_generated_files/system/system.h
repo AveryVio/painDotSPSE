@@ -10,7 +10,7 @@
  * @version Driver Version 1.0.1
 */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -43,8 +43,8 @@ extern "C" {
 #include "../system/clock.h"
 #include "../system/pins.h"
 #include "../adc/adc0.h"
+#include "../i2c_client/twi0.h"
 #include "../timer/tca0.h"
-#include "../uart/usart0.h"
 #include "../vref/vref.h"
 #include "../system/interrupt.h"
 /**

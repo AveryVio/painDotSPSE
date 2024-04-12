@@ -10,6 +10,11 @@
         <logicalFolder name="adc" displayName="adc" projectFiles="true">
           <itemPath>mcc_generated_files/adc/adc0.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="i2c_client" displayName="i2c_client" projectFiles="true">
+          <itemPath>mcc_generated_files/i2c_client/twi0.h</itemPath>
+          <itemPath>mcc_generated_files/i2c_client/i2c_client_interface.h</itemPath>
+          <itemPath>mcc_generated_files/i2c_client/i2c_client_types.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="utils" displayName="utils" projectFiles="true">
             <logicalFolder name="assembler" displayName="assembler" projectFiles="true">
@@ -36,11 +41,6 @@
           <itemPath>mcc_generated_files/timer/timer_interface.h</itemPath>
           <itemPath>mcc_generated_files/timer/tca0.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="uart" displayName="uart" projectFiles="true">
-          <itemPath>mcc_generated_files/uart/usart0.h</itemPath>
-          <itemPath>mcc_generated_files/uart/uart_drv_interface.h</itemPath>
-          <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="vref" displayName="vref" projectFiles="true">
           <itemPath>mcc_generated_files/vref/vref.h</itemPath>
         </logicalFolder>
@@ -61,6 +61,11 @@
             <itemPath>mcc_generated_files/adc/src/adc0.c</itemPath>
           </logicalFolder>
         </logicalFolder>
+        <logicalFolder name="i2c_client" displayName="i2c_client" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/i2c_client/src/twi0.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/system/src/config_bits.c</itemPath>
@@ -74,11 +79,6 @@
         <logicalFolder name="timer" displayName="timer" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/timer/src/tca0.c</itemPath>
-          </logicalFolder>
-        </logicalFolder>
-        <logicalFolder name="uart" displayName="uart" projectFiles="true">
-          <logicalFolder name="src" displayName="src" projectFiles="true">
-            <itemPath>mcc_generated_files/uart/src/usart0.c</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="vref" displayName="vref" projectFiles="true">
@@ -123,7 +123,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>

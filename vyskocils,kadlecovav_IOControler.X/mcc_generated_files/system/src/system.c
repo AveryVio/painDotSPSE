@@ -10,7 +10,7 @@
  * @version Driver Version 1.0.1
 */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -38,8 +38,8 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     PIN_MANAGER_Initialize();
     ADC0_Initialize();
+    I2C0_Client_Initialize();
     TCA0_Initialize();
-    USART0_Initialize();
     VREF_Initialize();
     CPUINT_Initialize();
 }

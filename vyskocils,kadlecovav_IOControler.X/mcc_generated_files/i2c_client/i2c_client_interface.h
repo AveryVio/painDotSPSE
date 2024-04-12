@@ -1,16 +1,17 @@
 /**
- * UART Generated Driver Interface Header File
- * 
- * @file uart_types.h
- * 
- * @defgroup uart_types UART_TYPES
- * 
- * @brief This file contains APIs for UART module.
+ * I2C Generated Driver API Header File
  *
- * @version UART Driver Version 2.0.0
+ * @file {moduleGroupNameLowerCase}.h
+ *
+ * @defgroup i2c_client_interface I2C_CLIENT_INTERFACE
+ *
+ * @brief This header file provides APIs for the I2C driver.
+ *
+ * @version I2C Driver Version 1.0.2
 */
+
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -30,52 +31,35 @@
     THIS SOFTWARE.
 */
 
-#ifndef UART_TYPES_H
-#define	UART_TYPES_H
-
+#ifndef I2C_CLIENT_INTERFACE_H
+#define I2C_CLIENT_INTERFACE_H
 /**
   Section: Included Files
 */
 #include <stdbool.h>
 #include <stdint.h>
-
-#ifdef	__cplusplus
-extern "C" {
-#endif
-
-   
+#include "i2c_client_types.h"
+    
 /**
-  Section: Data Type Definitions
-*/ 
-      
+ Section: Data Type Definitions
+ */
+
 /**
-@ingroup uartdriver
-@enum UART_STANDARD_BAUDS
-@brief This Enum can be used to set UART standard
-baud-rates using \ref UARTx_BRGSet function e.g. \ref UART1_BRGSet.
-*/
-enum UART_STANDARD_BAUDS{
-UART_110 = 0,
-UART_300 = 1,
-UART_600 = 2,
-UART_1200 = 3,
-UART_2400 = 4,
-UART_4800 = 5,
-UART_9600 = 6,
-UART_14400 = 7,
-UART_19200 = 8,
-UART_38400 = 9,
-UART_57600 = 10,
-UART_115200 = 11,
-UART_230400 = 12,
-UART_460800 = 13,
-UART_921600 = 14,
+ * @ingroup i2c_client_interface
+ * @struct i2c_client_interface_t
+ * @brief Structure containing the function pointers of I2C driver.
+ */
+struct I2C_CLIENT_INTERFACE
+{
+    void (*Initialize)(void);
+    void (*Deinitialize)(void);
+    void (*WriteByte)(uint8_t wrByte);
+    uint8_t(*ReadByte)(void);
+    i2c_client_error_t (*ErrorGet)(void);
+    i2c_client_transfer_dir_t (*TransferDirGet)(void);
+    i2c_client_ack_status_t (*LastByteAckStatusGet)(void);
+    void (*CallbackRegister)(bool (*handler)(i2c_client_transfer_event_t clientEvent));
+    void (*Tasks)(void);
 };
 
-
-#ifdef	__cplusplus
-}
-#endif
-
-#endif	/* UART_TYPES_H */
-
+#endif // end of I2C_CLIENT_INTERFACE_H
