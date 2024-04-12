@@ -1,3 +1,12 @@
+this repo is very much outdated and probably broken. You are free to explore it but it was left in a certain state and I wont touch it to preserve it as is. 
+Organisation is a no go here so dont expect tha too.
+
+
+
+
+
+/* old readme*/
+
 # testname
 
 Tato konzole je pokuz udělat zařízení pro zabavení při dlouhé chvíli.
